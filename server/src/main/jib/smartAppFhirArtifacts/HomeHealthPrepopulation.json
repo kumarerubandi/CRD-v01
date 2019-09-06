@@ -991,21 +991,6 @@
                     }
                 },
                 {
-                    "name": "PractitionerMiddleInitial",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "name": "GetMiddleInitials",
-                        "type": "FunctionRef",
-                        "operand": [
-                            {
-                                "name": "PractitionerNameObject",
-                                "type": "ExpressionRef"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "PractitionerLastName",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1033,27 +1018,8 @@
                                 "type": "Concatenate",
                                 "operand": [
                                     {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "type": "Concatenate",
-                                                "operand": [
-                                                    {
-                                                        "name": "PractitionerFirstName",
-                                                        "type": "ExpressionRef"
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": " ",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "name": "PractitionerMiddleInitial",
-                                                "type": "ExpressionRef"
-                                            }
-                                        ]
+                                        "name": "PractitionerFirstName",
+                                        "type": "ExpressionRef"
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -1064,6 +1030,21 @@
                             },
                             {
                                 "name": "PractitionerLastName",
+                                "type": "ExpressionRef"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "PractitionerMiddleInitial",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "name": "GetMiddleInitials",
+                        "type": "FunctionRef",
+                        "operand": [
+                            {
+                                "name": "PractitionerNameObject",
                                 "type": "ExpressionRef"
                             }
                         ]
@@ -1539,6 +1520,15 @@
                                 }
                             }
                         ]
+                    }
+                },
+                {
+                    "name": "SubmissionDate",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "name": "Today",
+                        "type": "ExpressionRef"
                     }
                 },
                 {
