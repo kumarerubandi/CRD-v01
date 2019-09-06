@@ -516,41 +516,36 @@
                                 "type": "Equal",
                                 "operand": [
                                     {
-                                        "type": "ToList",
-                                        "operand": {
-                                            "path": "value",
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "code",
                                             "type": "Property",
                                             "source": {
-                                                "path": "code",
-                                                "type": "Property",
-                                                "source": {
-                                                    "type": "Indexer",
-                                                    "operand": [
-                                                        {
-                                                            "path": "coding",
-                                                            "type": "Property",
-                                                            "source": {
-                                                                "path": "code",
-                                                                "scope": "procedure",
-                                                                "type": "Property"
-                                                            }
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "0",
-                                                            "type": "Literal"
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "coding",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "path": "code",
+                                                            "scope": "procedure",
+                                                            "type": "Property"
                                                         }
-                                                    ]
-                                                }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
                                             }
                                         }
                                     },
                                     {
-                                        "type": "ToList",
-                                        "operand": {
-                                            "name": "385781007",
-                                            "type": "CodeRef"
-                                        }
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "385781007",
+                                        "type": "Literal"
                                     }
                                 ]
                             }
