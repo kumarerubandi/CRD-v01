@@ -926,39 +926,11 @@
                     "expression": {
                         "type": "SingletonFrom",
                         "operand": {
-                            "type": "Query",
-                            "source": [
-                                {
-                                    "alias": "name",
-                                    "expression": {
-                                        "path": "name",
-                                        "type": "Property",
-                                        "source": {
-                                            "name": "Practitioner",
-                                            "type": "ExpressionRef"
-                                        }
-                                    }
-                                }
-                            ],
-                            "relationship": [],
-                            "where": {
-                                "type": "Equal",
-                                "operand": [
-                                    {
-                                        "path": "value",
-                                        "type": "Property",
-                                        "source": {
-                                            "path": "use",
-                                            "scope": "name",
-                                            "type": "Property"
-                                        }
-                                    },
-                                    {
-                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                        "value": "official",
-                                        "type": "Literal"
-                                    }
-                                ]
+                            "path": "name",
+                            "type": "Property",
+                            "source": {
+                                "name": "Practitioner",
+                                "type": "ExpressionRef"
                             }
                         }
                     }
