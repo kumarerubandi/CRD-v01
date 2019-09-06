@@ -12,26 +12,6 @@
                 "targetIncludeLibraryId": "FHIRHelpers",
                 "targetIncludeLibraryVersionId": "3.0.0",
                 "type": "CqlToElmError"
-            },
-            {
-                "startLine": 108,
-                "startChar": 14,
-                "endLine": 108,
-                "endChar": 46,
-                "message": "Could not resolve library name FHIRHelpers.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
-            },
-            {
-                "startLine": 134,
-                "startChar": 14,
-                "endLine": 134,
-                "endChar": 40,
-                "message": "Could not resolve library name FHIRHelpers.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
             }
         ],
         "identifier": {
@@ -387,7 +367,7 @@
                     }
                 },
                 {
-                    "name": "F2F Encounter Codes",
+                    "name": "F2FEncounterCodes",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -413,7 +393,7 @@
                     }
                 },
                 {
-                    "name": "Home Health Care Codes",
+                    "name": "HomeHealthCareCodes",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -883,7 +863,58 @@
                             ],
                             "relationship": [],
                             "where": {
-                                "type": "Null"
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "Practitioner/",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "id",
+                                                    "scope": "practitioner",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "reference",
+                                            "type": "Property",
+                                            "source": {
+                                                "path": "actor",
+                                                "type": "Property",
+                                                "source": {
+                                                    "type": "Indexer",
+                                                    "operand": [
+                                                        {
+                                                            "path": "performer",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "HomeHealthCare",
+                                                                "type": "ExpressionRef"
+                                                            }
+                                                        },
+                                                        {
+                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                            "value": "0",
+                                                            "type": "Literal"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
                             }
                         }
                     }
@@ -1261,7 +1292,58 @@
                             ],
                             "relationship": [],
                             "where": {
-                                "type": "Null"
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "Organization/",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "id",
+                                                    "scope": "agency",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "reference",
+                                            "type": "Property",
+                                            "source": {
+                                                "path": "onBehalfOf",
+                                                "type": "Property",
+                                                "source": {
+                                                    "type": "Indexer",
+                                                    "operand": [
+                                                        {
+                                                            "path": "performer",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "name": "HomeHealthCare",
+                                                                "type": "ExpressionRef"
+                                                            }
+                                                        },
+                                                        {
+                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                            "value": "0",
+                                                            "type": "Literal"
+                                                        }
+                                                    ]
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
                             }
                         }
                     }
