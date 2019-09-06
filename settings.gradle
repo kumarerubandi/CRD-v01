@@ -1,0 +1,10 @@
+rootProject.name = 'crd'
+
+include 'resources'
+include 'operations'
+include 'server'
+include 'testingClient'
+include 'creator'
+include 'fhir-server'
+include 'ehr-server'
+

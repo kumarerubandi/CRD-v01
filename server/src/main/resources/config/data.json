@@ -1,0 +1,59 @@
+{
+	"hook_cql_map":{
+		"order-review":["HyperbaricOxygenTherapy"],
+	    "liver-transplant":["AdultLiverTransplantation"],
+	    "home-health-service":["HomeHealthServices"],
+	},
+	"PriorAuthorizationResources":["DeviceRequest"],
+	"PriorAuthorizationHooks":["order-review"],
+	"fhir_field_mapper":{
+		"Location":{
+			"code_field":"type",
+			"has_patient_field":false,
+			"field_common_with_patient":"managingOrganization",
+			"string":"Organization",
+			"key":"organization",
+		},
+		"EpisodeOfCare":{
+			"code_field":"type",
+			"has_patient_field":true
+		}
+	},
+	"hcpc_template_mapper":{
+	 "E1390": "home-oxygen-questionnaire_2",
+     "E1391": "home-oxygen-questionnaire_2",
+     "E0424": "home-oxygen-questionnaire_2",
+     "E0439": "home-oxygen-questionnaire_2",
+     "E1405": "home-oxygen-questionnaire_2",
+     "E1406": "home-oxygen-questionnaire_2",
+     "E0431": "home-oxygen-questionnaire_2",
+     "E0434": "home-oxygen-questionnaire_2",
+     "E1392": "home-oxygen-questionnaire_2",
+     "E0433": "home-oxygen-questionnaire_2",
+     "K0738": "home-oxygen-questionnaire_2",
+     "E0441": "home-oxygen-questionnaire_2",
+     "E0442": "home-oxygen-questionnaire_2",
+     "E0443": "home-oxygen-questionnaire_2",
+     "E0444": "home-oxygen-questionnaire_2",
+     "385781007":"HomeHealthServices",
+	"G0151" :"HomeHealthServices", 
+    "G0152" :"HomeHealthServices",
+	"G0153" :"HomeHealthServices",
+	"G0155" :"HomeHealthServices",
+	"G0156" :"HomeHealthServices",
+	"G0157" :"HomeHealthServices",
+	"G0158" :"HomeHealthServices",
+	"G0159" :"HomeHealthServices",
+	"G0160" :"HomeHealthServices",
+	"G0161" :"HomeHealthServices",
+	"G0162" :"HomeHealthServices",
+	"G0299" :"HomeHealthServices",
+	"G0300" :"HomeHealthServices",
+	"G0493" :"HomeHealthServices",
+	"G0494" :"HomeHealthServices",
+	"G0495" :"HomeHealthServices",
+	"G0496" :"HomeHealthServices"
+
+      },
+	"patient_view_service_label":"Mettle solutions patient view service"
+}

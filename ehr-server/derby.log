@@ -1,0 +1,26 @@
+----------------------------------------------------------------
+Tue May 28 06:57:57 UTC 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016a-fd3b-3322-000024002ba0 
+on database directory /home/ubuntu/new_CRD/ehr-server/target/ehr_jpaserver_derby_files with class loader java.net.URLClassLoader@6bcfd719 
+Loaded from file:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.apache.derby/derby/10.14.2.0/7efad40ef52fbb1f08142f07a83b42d29e47d8ce/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_191-b12
+user.dir=/home/ubuntu/new_CRD/ehr-server
+os.name=Linux
+os.arch=amd64
+os.version=4.15.0-1035-aws
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Tue May 28 06:58:00 UTC 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance 846c00a0-016a-fd3b-3322-000024002ba0 
+on database directory /home/ubuntu/new_CRD/ehr-server/target/jpaserver_derby_files with class loader java.net.URLClassLoader@6bcfd719 
+Loaded from file:/home/ubuntu/.gradle/caches/modules-2/files-2.1/org.apache.derby/derby/10.14.2.0/7efad40ef52fbb1f08142f07a83b42d29e47d8ce/derby-10.14.2.0.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_191-b12
+user.dir=/home/ubuntu/new_CRD/ehr-server
+os.name=Linux
+os.arch=amd64
+os.version=4.15.0-1035-aws
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
