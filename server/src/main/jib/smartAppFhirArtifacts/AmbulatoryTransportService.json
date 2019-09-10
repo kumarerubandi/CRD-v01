@@ -383,7 +383,7 @@
             },
             {
                "linkId":"6.3",
-               "text":"Is the beneficiary\A1\AFs medical condition, regardless of bed confinement, is such that transportation by ambulance is medically required?",
+               "text":"Is the beneficiary's medical condition, regardless of bed confinement, is such that transportation by ambulance is medically required?",
                "type":"boolean",
                "required":true
             },
