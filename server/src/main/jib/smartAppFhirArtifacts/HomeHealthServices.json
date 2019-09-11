@@ -12,7 +12,7 @@
       "Patient"
    ],
    "date":"2019-08-30",
-   "publisher":"Da Vinci DTR",
+   "publisher":"Mettle Solutions",
    "extension":[
       {
          "url":"http://hl7.org/fhir/StructureDefinition/cqif-library",
