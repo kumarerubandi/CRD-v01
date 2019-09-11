@@ -15,7 +15,7 @@
             }
         ],
         "identifier": {
-            "id": "HomeHealthService"
+            "id": "NonEmergentAmbulanceTransport"
         },
         "schemaIdentifier": {
             "id": "urn:hl7-org:elm",
@@ -29,8 +29,7 @@
                 },
                 {
                     "localIdentifier": "FHIR",
-                    "uri": "http://hl7.org/fhir",
-                    "version": "3.0.0"
+                    "uri": "http://hl7.org/fhir"
                 }
             ]
         },
@@ -45,6 +44,14 @@
         },
         "parameters": {
             "def": [
+                {
+                    "name": "supply_request",
+                    "accessLevel": "Public",
+                    "parameterTypeSpecifier": {
+                        "name": "{http://hl7.org/fhir}SupplyRequest",
+                        "type": "NamedTypeSpecifier"
+                    }
+                },
                 {
                     "name": "Measurement Period",
                     "accessLevel": "Public",
@@ -135,59 +142,11 @@
                     }
                 },
                 {
-                    "name": "99354",
-                    "id": "99354",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "CPT"
-                    }
-                },
-                {
-                    "name": "99355",
-                    "id": "99355",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "CPT"
-                    }
-                },
-                {
-                    "name": "99356",
-                    "id": "99356",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "CPT"
-                    }
-                },
-                {
-                    "name": "99357",
-                    "id": "99357",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "CPT"
-                    }
-                },
-                {
                     "name": "364SH0200X",
                     "id": "364SH0200X",
                     "accessLevel": "Public",
                     "codeSystem": {
                         "name": "NUCCPT"
-                    }
-                },
-                {
-                    "name": "385781007",
-                    "id": "385781007",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "SNOMED-CT"
-                    }
-                },
-                {
-                    "name": "G0151",
-                    "id": "G0151",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
                     }
                 },
                 {
@@ -223,128 +182,16 @@
                     }
                 },
                 {
-                    "name": "G0152",
-                    "id": "G0152",
+                    "name": "A0426",
+                    "id": "A0426",
                     "accessLevel": "Public",
                     "codeSystem": {
                         "name": "HCPCS"
                     }
                 },
                 {
-                    "name": "G0153",
-                    "id": "G0153",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0155",
-                    "id": "G0155",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0156",
-                    "id": "G0156",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0157",
-                    "id": "G0157",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0158",
-                    "id": "G0158",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0159",
-                    "id": "G0159",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0160",
-                    "id": "G0160",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0161",
-                    "id": "G0161",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0162",
-                    "id": "G0162",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0299",
-                    "id": "G0299",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0300",
-                    "id": "G0300",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0493",
-                    "id": "G0493",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0494",
-                    "id": "G0494",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0495",
-                    "id": "G0495",
-                    "accessLevel": "Public",
-                    "codeSystem": {
-                        "name": "HCPCS"
-                    }
-                },
-                {
-                    "name": "G0496",
-                    "id": "G0496",
+                    "name": "A0428",
+                    "id": "A0428",
                     "accessLevel": "Public",
                     "codeSystem": {
                         "name": "HCPCS"
@@ -366,33 +213,7 @@
                     }
                 },
                 {
-                    "name": "F2FEncounterCodes",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "List",
-                        "element": [
-                            {
-                                "name": "99354",
-                                "type": "CodeRef"
-                            },
-                            {
-                                "name": "99355",
-                                "type": "CodeRef"
-                            },
-                            {
-                                "name": "99356",
-                                "type": "CodeRef"
-                            },
-                            {
-                                "name": "99357",
-                                "type": "CodeRef"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "HomeHealthCareCodes",
+                    "name": "NonEmergentAmbulanceTransportCodes",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -400,99 +221,19 @@
                         "element": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "385781007",
+                                "value": "A0426",
                                 "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0151",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0152",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0153",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0155",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0156",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0157",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0158",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0159",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0160",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0161",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0162",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0299",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0300",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0493",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0494",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0495",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "G0496",
+                                "value": "A0428",
                                 "type": "Literal"
                             }
                         ]
                     }
                 },
                 {
-                    "name": "HomeHealthCare",
+                    "name": "NonEmergentAmbulanceTransport",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -501,7 +242,7 @@
                             "type": "Query",
                             "source": [
                                 {
-                                    "alias": "procedure",
+                                    "alias": "service",
                                     "expression": {
                                         "dataType": "{http://hl7.org/fhir}Procedure",
                                         "type": "Retrieve"
@@ -526,7 +267,7 @@
                                                         "type": "Property",
                                                         "source": {
                                                             "path": "code",
-                                                            "scope": "procedure",
+                                                            "scope": "service",
                                                             "type": "Property"
                                                         }
                                                     },
@@ -540,7 +281,7 @@
                                         }
                                     },
                                     {
-                                        "name": "HomeHealthCareCodes",
+                                        "name": "NonEmergentAmbulanceTransportCodes",
                                         "type": "ExpressionRef"
                                     }
                                 ]
@@ -612,7 +353,7 @@
                                                             "path": "performer",
                                                             "type": "Property",
                                                             "source": {
-                                                                "name": "HomeHealthCare",
+                                                                "name": "NonEmergentAmbulanceTransport",
                                                                 "type": "ExpressionRef"
                                                             }
                                                         },
@@ -632,7 +373,7 @@
                     }
                 },
                 {
-                    "name": "Agency",
+                    "name": "AmbulanceSupplier",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -641,7 +382,7 @@
                             "type": "Query",
                             "source": [
                                 {
-                                    "alias": "agency",
+                                    "alias": "org",
                                     "expression": {
                                         "dataType": "{http://hl7.org/fhir}Organization",
                                         "type": "Retrieve"
@@ -665,7 +406,7 @@
                                                 "type": "Property",
                                                 "source": {
                                                     "path": "id",
-                                                    "scope": "agency",
+                                                    "scope": "org",
                                                     "type": "Property"
                                                 }
                                             }
@@ -678,26 +419,22 @@
                                             "path": "reference",
                                             "type": "Property",
                                             "source": {
-                                                "path": "onBehalfOf",
-                                                "type": "Property",
-                                                "source": {
-                                                    "type": "Indexer",
-                                                    "operand": [
-                                                        {
-                                                            "path": "performer",
-                                                            "type": "Property",
-                                                            "source": {
-                                                                "name": "HomeHealthCare",
-                                                                "type": "ExpressionRef"
-                                                            }
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "0",
-                                                            "type": "Literal"
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "supplier",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "supply_request",
+                                                            "type": "ParameterRef"
                                                         }
-                                                    ]
-                                                }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
                                             }
                                         }
                                     }
@@ -715,92 +452,12 @@
                         "element": [
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=385781007",
+                                "value": "Procedure?code=A0426",
                                 "type": "Literal"
                             },
                             {
                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0151",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0152",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0153",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0155",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0156",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0157",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0158",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0159",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0160",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0161",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0162",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0299",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0300",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0493",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0494",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0495",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Procedure?code=G0496",
+                                "value": "Procedure?code=A0428",
                                 "type": "Literal"
                             },
                             {
@@ -840,7 +497,7 @@
                                             "path": "id",
                                             "type": "Property",
                                             "source": {
-                                                "name": "Agency",
+                                                "name": "AmbulanceSupplier",
                                                 "type": "ExpressionRef"
                                             }
                                         }
@@ -1462,7 +1119,7 @@
                     }
                 },
                 {
-                    "name": "AgencyName",
+                    "name": "AmbulanceSupplierName",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -1472,14 +1129,14 @@
                             "path": "name",
                             "type": "Property",
                             "source": {
-                                "name": "Agency",
+                                "name": "AmbulanceSupplier",
                                 "type": "ExpressionRef"
                             }
                         }
                     }
                 },
                 {
-                    "name": "AgencyNPI",
+                    "name": "AmbulanceSupplierNPI",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -1499,7 +1156,7 @@
                                                 "path": "identifier",
                                                 "type": "Property",
                                                 "source": {
-                                                    "name": "Agency",
+                                                    "name": "AmbulanceSupplier",
                                                     "type": "ExpressionRef"
                                                 }
                                             }
@@ -1531,7 +1188,7 @@
                     }
                 },
                 {
-                    "name": "AgencyAddressObject",
+                    "name": "AmbulanceSupplierAddressObject",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -1540,14 +1197,14 @@
                             "path": "address",
                             "type": "Property",
                             "source": {
-                                "name": "Agency",
+                                "name": "AmbulanceSupplier",
                                 "type": "ExpressionRef"
                             }
                         }
                     }
                 },
                 {
-                    "name": "AgencyAddress",
+                    "name": "AmbulanceSupplierAddress",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -1578,7 +1235,7 @@
                                                                                     "path": "line",
                                                                                     "type": "Property",
                                                                                     "source": {
-                                                                                        "name": "AgencyAddressObject",
+                                                                                        "name": "AmbulanceSupplierAddressObject",
                                                                                         "type": "ExpressionRef"
                                                                                     }
                                                                                 },
@@ -1604,7 +1261,7 @@
                                                                     "path": "city",
                                                                     "type": "Property",
                                                                     "source": {
-                                                                        "name": "AgencyAddressObject",
+                                                                        "name": "AmbulanceSupplierAddressObject",
                                                                         "type": "ExpressionRef"
                                                                     }
                                                                 }
@@ -1625,7 +1282,7 @@
                                                     "path": "state",
                                                     "type": "Property",
                                                     "source": {
-                                                        "name": "AgencyAddressObject",
+                                                        "name": "AmbulanceSupplierAddressObject",
                                                         "type": "ExpressionRef"
                                                     }
                                                 }
@@ -1646,7 +1303,7 @@
                                     "path": "postalCode",
                                     "type": "Property",
                                     "source": {
-                                        "name": "AgencyAddressObject",
+                                        "name": "AmbulanceSupplierAddressObject",
                                         "type": "ExpressionRef"
                                     }
                                 }
