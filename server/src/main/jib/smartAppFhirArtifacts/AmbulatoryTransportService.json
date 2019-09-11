@@ -1,23 +1,23 @@
 {
    "resourceType":"Questionnaire",
-   "id":"urn:hl7:davinci:crd:home-health-questionnaire",
+   "id":"urn:hl7:davinci:crd:ambulance-transport-questionnaire",
    "meta":{
       "profile":[
          "http://hl7.org/fhir/StructureDefinition/cqif-questionnaire"
       ]
    },
-   "title":"Home Health Services",
+   "title":"Repetitive, Scheduled Non-Emergent Ambulance Transport",
    "status":"draft",
    "subjectType":[
       "Patient"
    ],
    "date":"2019-08-30",
-   "publisher":"Mettle Solutions",
+   "publisher":"Da Vinci DTR",
    "extension":[
       {
          "url":"http://hl7.org/fhir/StructureDefinition/cqif-library",
          "valueReference":{
-            "reference":"urn:hl7:davinci:crd:library-home-health-prepopulate"
+            "reference":"urn:hl7:davinci:crd:library-ambulatory-transport-prepopulate"
          }
       }
    ],
@@ -58,7 +58,7 @@
          "item":[
             {
                "linkId":"1.1",
-               "text":"Beneficiary’s Name",
+               "text":"Beneficiary Name",
                "type":"string",
                "required":true,
                "extension":[
@@ -70,7 +70,7 @@
             },
             {
                "linkId":"1.2",
-               "text":"Beneficiary’s Date Of Birth",
+               "text":"Beneficiary Date Of Birth",
                "type":"date",
                "required":true,
                "extension":[
@@ -82,7 +82,22 @@
             },
             {
                "linkId":"1.3",
-               "text":"Beneficiary’s Medicare Number",
+               "text":"Beneficiary Gender",
+               "type":"choice",
+               "required":true,
+               "options":{
+                  "reference":"#gender"
+               },
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"BeneficiaryGender"
+                  }
+               ]
+            },
+            {
+               "linkId":"1.4",
+               "text":"Beneficiary Medicare Number",
                "type":"string",
                "required":true,
                "extension":[
@@ -101,7 +116,7 @@
          "item":[
             {
                "linkId":"2.1",
-               "text":"Physician/Practitioner’s Name",
+               "text":"Physician/Practitioner Name",
                "type":"string",
                "required":true,
                "extension":[
@@ -113,7 +128,7 @@
             },
             {
                "linkId":"2.2",
-               "text":"Physician/Practitioner’s NPI",
+               "text":"Physician/Practitioner NPI",
                "type":"string",
                "required":true,
                "extension":[
@@ -137,7 +152,7 @@
             },
             {
                "linkId":"2.4",
-               "text":"Physician/Practitioner’s Address",
+               "text":"Physician/Practitioner Address",
                "type":"string",
                "required":true,
                "extension":[
@@ -151,66 +166,53 @@
       },
       {
          "linkId":"3",
-         "text":"Home Health Agency Information",
+         "text":"Ambulance Supplier Information",
          "type":"group",
          "item":[
             {
                "linkId":"3.1",
-               "text":"Agency Name",
+               "text":"Ambulance Supplier Name",
                "type":"string",
                "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"AgencyName"
+                     "valueString":"AmbulanceSupplierName"
                   }
                ]
             },
             {
                "linkId":"3.2",
-               "text":"Agency’s NPI",
+               "text":"Ambulance Supplier NPI",
                "type":"string",
                "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"AgencyNPI"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.3",
-               "text":"CMS Certification Number",
-               "type":"string",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"CMSCertificationNumber"
+                     "valueString":"AmbulanceSupplierNPI"
                   }
                ]
             },
             {
                "linkId":"3.4",
-               "text":"Agency PTAN",
+               "text":"Ambulance Supplier PTAN",
                "type":"string",
-               "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"AgencyPTAN"
+                     "valueString":"AmbulanceSupplierPTAN"
                   }
                ]
             },
             {
                "linkId":"3.5",
-               "text":"Agency’s Address",
+               "text":"Ambulance Supplier Address",
                "type":"string",
                "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"AgencyAddress"
+                     "valueString":"AmbulanceSupplierAddress"
                   }
                ]
             }
@@ -218,7 +220,7 @@
       },
       {
          "linkId":"4",
-         "text":"Submitter Information",
+         "text":"Requestor Information",
          "type":"group",
          "item":[
             {
@@ -229,7 +231,7 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"SubmitterName"
+                     "valueString":"RequestorName"
                   }
                ]
             },
@@ -241,7 +243,7 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"SubmitterTelephone"
+                     "valueString":"RequestorTelephone"
                   }
                ]
             }
@@ -254,24 +256,36 @@
          "item":[
             {
                "linkId":"5.1",
-               "text":"Benefit period requested",
-               "type":"open-choice",
+               "text":"Number of transports being requested",
+               "type":"integer",
                "required":true,
-               "option":[
+               "extension":[
                   {
-                     "valueCoding":{
-                        "code":"Initial"
-                     }
-                  },
-                  {
-                     "valueCoding":{
-                        "code":"Subsequent"
-                     }
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"NumofTransports"
                   }
                ]
             },
             {
                "linkId":"5.2",
+               "text":"HCPCS Code",
+               "type":"open-choice",
+               "required":true,
+               "option":[
+                  {
+                     "valueCoding":{
+                        "code":"A0426 - Ambulance service, Advanced Life Support (ALS), non-emergency transport,Level 1"
+                     }
+                  },
+                  {
+                     "valueCoding":{
+                        "code":"A0428 - Ambulance service, Basic Life Support (BLS), non-emergency transport"
+                     }
+                  }
+               ]
+            },
+            {
+               "linkId":"5.3",
                "text":"Submission Date",
                "type":"date",
                "required":true,
@@ -283,26 +297,14 @@
                ]
             },
             {
-               "linkId":"5.3",
-               "text":"Start Date of the 60-day episode of care",
-               "type":"date",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"StartDateEpisode"
-                  }
-               ]
-            },
-            {
                "linkId":"5.4",
-               "text":"End Date of the 60-day episode of care",
+               "text":"Start Date",
                "type":"date",
                "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"EndDate"
+                     "valueString":"StartDate"
                   }
                ]
             },
@@ -326,14 +328,14 @@
             },
             {
                "linkId":"5.6",
-               "text":"Is the number of episodes being requested more than one?",
+               "text":"Is the request expedited?",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"5.7",
-               "text":"Number of episodes being requested",
-               "type":"integer",
+               "text":"Reason for the request to be expedited",
+               "type":"string",
                "required":true,
                "enableWhen":[
                   {
@@ -344,31 +346,19 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"NumofEpisodes"
+                     "valueString":"ReasonExpeditedRequest"
                   }
                ]
             },
             {
                "linkId":"5.8",
-               "text":"State where service is rendered",
+               "text":"State where the ambulance is garaged",
                "type":"string",
                "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
                      "valueString":"state"
-                  }
-               ]
-            },
-            {
-               "linkId":"5.9",
-               "text":"Start Date of the home health care",
-               "type":"date",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"StartDateHome"
                   }
                ]
             }
@@ -381,128 +371,44 @@
          "item":[
             {
                "linkId":"6.1",
-               "text":"Does there exist a normal inability to leave home in the beneficiary?",
+               "text":"Is the beneficiary suffering from a medical condition such that other means of transportation are contraindicated? If yes, a documented proof needs to be attached",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"6.2",
-               "text":"Does leaving home require a considerable and taxing effort?",
+               "text":"Is the beneficiary bed-confined?",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"6.3",
-               "text":"Because of illness or injury, does the beneficiary need the aid of supportive devices such as crutches, canes, wheelchairs and walkers; or the use of special transportation; or the assistance of another person in order to leave their place of residence?",
+               "text":"Is the beneficiary's medical condition, regardless of bed confinement, is such that transportation by ambulance is medically required?",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"6.4",
-               "text":"Is the beneficiary suffering from a condition such that leaving his or her home is medically contraindicated?",
+               "text":"Is the beneficiary unable to get up from bed without assistance?",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"6.5",
-               "text":"Is the beneficiary under the care of a physician?",
+               "text":"Id the beneficiary unable to ambulate?",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"6.6",
-               "text":"Is the beneficiary receiving services under a plan of care established and periodically reviewed by a physician?",
+               "text":"Is the beneficiary unable to sit in a chair or wheelchair?",
                "type":"boolean",
                "required":true
             },
             {
                "linkId":"6.7",
-               "text":"Is the beneficiary in need of skilled services",
-               "type":"boolean",
-               "required":true
-            },
-            {
-               "linkId":"6.8",
-               "text":"Did the beneficiary have a face-to-face encounter with a medical provider?",
-               "type":"boolean",
-               "required":true
-            },
-            {
-               "linkId":"6.9",
-               "text":"Date of face-to-face encounter",
-               "type":"date",
-               "enableWhen":[
-                  {
-                     "question":"6.8",
-                     "answerBoolean":true
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"encounterdate"
-                  }
-               ]
-            },
-            {
-               "linkId":"6.10",
-               "text":"Is the encounter the primary reason the patient requires home health services?",
-               "type":"boolean",
-               "enableWhen":[
-                  {
-                     "question":"6.8",
-                     "answerBoolean":true
-                  }
-               ],
-               "required":true
-            },
-            {
-               "linkId":"6.11",
-               "text":"Did an approved provider type perform the encounter?",
-               "type":"boolean",
-               "required":true
-            }
-         ]
-      },
-      {
-         "linkId":"7",
-         "text":"Additional Documentation Required from the medical record to support the following",
-         "type":"group",
-         "item":[
-            {
-               "linkId":"7.1",
-               "text":"The beneficiary is confined to the home at the time of services",
-               "type":"document",
-               "required":true
-            },
-            {
-               "linkId":"7.2",
-               "text":"The beneficiary is under the care of a physician",
-               "type":"document",
-               "required":true
-            },
-            {
-               "linkId":"7.3",
-               "text":"The beneficiary is receiving services under a plan of care established and periodically reviewed by a physician",
-               "type":"document",
-               "required":true
-            },
-            {
-               "linkId":"7.4",
-               "text":"The beneficiary is in need of skilled services",
-               "type":"document",
-               "required":true
-            },
-            {
-               "linkId":"7.5",
-               "text":"The beneficiary under the care of a physician?",
-               "type":"document",
-               "required":true
-            },
-            {
-               "linkId":"7.6",
-               "text":"The beneficiary has had a face-to-face encounter with a medical provider as mandated by the Affordable CareAct",
-               "type":"document",
+               "text":"How many times during a 10-day period is the ambulance service medically necessary for the beneficiary?",
+               "type":"integer",
                "required":true
             }
          ]

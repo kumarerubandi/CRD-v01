@@ -1,8 +1,9 @@
 {
 	"hook_cql_map":{
 		"order-review":["HyperbaricOxygenTherapy"],
-	    "liver-transplant":["AdultLiverTransplantation"],
-	    "home-health-service":["HomeHealthServices"],
+	    	"liver-transplant":["AdultLiverTransplantation"],
+	    	"home-health-service":["HomeHealthServices"],
+	    	"ambulatory-transport":["AmbulatoryTransportService"],
 	},
 	"PriorAuthorizationResources":["DeviceRequest"],
 	"PriorAuthorizationHooks":["order-review"],
@@ -52,8 +53,10 @@
 	"G0493" :"HomeHealthServices",
 	"G0494" :"HomeHealthServices",
 	"G0495" :"HomeHealthServices",
-	"G0496" :"HomeHealthServices"
-
+	"G0496" :"HomeHealthServices",
+	"A0426":"AmbulatoryTransportService",
+	"A0428":"AmbulatoryTransportService",
+	"A0425":"AmbulatoryTransportService"
       },
 	"patient_view_service_label":"Mettle solutions patient view service"
 }
