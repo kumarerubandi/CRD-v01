@@ -215,35 +215,46 @@
                ]
             }
          ]
-      },
-      {
+      },{
          "linkId":"4",
-         "text":"Submitter Information",
+         "text":"Additional Documentation Required from the medical record to support the following",
          "type":"group",
          "item":[
             {
                "linkId":"4.1",
-               "text":"Contact Name",
-               "type":"string",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"SubmitterName"
-                  }
-               ]
+               "text":"The beneficiary is confined to the home at the time of services",
+               "type":"attachment",
+               "required":true
             },
             {
                "linkId":"4.2",
-               "text":"Telephone Number",
-               "type":"string",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"SubmitterTelephone"
-                  }
-               ]
+               "text":"The beneficiary is under the care of a physician",
+               "type":"attachment",
+               "required":true
+            },
+            {
+               "linkId":"4.3",
+               "text":"The beneficiary is receiving services under a plan of care established and periodically reviewed by a physician",
+               "type":"attachment",
+               "required":true
+            },
+            {
+               "linkId":"4.4",
+               "text":"The beneficiary is in need of skilled services",
+               "type":"attachment",
+               "required":true
+            },
+            {
+               "linkId":"4.5",
+               "text":"The beneficiary under the care of a physician?",
+               "type":"attachment",
+               "required":true
+            },
+            {
+               "linkId":"4.6",
+               "text":"The beneficiary has had a face-to-face encounter with a medical provider as mandated by the Affordable CareAct",
+               "type":"attachment",
+               "required":true
             }
          ]
       },
@@ -466,44 +477,32 @@
       },
       {
          "linkId":"7",
-         "text":"Additional Documentation Required from the medical record to support the following",
+         "text":"Submitter Information",
          "type":"group",
          "item":[
             {
                "linkId":"7.1",
-               "text":"The beneficiary is confined to the home at the time of services",
-               "type":"attachment",
-               "required":true
+               "text":"Contact Name",
+               "type":"string",
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"SubmitterName"
+                  }
+               ]
             },
             {
                "linkId":"7.2",
-               "text":"The beneficiary is under the care of a physician",
-               "type":"attachment",
-               "required":true
-            },
-            {
-               "linkId":"7.3",
-               "text":"The beneficiary is receiving services under a plan of care established and periodically reviewed by a physician",
-               "type":"attachment",
-               "required":true
-            },
-            {
-               "linkId":"7.4",
-               "text":"The beneficiary is in need of skilled services",
-               "type":"attachment",
-               "required":true
-            },
-            {
-               "linkId":"7.5",
-               "text":"The beneficiary under the care of a physician?",
-               "type":"attachment",
-               "required":true
-            },
-            {
-               "linkId":"7.6",
-               "text":"The beneficiary has had a face-to-face encounter with a medical provider as mandated by the Affordable CareAct",
-               "type":"attachment",
-               "required":true
+               "text":"Telephone Number",
+               "type":"string",
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"SubmitterTelephone"
+                  }
+               ]
             }
          ]
       }
