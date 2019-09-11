@@ -25,181 +25,27 @@
       "url": "urn:hl7:davinci:crd:AmbulatoryTransportPrepopulation.json"
     }
   ],
-	"dataRequirement":	[
+  "dataRequirement": [ {
+      "type": "Procedure",
+      "codeFilter": [
+        {
+          "path": "code",
+          "valueSetString": "A0426"
+        }
+      ]
+    },
     {
       "type": "Procedure",
       "codeFilter": [
         {
           "path": "code",
-          "valueSetString": "385781007"
+          "valueSetString": "A0428"
         }
       ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO151"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "G0152"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO153"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO155"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO156"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "G0157"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO158"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "G0159"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO160"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "G0161"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO162"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO299"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO300"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "G0493"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO494"
-        }
-      ]
-        },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "G0495"
-        }
-      ]
-    },
-{
-      "type": "Procedure",
-      "codeFilter": [
-        {
-          "path": "code",
-          "valueSetString": "GO496"
-        }
-      ]
-    }
-    {
-      "type": "Patient"
-    },
-    {
+    }, {
       "type": "Practitioner"
     },
     {
       "type": "Organization"
-    },
-    {
-      "type": "Coverage"
-    }
-  ]
+    }]
 }
-
