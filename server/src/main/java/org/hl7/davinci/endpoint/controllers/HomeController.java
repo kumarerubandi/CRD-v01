@@ -632,6 +632,10 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  	  errorObj.put("exception", "hook is missing in the request body");
 	 	  return errorObj.toString();
       }
+      
+      
+      
+      
       JSONObject reqJson = new JSONObject();
       JSONObject patientFhir = new JSONObject();
 //      System.out.println("673");
@@ -826,6 +830,21 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        while((line=in.readLine())!= null){
 //	          sb.append(line);
 //	        }
+    		if(hook.equals("order-select")) {
+    	    	  String summaryString = "{ \"summary\": \"High risk for opioid overdose - taper now\", \"indicator\": \"warning\", \"links\": [ { \"label\": \"CDC guideline for prescribing opioids for chronic pain\", \"type\": \"absolute\", \"url\": \"https://guidelines.gov/summaries/summary/50153/cdc-guideline-for-prescribing-opioids-for-chronic-pain---united-states-2016#420\" }, { \"label\": \"MME Conversion Tables\", \"type\": \"absolute\", \"url\": \"https://www.cdc.gov/drugoverdose/pdf/calculating_total_daily_dose-a.pdf\" } ], \"detail\": \"Total morphine milligram equivalent (MME) is 125mg. Taper to less than 50.\" }";
+    	          JSONObject summaryJson =new JSONObject(summaryString);
+//    	          System.out.println("Summary JSON");
+//    	          System.out.println(summaryJson);
+    	          JSONArray resCards = new JSONArray();
+    	          resCards.put(summaryJson);
+    	          JSONObject orderSelectResponse = new JSONObject();
+    		      orderSelectResponse.put("cards",resCards);
+    		      return orderSelectResponse.toString();
+    	          
+    	          
+    	      }
+    	     
+    		
 	        String basePathOfClass = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
 	        System.out.println("---crd path---");
 	       
