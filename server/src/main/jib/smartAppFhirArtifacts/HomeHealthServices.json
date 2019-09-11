@@ -472,37 +472,37 @@
             {
                "linkId":"7.1",
                "text":"The beneficiary is confined to the home at the time of services",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"7.2",
                "text":"The beneficiary is under the care of a physician",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"7.3",
                "text":"The beneficiary is receiving services under a plan of care established and periodically reviewed by a physician",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"7.4",
                "text":"The beneficiary is in need of skilled services",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"7.5",
                "text":"The beneficiary under the care of a physician?",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"7.6",
                "text":"The beneficiary has had a face-to-face encounter with a medical provider as mandated by the Affordable CareAct",
-               "type":"document",
+               "type":"attachment",
                "required":true
             }
          ]
