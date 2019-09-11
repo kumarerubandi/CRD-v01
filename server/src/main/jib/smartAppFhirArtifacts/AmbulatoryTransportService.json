@@ -17,7 +17,7 @@
       {
          "url":"http://hl7.org/fhir/StructureDefinition/cqif-library",
          "valueReference":{
-            "reference":"urn:hl7:davinci:crd:library-ambulance-transport-prepopulate"
+            "reference":"urn:hl7:davinci:crd:library-ambulatory-transport-prepopulate"
          }
       }
    ],
