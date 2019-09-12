@@ -12,12 +12,12 @@
       "Patient"
    ],
    "date":"2019-08-30",
-   "publisher":"Mettle Solutions",
+   "publisher":"Da Vinci DTR",
    "extension":[
       {
          "url":"http://hl7.org/fhir/StructureDefinition/cqif-library",
          "valueReference":{
-            "reference":"urn:hl7:davinci:crd:library-ambulatory-transport-prepopulate"
+            "reference":"urn:hl7:davinci:crd:library-ambulance-transport-prepopulate"
          }
       }
    ],
@@ -467,7 +467,7 @@
                "linkId":"7.3",
                "text":"Mobility",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -491,7 +491,7 @@
                "linkId":"7.4",
                "text":"Musculoskeletal",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -530,7 +530,7 @@
                "linkId":"7.5",
                "text":"Cardiovascular",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -549,7 +549,7 @@
                "linkId":"7.6",
                "text":"Neurological",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -573,7 +573,7 @@
                "linkId":"7.7",
                "text":"Wound",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -592,7 +592,7 @@
                "linkId":"7.8",
                "text":"Attendant required during transport",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -626,7 +626,7 @@
                "linkId":"7.9",
                "text":"Mental",
                "type":"open-choice",
-               "required":true,
+               "required":false,
                "repeats":true,
                "option":[
                   {
@@ -657,25 +657,25 @@
             {
                "linkId":"8.1",
                "text":"Physician Certification Statement",
-               "type":"attachment",
+               "type":"document",
                "required":true
             },
             {
                "linkId":"8.2",
                "text":"Documentation from the medical record to support the medical necessity of repetitive, scheduled non-emergent ambulance transport",
-               "type":"attachment",
+               "type":"document",
                "required":true
             },
             {
                "linkId":"8.3",
                "text":"Information on the origin and destination of the transports",
-               "type":"attachment",
+               "type":"document",
                "required":true
             },
             {
                "linkId":"8.4",
                "text":"Any other relevant document as deemed necessary by the MAC to process the prior authorization",
-               "type":"attachment",
+               "type":"document",
                "required":false
             }
          ]
