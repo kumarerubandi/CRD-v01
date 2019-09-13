@@ -215,7 +215,8 @@
                ]
             }
          ]
-      },{
+      },
+      {
          "linkId":"4",
          "text":"Additional Documentation Required from the medical record to support the following",
          "type":"group",
@@ -279,6 +280,12 @@
                         "code":"Subsequent"
                      }
                   }
+               ],
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"BenefitPeriodType"
+                  }
                ]
             },
             {
@@ -332,6 +339,12 @@
                      "valueCoding":{
                         "code":"Resubmission review"
                      }
+                  }
+               ],
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"TypeOfRequest"
                   }
                ]
             },
@@ -394,49 +407,97 @@
                "linkId":"6.1",
                "text":"Does there exist a normal inability to leave home in the beneficiary?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"InabilityToLeaveHome"
+                  }
+               ]
             },
             {
                "linkId":"6.2",
                "text":"Does leaving home require a considerable and taxing effort?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"LeavingHomeRequiresEffort"
+                  }
+               ]
             },
             {
                "linkId":"6.3",
                "text":"Because of illness or injury, does the beneficiary need the aid of supportive devices such as crutches, canes, wheelchairs and walkers; or the use of special transportation; or the assistance of another person in order to leave their place of residence?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"NeedSupportiveDevices"
+                  }
+               ]
             },
             {
                "linkId":"6.4",
                "text":"Is the beneficiary suffering from a condition such that leaving his or her home is medically contraindicated?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"MobilityMedicallyContraindicated"
+                  }
+               ]
             },
             {
                "linkId":"6.5",
                "text":"Is the beneficiary under the care of a physician?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"UnderCare"
+                  }
+               ]
             },
             {
                "linkId":"6.6",
                "text":"Is the beneficiary receiving services under a plan of care established and periodically reviewed by a physician?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"ReceivingServices"
+                  }
+               ]
             },
             {
                "linkId":"6.7",
                "text":"Is the beneficiary in need of skilled services",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"NeedSkilledServices"
+                  }
+               ]
             },
             {
                "linkId":"6.8",
                "text":"Did the beneficiary have a face-to-face encounter with a medical provider?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"EncounterPerformed"
+                  }
+               ]
             },
             {
                "linkId":"6.9",
@@ -465,13 +526,25 @@
                      "answerBoolean":true
                   }
                ],
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"PrimaryReasonEncounter"
+                  }
+               ]
             },
             {
                "linkId":"6.11",
                "text":"Did an approved provider type perform the encounter?",
                "type":"boolean",
-               "required":true
+               "required":true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"ApprovedProvider"
+                  }
+               ]
             }
          ]
       },
