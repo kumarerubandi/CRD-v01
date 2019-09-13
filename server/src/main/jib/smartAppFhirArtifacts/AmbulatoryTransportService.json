@@ -658,19 +658,56 @@
                "linkId":"8.1",
                "text":"Physician Certification Statement",
                "type":"attachment",
-               "required":true
+               "required":true,
+               "code":{
+                  "coding":[
+                     {
+                        "system":"http://loinc.org",
+                        "code":"LP74233-5",
+			"display":"Physician certification statement"
+                     },
+			{
+                        "system":"http://loinc.org",
+                        "code":"52016-3",
+			"display":"Ambulance transport, Physician certification for transport statement (narrative)"
+                     }
+                  ]
+               }
             },
             {
                "linkId":"8.2",
                "text":"Documentation from the medical record to support the medical necessity of repetitive, scheduled non-emergent ambulance transport",
                "type":"attachment",
-               "required":true
+               "required":true,
+		"code":{
+                  "coding":[
+                     {
+                        "system":"http://loinc.org",
+                        "code":"11503-0",
+			"display":"Medical records"
+                     }
+                  ]
+               }
             },
             {
                "linkId":"8.3",
                "text":"Information on the origin and destination of the transports",
                "type":"attachment",
-               "required":true
+               "required":true,
+               "code":{
+                  "coding":[
+                     {
+                        "system":"http://loinc.org",
+                        "code":"52000-7",
+			"display":"Ambulance transport, Origination site latitude"
+                     },
+			{
+                        "system":"http://loinc.org",
+                        "code":"15512-7",
+			"display":"Ambulance transport, Destination site information Set"
+                     }
+                  ]
+               }
             },
             {
                "linkId":"8.4",
