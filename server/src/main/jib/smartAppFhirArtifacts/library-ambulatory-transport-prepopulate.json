@@ -47,5 +47,8 @@
     },
     {
       "type": "Organization"
+    },
+{
+      "type": "SupplyRequest"
     }]
 }
