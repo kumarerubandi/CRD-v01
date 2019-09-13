@@ -12,12 +12,12 @@
       "Patient"
    ],
    "date":"2019-08-30",
-   "publisher":"Da Vinci DTR",
+   "publisher":"Mettle Solutions",
    "extension":[
       {
          "url":"http://hl7.org/fhir/StructureDefinition/cqif-library",
          "valueReference":{
-            "reference":"urn:hl7:davinci:crd:library-ambulance-transport-prepopulate"
+            "reference":"urn:hl7:davinci:crd:library-ambulatory-transport-prepopulate"
          }
       }
    ],
@@ -657,25 +657,25 @@
             {
                "linkId":"8.1",
                "text":"Physician Certification Statement",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"8.2",
                "text":"Documentation from the medical record to support the medical necessity of repetitive, scheduled non-emergent ambulance transport",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"8.3",
                "text":"Information on the origin and destination of the transports",
-               "type":"document",
+               "type":"attachment",
                "required":true
             },
             {
                "linkId":"8.4",
                "text":"Any other relevant document as deemed necessary by the MAC to process the prior authorization",
-               "type":"document",
+               "type":"attachment",
                "required":false
             }
          ]
