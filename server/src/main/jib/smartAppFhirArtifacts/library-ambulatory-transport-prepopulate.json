@@ -50,5 +50,14 @@
     },
 {
       "type": "SupplyRequest"
+    },
+	{
+      "type": "Observation"
+    },
+    {
+      "type": "Location"
+    },
+	{
+      "type": "Encounter"
     }]
 }
