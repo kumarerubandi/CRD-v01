@@ -303,8 +303,21 @@
          "text":"Other Information",
          "type":"group",
          "item":[
-            {
+		{
                "linkId":"5.1",
+               "text":"Review choice",
+               "type":"string",
+               "required":true,
+		"readOnly": true,
+               "extension":[
+                  {
+                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
+                     "valueString":"PreClaimReview"
+                  }
+               ]
+            },
+            {
+               "linkId":"5.2",
                "text":"Benefit period requested",
                "type":"open-choice",
                "required":true,
@@ -328,7 +341,7 @@
                ]
             },
             {
-               "linkId":"5.2",
+               "linkId":"5.3",
                "text":"Submission Date",
                "type":"date",
                "required":true,
@@ -340,7 +353,7 @@
                ]
             },
             {
-               "linkId":"5.3",
+               "linkId":"5.4",
                "text":"Start Date of the 60-day episode of care",
                "type":"date",
                "required":true,
@@ -352,7 +365,7 @@
                ]
             },
             {
-               "linkId":"5.4",
+               "linkId":"5.5",
                "text":"End Date of the 60-day episode of care",
                "type":"date",
                "required":true,
@@ -364,7 +377,7 @@
                ]
             },
             {
-               "linkId":"5.5",
+               "linkId":"5.6",
                "text":"Type of request",
                "type":"open-choice",
                "required":true,
@@ -388,13 +401,13 @@
                ]
             },
             {
-               "linkId":"5.6",
+               "linkId":"5.7",
                "text":"Is the number of episodes being requested more than one?",
                "type":"boolean",
                "required":true
             },
             {
-               "linkId":"5.7",
+               "linkId":"5.8",
                "text":"Number of episodes being requested",
                "type":"integer",
                "required":true,
@@ -412,7 +425,7 @@
                ]
             },
             {
-               "linkId":"5.8",
+               "linkId":"5.9",
                "text":"State where service is rendered",
                "type":"string",
                "required":true,
@@ -424,7 +437,7 @@
                ]
             },
             {
-               "linkId":"5.9",
+               "linkId":"5.10",
                "text":"Start Date of the home health care",
                "type":"date",
                "required":true,
