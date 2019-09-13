@@ -126,6 +126,14 @@
                     }
                 },
                 {
+                    "name": "V00.811 ",
+                    "id": "V00.811 ",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "ICD-10-CM"
+                    }
+                },
+                {
                     "name": "305524001",
                     "id": "305524001",
                     "accessLevel": "Public",
@@ -1318,6 +1326,61 @@
                     "expression": {
                         "name": "Today",
                         "type": "ExpressionRef"
+                    }
+                },
+                {
+                    "name": "TransportContraindicated",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "valueType": "{urn:hl7-org:elm-types:r1}Boolean",
+                        "value": "true",
+                        "type": "Literal"
+                    }
+                },
+                {
+                    "name": "MedicallyRequired",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "valueType": "{urn:hl7-org:elm-types:r1}Boolean",
+                        "value": "true",
+                        "type": "Literal"
+                    }
+                },
+                {
+                    "name": "RelevantDiagnoses",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "List",
+                        "element": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "Dialysis",
+                                "type": "Literal"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Mobility",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "List",
+                        "element": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "Risk of falling off wheelchair or stretcher while in motion (not related to obesity)",
+                                "type": "Literal"
+                            },
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "Unable to maintain erect sitting position in a chair for time needed to transport, due to moderate muscular weakness and de-conditioning",
+                                "type": "Literal"
+                            }
+                        ]
                     }
                 },
                 {
