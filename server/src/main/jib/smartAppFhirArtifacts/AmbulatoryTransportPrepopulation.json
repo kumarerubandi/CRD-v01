@@ -30,7 +30,7 @@
                 {
                     "localIdentifier": "FHIR",
                     "uri": "http://hl7.org/fhir",
-                    "version": "4.0.0"
+                    "version": "3.0.0"
                 }
             ]
         },
