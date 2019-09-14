@@ -152,6 +152,7 @@ define MedicallyRequired: true
 
 define RoundTrip: false
 
+define StartDate: "NonEmergentAmbulanceTransport".performed.start.value
 
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)
