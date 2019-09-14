@@ -45,7 +45,31 @@
     }, {
       "type": "Practitioner"
     },
+	{
+      "type": "Practitioner",
+      "codeFilter": [
+        {
+          "path": "identifier",
+          "valueSetString": "1932102951"
+        }
+      ]
+    },
     {
       "type": "Organization"
+    },
+	{
+      "type": "Condition"
+    },
+	{
+      "type": "Observation"
+    },
+{
+      "type": "SupplyRequest",
+       "codeFilter": [
+        {
+          "path": "requester",
+          "valueSetString": "Patient.id"
+        }
+      ]
     }]
 }

@@ -199,6 +199,15 @@
     },
     {
       "type": "Coverage"
+    },
+	{
+      "type": "Observation"
+    },
+    {
+      "type": "EpisodeOfCare"
+    },
+	{
+      "type": "Encounter"
     }
   ]
 }
