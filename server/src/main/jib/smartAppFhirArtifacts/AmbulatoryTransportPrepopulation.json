@@ -1039,6 +1039,58 @@
                     }
                 },
                 {
+                    "name": "PractitionerPTAN",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "type": "SingletonFrom",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "identifier",
+                                            "expression": {
+                                                "path": "identifier",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "Practitioner",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "system",
+                                                    "scope": "identifier",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "http://nucc.org/provider-taxonomy",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
                     "name": "PractitionerAddress",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1216,6 +1268,58 @@
                     }
                 },
                 {
+                    "name": "AmbulanceSupplierPTAN",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "type": "SingletonFrom",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "identifier",
+                                            "expression": {
+                                                "path": "identifier",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "AmbulanceSupplier",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "system",
+                                                    "scope": "identifier",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "http://nucc.org/provider-taxonomy",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
                     "name": "AmbulanceSupplierAddressObject",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1373,73 +1477,108 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "type": "If",
-                        "condition": {
-                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
-                            "type": "As",
-                            "operand": {
-                                "type": "Exists",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "c",
-                                            "expression": {
-                                                "dataType": "{http://hl7.org/fhir}Condition",
-                                                "type": "Retrieve"
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "code",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "coding",
-                                                                "type": "Property",
-                                                                "source": {
-                                                                    "path": "code",
-                                                                    "scope": "c",
-                                                                    "type": "Property"
-                                                                }
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "Z99.2",
-                                                "type": "Literal"
-                                            }
-                                        ]
-                                    }
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "c",
+                                "expression": {
+                                    "dataType": "{http://hl7.org/fhir}Condition",
+                                    "type": "Retrieve"
                                 }
                             }
-                        },
-                        "then": {
-                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                            "value": "Dialysis",
-                            "type": "Literal"
-                        },
-                        "else": {
-                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                            "value": "null",
-                            "type": "Literal"
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "Equal",
+                            "operand": [
+                                {
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                        "path": "code",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Indexer",
+                                            "operand": [
+                                                {
+                                                    "path": "coding",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "path": "code",
+                                                        "scope": "c",
+                                                        "type": "Property"
+                                                    }
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                    "value": "0",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "Z99.2",
+                                    "type": "Literal"
+                                }
+                            ]
+                        }
+                    }
+                },
+                {
+                    "name": "RiskOfFalling",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Query",
+                        "source": [
+                            {
+                                "alias": "c",
+                                "expression": {
+                                    "dataType": "{http://hl7.org/fhir}Condition",
+                                    "type": "Retrieve"
+                                }
+                            }
+                        ],
+                        "relationship": [],
+                        "where": {
+                            "type": "Equal",
+                            "operand": [
+                                {
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                        "path": "code",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Indexer",
+                                            "operand": [
+                                                {
+                                                    "path": "coding",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "path": "code",
+                                                        "scope": "c",
+                                                        "type": "Property"
+                                                    }
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                    "value": "0",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                },
+                                {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "V00.811",
+                                    "type": "Literal"
+                                }
+                            ]
                         }
                     }
                 },
@@ -1451,97 +1590,52 @@
                         "type": "List",
                         "element": [
                             {
-                                "name": "Dialysis",
-                                "type": "ExpressionRef"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "RiskOfFalling",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "If",
-                        "condition": {
-                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
-                            "type": "As",
-                            "operand": {
-                                "type": "Exists",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "c",
-                                            "expression": {
-                                                "dataType": "{http://hl7.org/fhir}Condition",
-                                                "type": "Retrieve"
-                                            }
+                                "type": "If",
+                                "condition": {
+                                    "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "type": "As",
+                                    "operand": {
+                                        "type": "Exists",
+                                        "operand": {
+                                            "name": "Dialysis",
+                                            "type": "ExpressionRef"
                                         }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "code",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "coding",
-                                                                "type": "Property",
-                                                                "source": {
-                                                                    "path": "code",
-                                                                    "scope": "c",
-                                                                    "type": "Property"
-                                                                }
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "V00.811",
-                                                "type": "Literal"
-                                            }
-                                        ]
                                     }
+                                },
+                                "then": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "Dialysis",
+                                    "type": "Literal"
+                                },
+                                "else": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "null",
+                                    "type": "Literal"
                                 }
-                            }
-                        },
-                        "then": {
-                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                            "value": "Risk of falling off wheelchair or stretcher while in motion (not related to obesity)",
-                            "type": "Literal"
-                        },
-                        "else": {
-                            "valueType": "{urn:hl7-org:elm-types:r1}String",
-                            "value": "null",
-                            "type": "Literal"
-                        }
-                    }
-                },
-                {
-                    "name": "Mobility",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "List",
-                        "element": [
+                            },
                             {
-                                "name": "RiskOfFalling",
-                                "type": "ExpressionRef"
+                                "type": "If",
+                                "condition": {
+                                    "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "type": "As",
+                                    "operand": {
+                                        "type": "Exists",
+                                        "operand": {
+                                            "name": "RiskOfFalling",
+                                            "type": "ExpressionRef"
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "Risk of falling off wheelchair or stretcher while in motion (not related to obesity)",
+                                    "type": "Literal"
+                                },
+                                "else": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "null",
+                                    "type": "Literal"
+                                }
                             }
                         ]
                     }

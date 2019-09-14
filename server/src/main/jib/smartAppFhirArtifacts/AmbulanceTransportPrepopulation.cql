@@ -111,13 +111,18 @@ define PractitionerNPI:
     
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 
+define PractitionerPTAN:
+	(singleton from (
+  		"Practitioner".identifier identifier
+    		where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+
 define PractitionerAddress: 
 	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
 
 // Ambulance Supplier info
 
 define SupplyRequestObject:
-	(singleton from [SupplyRequest])
+	singleton from ([SupplyRequest])
 
 define AmbulanceSupplier: 
 	singleton from (
@@ -138,6 +143,10 @@ define AmbulanceSupplierName: "AmbulanceSupplier".name.value
 define AmbulanceSupplierNPI: (singleton from (
   "AmbulanceSupplier".identifier identifier
     where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+
+define AmbulanceSupplierPTAN: (singleton from (
+  "AmbulanceSupplier".identifier identifier
+    where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
     
 define AmbulanceSupplierAddressObject: singleton from ("AmbulanceSupplier".address)  
 
@@ -149,13 +158,20 @@ define SubmissionDate: Today
 define TransportContraindicated: true
 
 define MedicallyRequired: true
-define Dialysis: if exists([Condition] c where c.code.coding[0].code.value= 'Z99.2') then 'Dialysis' else 'null'
+
+define Dialysis: 
+	[Condition] c where c.code.coding[0].code.value= 'Z99.2'
+
 define RelevantDiagnoses: 
-	{"Dialysis"}
+	{
+	if exists("Dialysis")  then 'Dialysis' else 'null',
+	if exists("RiskOfFalling") then 'Risk of falling off wheelchair or stretcher while in motion (not related to obesity)' else 'null'
+	}
 
-define RiskOfFalling: if exists([Condition] c where c.code.coding[0].code.value= 'V00.811') then 'Risk of falling off wheelchair or stretcher while in motion (not related to obesity)' else 'null'
+define RiskOfFalling: 
+	[Condition] c where c.code.coding[0].code.value= 'V00.811'
 
-define Mobility: {"RiskOfFalling"}
+//define Mobility: {"RiskOfFalling"}
 
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)

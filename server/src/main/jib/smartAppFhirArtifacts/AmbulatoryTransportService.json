@@ -319,7 +319,7 @@
                      }
                   }
                ],
-		"extension":[
+               "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
                      "valueString":"Typeofrequest"
@@ -454,22 +454,7 @@
                      "valueCoding":{
                         "code":"Imaging"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"RelevantDiagnoses"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.3",
-               "text":"Mobility",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"Bed confined (Unable to ambulate, Unable to get out of bed without assistance, Unable to safely sit in a chair or wheelchair)"
@@ -484,22 +469,7 @@
                      "valueCoding":{
                         "code":"Risk of falling off wheelchair or stretcher while in motion (not related to obesity)"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Mobility"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.4",
-               "text":"Musculoskeletal",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"Non-healed fractures requiring ambulance"
@@ -529,22 +499,7 @@
                      "valueCoding":{
                         "code":"Amputation(s)"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Musculoskeletal"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.5",
-               "text":"Cardiovascular",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"CVA with sequelae (late effect of CVA) that impair mobility and result in be confinement"
@@ -554,22 +509,7 @@
                      "valueCoding":{
                         "code":"DVT requires elevation of lower extremity"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Cardiovascular"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.6",
-               "text":"Neurological",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"Spinal Cord Injury – Paralysis"
@@ -584,22 +524,7 @@
                      "valueCoding":{
                         "code":"Moderate to severe pain on movement"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Neurological"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.7",
-               "text":"Wound",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"Unable to sit in chair or wheelchair due to Grade II or greater decubitus ulcers on buttocks"
@@ -609,22 +534,7 @@
                      "valueCoding":{
                         "code":"Chronic wounds requiring immobilization"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Wound"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.8",
-               "text":"Attendant required during transport",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"Morbid obesity requires additional personnel/equipment to handle"
@@ -649,22 +559,7 @@
                      "valueCoding":{
                         "code":"Restraints (physical or chemical) anticipated or used during transport"
                      }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Attendantrequiredduringtransport"
-                  }
-               ]
-            },
-            {
-               "linkId":"7.9",
-               "text":"Mental",
-               "type":"open-choice",
-               "required":false,
-               "repeats":true,
-               "option":[
+                  },
                   {
                      "valueCoding":{
                         "code":"Danger to self or others"
@@ -679,12 +574,12 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Mental"
+                     "valueString":"RelevantDiagnoses"
                   }
                ]
             },
             {
-               "linkId":"7.10",
+               "linkId":"7.3",
                "text":"Other reason(s) that non-emergency ground transport by ambulance is required",
                "type":"string",
                "required":false
@@ -706,12 +601,12 @@
                      {
                         "system":"http://loinc.org",
                         "code":"LP74233-5",
-			"display":"Physician certification statement"
+                        "display":"Physician certification statement"
                      },
-			{
+                     {
                         "system":"http://loinc.org",
                         "code":"52016-3",
-			"display":"Ambulance transport, Physician certification for transport statement (narrative)"
+                        "display":"Ambulance transport, Physician certification for transport statement (narrative)"
                      }
                   ]
                }
@@ -721,12 +616,12 @@
                "text":"Documentation from the medical record to support the medical necessity of repetitive, scheduled non-emergent ambulance transport",
                "type":"attachment",
                "required":true,
-		"code":{
+               "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
                         "code":"11503-0",
-			"display":"Medical records"
+                        "display":"Medical records"
                      }
                   ]
                }
@@ -741,12 +636,12 @@
                      {
                         "system":"http://loinc.org",
                         "code":"52000-7",
-			"display":"Ambulance transport, Origination site latitude"
+                        "display":"Ambulance transport, Origination site latitude"
                      },
-			{
+                     {
                         "system":"http://loinc.org",
                         "code":"15512-7",
-			"display":"Ambulance transport, Destination site information Set"
+                        "display":"Ambulance transport, Destination site information Set"
                      }
                   ]
                }

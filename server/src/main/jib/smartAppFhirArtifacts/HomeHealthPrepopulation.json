@@ -1457,6 +1457,58 @@
                     }
                 },
                 {
+                    "name": "PractitionerPTAN",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "type": "SingletonFrom",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "identifier",
+                                            "expression": {
+                                                "path": "identifier",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "Practitioner",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "system",
+                                                    "scope": "identifier",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "http://nucc.org/provider-taxonomy",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
                     "name": "PractitionerAddressObject",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1668,6 +1720,58 @@
                                             {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
                                                 "value": "http://hl7.org/fhir/sid/us-npi",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "AgencyPTAN",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "path": "value",
+                        "type": "Property",
+                        "source": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "type": "SingletonFrom",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "identifier",
+                                            "expression": {
+                                                "path": "identifier",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "Agency",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "system",
+                                                    "scope": "identifier",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "http://nucc.org/provider-taxonomy",
                                                 "type": "Literal"
                                             }
                                         ]
@@ -2579,9 +2683,14 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "Initial",
-                        "type": "Literal"
+                        "type": "List",
+                        "element": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "Initial",
+                                "type": "Literal"
+                            }
+                        ]
                     }
                 },
                 {
@@ -2589,9 +2698,14 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "Initial",
-                        "type": "Literal"
+                        "type": "List",
+                        "element": [
+                            {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": "Initial",
+                                "type": "Literal"
+                            }
+                        ]
                     }
                 },
                 {

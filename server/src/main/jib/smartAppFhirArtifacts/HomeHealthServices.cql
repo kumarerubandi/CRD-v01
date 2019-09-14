@@ -150,6 +150,11 @@ define PractitionerNPI:
   		"Practitioner".identifier identifier
     		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
     
+define PractitionerPTAN:
+	(singleton from (
+  		"Practitioner".identifier identifier
+    		where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 
 define PractitionerAddress: 
@@ -167,6 +172,11 @@ define AgencyNPI: (singleton from (
   "Agency".identifier identifier
     where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
     
+define AgencyPTAN:
+	(singleton from (
+  		"Agency".identifier identifier
+    		where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+
 define AgencyAddressObject: singleton from ("Agency".address)  
 
 define AgencyAddress: 
@@ -210,9 +220,9 @@ define EncounterPerformed:
 
 define Encounterdate: "EncounterObject".period.start.value
 
-define BenefitPeriodType: 'Initial'
+define BenefitPeriodType: {'Initial'}
 
-define TypeOfRequest: 'Initial'
+define TypeOfRequest: {'Initial'}
 
 define PreClaimReview: 'Pre-Claim Review'
 
