@@ -191,6 +191,15 @@
     {
       "type": "Patient"
     },
+	{
+      "type": "Practitioner",
+      "codeFilter": [
+        {
+          "path": "identifier",
+          "valueSetString": "1932102951"
+        }
+      ]
+    },
     {
       "type": "Practitioner"
     },
@@ -208,6 +217,12 @@
     },
 	{
       "type": "Encounter"
+    },
+	{
+      "type": "Location"
+    },
+	{
+      "type": "Condition"
     }
   ]
 }

@@ -128,15 +128,6 @@ define AmbulanceSupplier:
 	singleton from (
   		[Organization] org
     		where ('Organization/' + org.id.value) = "SupplyRequestObject".supplier[0].reference.value)
-
-//define AmbulanceSupplierService: 
-	//singleton from (
-  		//[HealthcareService] service
-    		//where ('HealthcareService/' + service.id.value) = supply_request.supplier[0].reference.value)
-
-//define AmbulanceSupplier: 
-	//if exists(AmbulanceSupplierOrg) then AmbulanceSupplierOrg
-	//else AmbulanceSupplierService
 	
 define AmbulanceSupplierName: "AmbulanceSupplier".name.value
 
@@ -159,22 +150,8 @@ define TransportContraindicated: true
 
 define MedicallyRequired: true
 
-define Dialysis: 
-	singleton from ([Condition] c where c.code.coding[0].code.value= 'Z99.2')
-
-define RelevantDiagnoses: 
-	{
-	if exists("Dialysis")  then 'Dialysis' else 'null',
-	if exists("RiskOfFalling") then 'Risk of falling off wheelchair or stretcher while in motion (not related to obesity)' else 'null'
-	}
-
-define RiskOfFalling: 
-	singleton from ([Condition] c where c.code.coding[0].code.value= 'V00.811')
-
-
 define RoundTrip: false
 
-//Requestor= info
 
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)
