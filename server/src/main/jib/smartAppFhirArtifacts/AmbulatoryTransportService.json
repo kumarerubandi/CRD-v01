@@ -280,30 +280,6 @@
             },
             {
                "linkId":"5.2",
-               "text":"HCPCS Code",
-               "type":"open-choice",
-               "required":true,
-               "option":[
-                  {
-                     "valueCoding":{
-                        "code":"A0426 - Ambulance service, Advanced Life Support (ALS), non-emergency transport,Level 1"
-                     }
-                  },
-                  {
-                     "valueCoding":{
-                        "code":"A0428 - Ambulance service, Basic Life Support (BLS), non-emergency transport"
-                     }
-                  }
-               ],
-		"extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"HCPCSCode"
-                  }
-               ]
-            },
-            {
-               "linkId":"5.3",
                "text":"Submission Date",
                "type":"date",
                "required":true,
@@ -315,7 +291,7 @@
                ]
             },
             {
-               "linkId":"5.4",
+               "linkId":"5.3",
                "text":"Start Date",
                "type":"date",
                "required":true,
@@ -327,7 +303,7 @@
                ]
             },
             {
-               "linkId":"5.5",
+               "linkId":"5.4",
                "text":"Type of request",
                "type":"open-choice",
                "required":true,
@@ -351,13 +327,13 @@
                ]
             },
             {
-               "linkId":"5.6",
+               "linkId":"5.5",
                "text":"Is the request expedited?",
                "type":"boolean",
                "required":true
             },
             {
-               "linkId":"5.7",
+               "linkId":"5.6",
                "text":"Reason for the request to be expedited",
                "type":"string",
                "required":true,
@@ -375,7 +351,7 @@
                ]
             },
             {
-               "linkId":"5.8",
+               "linkId":"5.7",
                "text":"State where the ambulance is garaged",
                "type":"string",
                "required":true,
@@ -387,13 +363,13 @@
                ]
             },
             {
-               "linkId":"5.9",
+               "linkId":"5.8",
                "text":"Transport from: ",
                "type":"string",
                "required":true
             },
             {
-               "linkId":"5.10",
+               "linkId":"5.9",
                "text":"Transport to: ",
                "type":"string",
                "required":true

@@ -126,7 +126,15 @@
                     }
                 },
                 {
-                    "name": "V00.811 ",
+                    "name": "Z99.2",
+                    "id": "Z99.2",
+                    "accessLevel": "Public",
+                    "codeSystem": {
+                        "name": "ICD-10-CM"
+                    }
+                },
+                {
+                    "name": "V00.811",
                     "id": "V00.811 ",
                     "accessLevel": "Public",
                     "codeSystem": {
@@ -1349,6 +1357,83 @@
                     }
                 },
                 {
+                    "name": "Dialysis",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "c",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Condition",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "code",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "type": "Indexer",
+                                                        "operand": [
+                                                            {
+                                                                "path": "coding",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "path": "code",
+                                                                    "scope": "c",
+                                                                    "type": "Property"
+                                                                }
+                                                            },
+                                                            {
+                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                "value": "0",
+                                                                "type": "Literal"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "Z99.2",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Dialysis",
+                            "type": "Literal"
+                        },
+                        "else": {
+                            "asType": "{urn:hl7-org:elm-types:r1}String",
+                            "type": "As",
+                            "operand": {
+                                "type": "Null"
+                            }
+                        }
+                    }
+                },
+                {
                     "name": "RelevantDiagnoses",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1356,11 +1441,87 @@
                         "type": "List",
                         "element": [
                             {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Dialysis",
-                                "type": "Literal"
+                                "name": "Dialysis",
+                                "type": "ExpressionRef"
                             }
                         ]
+                    }
+                },
+                {
+                    "name": "RiskOfFalling",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "c",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Condition",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "code",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "type": "Indexer",
+                                                        "operand": [
+                                                            {
+                                                                "path": "coding",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "path": "code",
+                                                                    "scope": "c",
+                                                                    "type": "Property"
+                                                                }
+                                                            },
+                                                            {
+                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                "value": "0",
+                                                                "type": "Literal"
+                                                            }
+                                                        ]
+                                                    }
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "V00.811",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Risk of falling off wheelchair or stretcher while in motion (not related to obesity)",
+                            "type": "Literal"
+                        },
+                        "else": {
+                            "asType": "{urn:hl7-org:elm-types:r1}String",
+                            "type": "As",
+                            "operand": {
+                                "type": "Null"
+                            }
+                        }
                     }
                 },
                 {
@@ -1371,14 +1532,8 @@
                         "type": "List",
                         "element": [
                             {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Risk of falling off wheelchair or stretcher while in motion (not related to obesity)",
-                                "type": "Literal"
-                            },
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Unable to maintain erect sitting position in a chair for time needed to transport, due to moderate muscular weakness and de-conditioning",
-                                "type": "Literal"
+                                "name": "RiskOfFalling",
+                                "type": "ExpressionRef"
                             }
                         ]
                     }
