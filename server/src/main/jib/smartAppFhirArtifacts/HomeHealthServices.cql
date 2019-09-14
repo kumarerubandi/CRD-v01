@@ -1,5 +1,5 @@
 library HomeHealthService
-using FHIR version '3.0.0'
+using FHIR version '4.0.0'
 include FHIRHelpers version '3.0.0' called FHIRHelpers
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
@@ -230,6 +230,29 @@ define BenefitPeriodType: {'Initial'}
 define TypeOfRequest: {'Initial'}
 
 define PreClaimReview: 'Pre-Claim Review'
+
+//Requestor info
+define Requestor: 
+	singleton from (
+  		[Practitioner] p
+    		where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
+    		
+define RequestorNameObject: 
+	singleton from ("Requestor".name)
+	
+define SubmitterName: 
+	//PractitionerFirstName + ' '+ PractitionerMiddleInitial + ' '+ PractitionerLastName
+	RequestorFirstName + ' '+ RequestorLastName
+
+define RequestorLastName: "RequestorNameObject".family.value
+define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
+define RequestorFirstName: "RequestorNameObject".given[0].value
+
+define SubmitterTelephone: 
+	(singleton from (
+  		"Requestor".telecom tele
+    		where tele.system.value = 'phone' and tele.use.value='work')).value.value
+
 
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)
