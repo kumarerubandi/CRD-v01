@@ -171,45 +171,10 @@ define RelevantDiagnoses:
 define RiskOfFalling: 
 	singleton from ([Condition] c where c.code.coding[0].code.value= 'V00.811')
 
-define LocationFromObject:
-	singleton from ([Location] l1 where  ('Location/' + l1.id.value) = "SupplyRequestObject".deliverFrom.reference.value)
-	
-define LocationToObject:
-	singleton from ([Location] l2 where ('Location/' + l2.id.value) = "SupplyRequestObject".deliverTo.reference.value)
-
-define LocationFromAddressObject: singleton from ("LocationFromObject".address)  
-
-define TransportFrom: 
-	"LocationFromAddressObject".line[0].value +', ' +"LocationFromAddressObject".city.value +', ' +"LocationFromAddressObject".state.value+', ' +"LocationFromAddressObject".postalCode.value
-
-define LocationToAddressObject: singleton from ("LocationToObject".address)  
-
-define TransportTo: 
-	"LocationToAddressObject".line[0].value +', ' +"LocationToAddressObject".city.value +', ' +"LocationToAddressObject".state.value+', ' +"LocationToAddressObject".postalCode.value
 
 define RoundTrip: false
 
 //Requestor= info
-define Requestor: 
-	singleton from (
-  		[Practitioner] p
-    		where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
-    		
-define RequestorNameObject: 
-	singleton from ("Requestor".name)
-	
-define RequestorName: 
-	//PractitionerFirstName + ' '+ PractitionerMiddleInitial + ' '+ PractitionerLastName
-	RequestorFirstName + ' '+ RequestorLastName
-
-define RequestorLastName: "RequestorNameObject".family.value
-define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
-define RequestorFirstName: "RequestorNameObject".given[0].value
-
-define RequestorTelephone: 
-	(singleton from (
-  		"Requestor".telecom tele
-    		where tele.system.value = 'phone' and tele.use.value='work')).value.value
 
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)
