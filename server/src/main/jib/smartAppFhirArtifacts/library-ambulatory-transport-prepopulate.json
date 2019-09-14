@@ -49,15 +49,12 @@
       "type": "Organization"
     },
 {
-      "type": "SupplyRequest"
-    },
-	{
-      "type": "Observation"
-    },
-    {
-      "type": "Location"
-    },
-	{
-      "type": "Encounter"
+      "type": "SupplyRequest",
+       "codeFilter": [
+        {
+          "path": "requester",
+          "valueSetString": "Patient.id"
+        }
+      ]
     }]
 }
