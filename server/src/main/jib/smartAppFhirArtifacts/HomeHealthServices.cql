@@ -153,7 +153,7 @@ define PractitionerNPI:
 define PractitionerPTAN:
 	(singleton from (
   		"Practitioner".identifier identifier
-    		where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
 
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 
@@ -175,7 +175,12 @@ define AgencyNPI: (singleton from (
 define AgencyPTAN:
 	(singleton from (
   		"Agency".identifier identifier
-    		where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
+
+define CMSCertificationNumber: 
+	(singleton from (
+  		"Agency".identifier identifier
+    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'AC')).value.value
 
 define AgencyAddressObject: singleton from ("Agency".address)  
 

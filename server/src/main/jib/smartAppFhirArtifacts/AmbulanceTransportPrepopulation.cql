@@ -114,7 +114,7 @@ define PractitionerAddressObject: singleton from ("Practitioner".address address
 define PractitionerPTAN:
 	(singleton from (
   		"Practitioner".identifier identifier
-    		where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
 
 define PractitionerAddress: 
 	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
@@ -146,7 +146,7 @@ define AmbulanceSupplierNPI: (singleton from (
 
 define AmbulanceSupplierPTAN: (singleton from (
   "AmbulanceSupplier".identifier identifier
-    where identifier.system.value = 'http://nucc.org/provider-taxonomy')).value.value
+    where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
     
 define AmbulanceSupplierAddressObject: singleton from ("AmbulanceSupplier".address)  
 
