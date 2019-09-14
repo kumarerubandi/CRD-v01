@@ -2911,36 +2911,6 @@
                     }
                 },
                 {
-                    "name": "BenefitPeriodType",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "List",
-                        "element": [
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Initial",
-                                "type": "Literal"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "name": "TypeOfRequest",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "List",
-                        "element": [
-                            {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": "Initial",
-                                "type": "Literal"
-                            }
-                        ]
-                    }
-                },
-                {
                     "name": "PreClaimReview",
                     "context": "Patient",
                     "accessLevel": "Public",
