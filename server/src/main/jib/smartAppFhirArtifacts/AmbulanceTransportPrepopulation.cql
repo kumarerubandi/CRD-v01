@@ -152,6 +152,29 @@ define MedicallyRequired: true
 
 define RoundTrip: false
 
+//Requestor info
+define Requestor: 
+	singleton from (
+  		[Practitioner] p
+    		where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
+    		
+define RequestorNameObject: 
+	singleton from ("Requestor".name)
+	
+define RequestorName: 
+	//PractitionerFirstName + ' '+ PractitionerMiddleInitial + ' '+ PractitionerLastName
+	RequestorFirstName + ' '+ RequestorLastName
+
+define RequestorLastName: "RequestorNameObject".family.value
+define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
+define RequestorFirstName: "RequestorNameObject".given[0].value
+
+define RequestorTelephone: 
+	(singleton from (
+  		"Requestor".telecom tele
+    		where tele.system.value = 'phone' and tele.use.value='work')).value.value
+
+
 define StartDate: "NonEmergentAmbulanceTransport".performed.start.value
 
 define function GetMiddleInitials(name FHIR.HumanName):
