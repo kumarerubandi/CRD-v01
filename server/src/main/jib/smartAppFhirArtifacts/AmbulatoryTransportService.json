@@ -608,7 +608,7 @@
             {
                "linkId":"5.7",
                "text":"State where the ambulance is garaged",
-               "type":"choice",
+               "type":"open-choice",
                "required":true,
                "options":{
                   "reference":"#states"
