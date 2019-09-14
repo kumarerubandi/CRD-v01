@@ -659,12 +659,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //		    	  System.out.println(entryResource.get("resourceType"));
 		    	  if(((String) entryResource.get("resourceType")).equals("DeviceRequest")) {
 		    		  newAppContext.put("request",entryResource);
-		    		  if(hook.equals("ambulatory-transport")) {
-		    			  newAppContext.put("prior_auth",false);
-		    		  }
-		    		  else {
-		    			  newAppContext.put("prior_auth",true);
-		    		  }
+		    		
 				  
 		    		  if(entryResource.has("codeCodeableConcept")) {
 //		    			  System.out.println("entryResource.has");
@@ -686,14 +681,36 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 		    						  if(hcpcTemplateMap.has(hcpcCode)) {
 		    							  newAppContext.put("template","urn:hl7:davinci:crd:"+(String) hcpcTemplateMap.get(hcpcCode));
 		    						//	  newAppContext.put("prior_auth",true);
+		    							  if(hcpcCode.equals("A0425")) {
+		    				    			  newAppContext.put("prior_auth",false);
+		    				    		  }
+		    				    		  else {
+		    				    			  newAppContext.put("prior_auth",true);
+		    				    		  }
+		    							  
 		    						  }
+		    						  else {
+	    				    			  newAppContext.put("prior_auth",true);
+	    				    		  }
 		    					//	  else {
 		    					//		  newAppContext.put("prior_auth",false);
 		    					//	  }
     						  
 		    					  }
+		    					  else {
+    				    			  newAppContext.put("prior_auth",true);
+    				    		  }
 		    				  }
+		    				  if(codeArray.length() == 0) {
+				    			  newAppContext.put("prior_auth",true);
+				    		  }
 		    			  }
+		    			  else {
+			    			  newAppContext.put("prior_auth",true);
+			    		  }
+		    		  }
+		    		  else {
+		    			  newAppContext.put("prior_auth",true);
 		    		  }
 		    	  }
 		    	  if(((String) entryResource.get("resourceType")).equals("Patient")) {
