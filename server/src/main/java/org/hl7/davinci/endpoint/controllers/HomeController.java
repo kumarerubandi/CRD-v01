@@ -659,7 +659,13 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //		    	  System.out.println(entryResource.get("resourceType"));
 		    	  if(((String) entryResource.get("resourceType")).equals("DeviceRequest")) {
 		    		  newAppContext.put("request",entryResource);
-				  newAppContext.put("prior_auth",true);
+		    		  if(hook.equals("ambulatory-transport")) {
+		    			  newAppContext.put("prior_auth",false);
+		    		  }
+		    		  else {
+		    			  newAppContext.put("prior_auth",true);
+		    		  }
+				  
 		    		  if(entryResource.has("codeCodeableConcept")) {
 //		    			  System.out.println("entryResource.has");
 //		    			  System.out.println(entryResource.get("codeCodeableConcept"));
