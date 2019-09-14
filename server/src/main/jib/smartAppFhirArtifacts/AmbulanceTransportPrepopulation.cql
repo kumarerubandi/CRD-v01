@@ -1,5 +1,5 @@
 library NonEmergentAmbulanceTransport
-using FHIR version '4.0.0'
+using FHIR version '3.0.0'
 include FHIRHelpers version '3.0.0' called FHIRHelpers
 
 codesystem "ICD-10-CM": 'http://hl7.org/fhir/sid/icd-10-cm'
@@ -128,15 +128,6 @@ define AmbulanceSupplier:
 	singleton from (
   		[Organization] org
     		where ('Organization/' + org.id.value) = "SupplyRequestObject".supplier[0].reference.value)
-
-//define AmbulanceSupplierService: 
-	//singleton from (
-  		//[HealthcareService] service
-    		//where ('HealthcareService/' + service.id.value) = supply_request.supplier[0].reference.value)
-
-//define AmbulanceSupplier: 
-	//if exists(AmbulanceSupplierOrg) then AmbulanceSupplierOrg
-	//else AmbulanceSupplierService
 	
 define AmbulanceSupplierName: "AmbulanceSupplier".name.value
 
@@ -159,37 +150,9 @@ define TransportContraindicated: true
 
 define MedicallyRequired: true
 
-define Dialysis: 
-	singleton from ([Condition] c where c.code.coding[0].code.value= 'Z99.2')
-
-define RelevantDiagnoses: 
-	{
-	if exists("Dialysis")  then 'Dialysis' else 'null',
-	if exists("RiskOfFalling") then 'Risk of falling off wheelchair or stretcher while in motion (not related to obesity)' else 'null'
-	}
-
-define RiskOfFalling: 
-	singleton from ([Condition] c where c.code.coding[0].code.value= 'V00.811')
-
-define LocationFromObject:
-	singleton from ([Location] l1 where  ('Location/' + l1.id.value) = "SupplyRequestObject".deliverFrom.reference.value)
-	
-define LocationToObject:
-	singleton from ([Location] l2 where ('Location/' + l2.id.value) = "SupplyRequestObject".deliverTo.reference.value)
-
-define LocationFromAddressObject: singleton from ("LocationFromObject".address)  
-
-define TransportFrom: 
-	"LocationFromAddressObject".line[0].value +', ' +"LocationFromAddressObject".city.value +', ' +"LocationFromAddressObject".state.value+', ' +"LocationFromAddressObject".postalCode.value
-
-define LocationToAddressObject: singleton from ("LocationToObject".address)  
-
-define TransportTo: 
-	"LocationToAddressObject".line[0].value +', ' +"LocationToAddressObject".city.value +', ' +"LocationToAddressObject".state.value+', ' +"LocationToAddressObject".postalCode.value
-
 define RoundTrip: false
 
-//Requestor= info
+//Requestor info
 define Requestor: 
 	singleton from (
   		[Practitioner] p
@@ -210,6 +173,9 @@ define RequestorTelephone:
 	(singleton from (
   		"Requestor".telecom tele
     		where tele.system.value = 'phone' and tele.use.value='work')).value.value
+
+
+define StartDate: "NonEmergentAmbulanceTransport".performed.start.value
 
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)

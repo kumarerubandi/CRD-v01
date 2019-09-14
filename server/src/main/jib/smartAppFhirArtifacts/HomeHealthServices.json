@@ -48,6 +48,261 @@
                }
             ]
          }
+      },
+      {
+         "resourceType":"ValueSet",
+         "id":"states",
+         "name":"States",
+         "status":"draft",
+         "description":"States",
+         "compose":{
+            "include":[
+               {
+                  "concept":[
+                     {
+                        "code":"AK",
+                        "display":"Alaska"
+                     },
+                     {
+                        "code":"AL",
+                        "display":"Alabama"
+                     },
+                     {
+                        "code":"AR",
+                        "display":"Arkansas"
+                     },
+                     {
+                        "code":"AS",
+                        "display":"American Samoa"
+                     },
+                     {
+                        "code":"AZ",
+                        "display":"Arizona"
+                     },
+                     {
+                        "code":"CA",
+                        "display":"California"
+                     },
+                     {
+                        "code":"CO",
+                        "display":"Colorado"
+                     },
+                     {
+                        "code":"CT",
+                        "display":"Connecticut"
+                     },
+                     {
+                        "code":"DC",
+                        "display":"District of Columbia"
+                     },
+                     {
+                        "code":"DE",
+                        "display":"Delaware"
+                     },
+                     {
+                        "code":"FL",
+                        "display":"Florida"
+                     },
+                     {
+                        "code":"FM",
+                        "display":"Federated States of Micronesia"
+                     },
+                     {
+                        "code":"GA",
+                        "display":"Georgia"
+                     },
+                     {
+                        "code":"GU",
+                        "display":"Guam"
+                     },
+                     {
+                        "code":"HI",
+                        "display":"Hawaii"
+                     },
+                     {
+                        "code":"IA",
+                        "display":"Iowa"
+                     },
+                     {
+                        "code":"ID",
+                        "display":"Idaho"
+                     },
+                     {
+                        "code":"IL",
+                        "display":"Illinois"
+                     },
+                     {
+                        "code":"IN",
+                        "display":"Indiana"
+                     },
+                     {
+                        "code":"KS",
+                        "display":"Kansas"
+                     },
+                     {
+                        "code":"KY",
+                        "display":"Kentucky"
+                     },
+                     {
+                        "code":"LA",
+                        "display":"Louisiana"
+                     },
+                     {
+                        "code":"MA",
+                        "display":"Massachusetts"
+                     },
+                     {
+                        "code":"MD",
+                        "display":"Maryland"
+                     },
+                     {
+                        "code":"ME",
+                        "display":"Maine"
+                     },
+                     {
+                        "code":"MH",
+                        "display":"Marshall Islands"
+                     },
+                     {
+                        "code":"MI",
+                        "display":"Michigan"
+                     },
+                     {
+                        "code":"MN",
+                        "display":"Minnesota"
+                     },
+                     {
+                        "code":"MO",
+                        "display":"Missouri"
+                     },
+                     {
+                        "code":"MP",
+                        "display":"Northern Mariana Islands"
+                     },
+                     {
+                        "code":"MS",
+                        "display":"Mississippi"
+                     },
+                     {
+                        "code":"MT",
+                        "display":"Montana"
+                     },
+                     {
+                        "code":"NC",
+                        "display":"North Carolina"
+                     },
+                     {
+                        "code":"ND",
+                        "display":"North Dakota"
+                     },
+                     {
+                        "code":"NE",
+                        "display":"Nebraska"
+                     },
+                     {
+                        "code":"NH",
+                        "display":"New Hampshire"
+                     },
+                     {
+                        "code":"NJ",
+                        "display":"New Jersey"
+                     },
+                     {
+                        "code":"NM",
+                        "display":"New Mexico"
+                     },
+                     {
+                        "code":"NV",
+                        "display":"Nevada"
+                     },
+                     {
+                        "code":"NY",
+                        "display":"New York"
+                     },
+                     {
+                        "code":"OH",
+                        "display":"Ohio"
+                     },
+                     {
+                        "code":"OK",
+                        "display":"Oklahoma"
+                     },
+                     {
+                        "code":"OR",
+                        "display":"Oregon"
+                     },
+                     {
+                        "code":"PA",
+                        "display":"Pennsylvania"
+                     },
+                     {
+                        "code":"PR",
+                        "display":"Puerto Rico"
+                     },
+                     {
+                        "code":"PW",
+                        "display":"Palau"
+                     },
+                     {
+                        "code":"RI",
+                        "display":"Rhode Island"
+                     },
+                     {
+                        "code":"SC",
+                        "display":"South Carolina"
+                     },
+                     {
+                        "code":"SD",
+                        "display":"South Dakota"
+                     },
+                     {
+                        "code":"TN",
+                        "display":"Tennessee"
+                     },
+                     {
+                        "code":"TX",
+                        "display":"Texas"
+                     },
+                     {
+                        "code":"UM",
+                        "display":"U.S. Minor Outlying Islands"
+                     },
+                     {
+                        "code":"UT",
+                        "display":"Utah"
+                     },
+                     {
+                        "code":"VA",
+                        "display":"Virginia"
+                     },
+                     {
+                        "code":"VI",
+                        "display":"Virgin Islands of the U.S."
+                     },
+                     {
+                        "code":"VT",
+                        "display":"Vermont"
+                     },
+                     {
+                        "code":"WA",
+                        "display":"Washington"
+                     },
+                     {
+                        "code":"WI",
+                        "display":"Wisconsin"
+                     },
+                     {
+                        "code":"WV",
+                        "display":"West Virginia"
+                     },
+                     {
+                        "code":"WY",
+                        "display":"Wyoming"
+                     }
+                  ]
+               }
+            ]
+         }
       }
    ],
    "item":[
@@ -226,12 +481,12 @@
                "text":"The beneficiary is confined to the home at the time of services",
                "type":"attachment",
                "required":true,
-		"code":{
+               "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
                         "code":"11503-0",
-			"display":"Medical records"
+                        "display":"Medical records"
                      }
                   ]
                }
@@ -241,12 +496,12 @@
                "text":"The beneficiary is under the care of a physician",
                "type":"attachment",
                "required":true,
-		"code":{
+               "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
                         "code":"11503-0",
-			"display":"Medical records"
+                        "display":"Medical records"
                      }
                   ]
                }
@@ -256,12 +511,12 @@
                "text":"The beneficiary is receiving services under a plan of care established and periodically reviewed by a physician",
                "type":"attachment",
                "required":true,
-		"code":{
+               "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
                         "code":"11503-0",
-			"display":"Medical records"
+                        "display":"Medical records"
                      }
                   ]
                }
@@ -271,12 +526,12 @@
                "text":"The beneficiary is in need of skilled services",
                "type":"attachment",
                "required":true,
-		"code":{
+               "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
                         "code":"11503-0",
-			"display":"Medical records"
+                        "display":"Medical records"
                      }
                   ]
                }
@@ -286,12 +541,12 @@
                "text":"The beneficiary has had a face-to-face encounter with a medical provider as mandated by the Affordable CareAct",
                "type":"attachment",
                "required":true,
-		"code":{
+               "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
                         "code":"46240-8",
-			"display":"History of Hospitalizations+Outpatient visits Narrative"
+                        "display":"History of Hospitalizations+Outpatient visits Narrative"
                      }
                   ]
                }
@@ -303,12 +558,12 @@
          "text":"Other Information",
          "type":"group",
          "item":[
-		{
+            {
                "linkId":"5.1",
                "text":"Review choice",
                "type":"string",
                "required":true,
-		"readOnly": true,
+               "readOnly":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
@@ -427,12 +682,15 @@
             {
                "linkId":"5.9",
                "text":"State where service is rendered",
-               "type":"string",
+               "type":"open-choice",
                "required":true,
+               "options":{
+                  "reference":"#states"
+               },
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"state"
+                     "valueString":"StateService"
                   }
                ]
             },
