@@ -48,6 +48,9 @@
     {
       "type": "Organization"
     },
+	{
+      "type": "Condition"
+    },
 {
       "type": "SupplyRequest",
        "codeFilter": [
