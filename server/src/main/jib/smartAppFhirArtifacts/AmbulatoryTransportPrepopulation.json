@@ -1594,6 +1594,562 @@
                     }
                 },
                 {
+                    "name": "Dialysis",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "type": "Query",
+                            "source": [
+                                {
+                                    "alias": "c",
+                                    "expression": {
+                                        "dataType": "{http://hl7.org/fhir}Condition",
+                                        "type": "Retrieve"
+                                    }
+                                }
+                            ],
+                            "relationship": [],
+                            "where": {
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "code",
+                                            "type": "Property",
+                                            "source": {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "coding",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "path": "code",
+                                                            "scope": "c",
+                                                            "type": "Property"
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "Z99.2",
+                                        "type": "Literal"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "RiskOfFalling",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "type": "Query",
+                            "source": [
+                                {
+                                    "alias": "c",
+                                    "expression": {
+                                        "dataType": "{http://hl7.org/fhir}Condition",
+                                        "type": "Retrieve"
+                                    }
+                                }
+                            ],
+                            "relationship": [],
+                            "where": {
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "code",
+                                            "type": "Property",
+                                            "source": {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "coding",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "path": "code",
+                                                            "scope": "c",
+                                                            "type": "Property"
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "V00.811",
+                                        "type": "Literal"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "RelevantDiagnoses",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "List",
+                        "element": [
+                            {
+                                "type": "If",
+                                "condition": {
+                                    "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "type": "As",
+                                    "operand": {
+                                        "type": "Exists",
+                                        "operand": {
+                                            "type": "ToList",
+                                            "operand": {
+                                                "name": "Dialysis",
+                                                "type": "ExpressionRef"
+                                            }
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "Dialysis",
+                                    "type": "Literal"
+                                },
+                                "else": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "null",
+                                    "type": "Literal"
+                                }
+                            },
+                            {
+                                "type": "If",
+                                "condition": {
+                                    "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                                    "type": "As",
+                                    "operand": {
+                                        "type": "Exists",
+                                        "operand": {
+                                            "type": "ToList",
+                                            "operand": {
+                                                "name": "RiskOfFalling",
+                                                "type": "ExpressionRef"
+                                            }
+                                        }
+                                    }
+                                },
+                                "then": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "Risk of falling off wheelchair or stretcher while in motion (not related to obesity)",
+                                    "type": "Literal"
+                                },
+                                "else": {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "null",
+                                    "type": "Literal"
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "LocationFromObject",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "type": "Query",
+                            "source": [
+                                {
+                                    "alias": "l1",
+                                    "expression": {
+                                        "dataType": "{http://hl7.org/fhir}Location",
+                                        "type": "Retrieve"
+                                    }
+                                }
+                            ],
+                            "relationship": [],
+                            "where": {
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "Location/",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "id",
+                                                    "scope": "l1",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "reference",
+                                            "type": "Property",
+                                            "source": {
+                                                "path": "deliverFrom",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "SupplyRequestObject",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "LocationToObject",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "type": "Query",
+                            "source": [
+                                {
+                                    "alias": "l2",
+                                    "expression": {
+                                        "dataType": "{http://hl7.org/fhir}Location",
+                                        "type": "Retrieve"
+                                    }
+                                }
+                            ],
+                            "relationship": [],
+                            "where": {
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "Location/",
+                                                "type": "Literal"
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "id",
+                                                    "scope": "l2",
+                                                    "type": "Property"
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "reference",
+                                            "type": "Property",
+                                            "source": {
+                                                "path": "deliverTo",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "SupplyRequestObject",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "LocationFromAddressObject",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "type": "ToList",
+                            "operand": {
+                                "path": "address",
+                                "type": "Property",
+                                "source": {
+                                    "name": "LocationFromObject",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "TransportFrom",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Concatenate",
+                        "operand": [
+                            {
+                                "type": "Concatenate",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "type": "Concatenate",
+                                                "operand": [
+                                                    {
+                                                        "type": "Concatenate",
+                                                        "operand": [
+                                                            {
+                                                                "type": "Concatenate",
+                                                                "operand": [
+                                                                    {
+                                                                        "path": "value",
+                                                                        "type": "Property",
+                                                                        "source": {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "line",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "LocationFromAddressObject",
+                                                                                        "type": "ExpressionRef"
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                                        "value": ", ",
+                                                                        "type": "Literal"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "path": "value",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "path": "city",
+                                                                    "type": "Property",
+                                                                    "source": {
+                                                                        "name": "LocationFromAddressObject",
+                                                                        "type": "ExpressionRef"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": ", ",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "state",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "LocationFromAddressObject",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": ", ",
+                                        "type": "Literal"
+                                    }
+                                ]
+                            },
+                            {
+                                "path": "value",
+                                "type": "Property",
+                                "source": {
+                                    "path": "postalCode",
+                                    "type": "Property",
+                                    "source": {
+                                        "name": "LocationFromAddressObject",
+                                        "type": "ExpressionRef"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "LocationToAddressObject",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "SingletonFrom",
+                        "operand": {
+                            "type": "ToList",
+                            "operand": {
+                                "path": "address",
+                                "type": "Property",
+                                "source": {
+                                    "name": "LocationToObject",
+                                    "type": "ExpressionRef"
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "name": "TransportTo",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "Concatenate",
+                        "operand": [
+                            {
+                                "type": "Concatenate",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "type": "Concatenate",
+                                                "operand": [
+                                                    {
+                                                        "type": "Concatenate",
+                                                        "operand": [
+                                                            {
+                                                                "type": "Concatenate",
+                                                                "operand": [
+                                                                    {
+                                                                        "path": "value",
+                                                                        "type": "Property",
+                                                                        "source": {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "line",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "LocationToAddressObject",
+                                                                                        "type": "ExpressionRef"
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                                        "value": ", ",
+                                                                        "type": "Literal"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "path": "value",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "path": "city",
+                                                                    "type": "Property",
+                                                                    "source": {
+                                                                        "name": "LocationToAddressObject",
+                                                                        "type": "ExpressionRef"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": ", ",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "state",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "LocationToAddressObject",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": ", ",
+                                        "type": "Literal"
+                                    }
+                                ]
+                            },
+                            {
+                                "path": "value",
+                                "type": "Property",
+                                "source": {
+                                    "path": "postalCode",
+                                    "type": "Property",
+                                    "source": {
+                                        "name": "LocationToAddressObject",
+                                        "type": "ExpressionRef"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
                     "name": "RoundTrip",
                     "context": "Patient",
                     "accessLevel": "Public",
