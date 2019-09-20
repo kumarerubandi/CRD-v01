@@ -624,6 +624,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //    	  Ex.printStackTrace();
 //      }
       String hook = "";
+      
       if(inputjson.containsKey("hook")) {
     	  hook  = (String) inputjson.get("hook");
       }
@@ -632,7 +633,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  	  errorObj.put("exception", "hook is missing in the request body");
 	 	  return errorObj.toString();
       }
-      
+     
       
       
       
@@ -640,6 +641,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
       JSONObject patientFhir = new JSONObject();
 //      System.out.println("673");
       String cql_name = "";
+      final String authorization = headers.get("authorization");
       try {
     	  file = ResourceUtils.getFile("classpath:config/data.json");
 		  InputStream in = new FileInputStream(file);
@@ -649,7 +651,9 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 		  
 		  JSONObject hookMap = oMapper.convertValue(configData.get("hook_cql_map") , JSONObject.class);
 		  JSONObject hcpcTemplateMap  = oMapper.convertValue(configData.get("hcpc_template_mapper") , JSONObject.class);
-
+		  JSONObject cqlReqJson = new JSONObject();
+		  cqlReqJson.put("hook",hook);
+		  
 	      for (int entryIndex=0; entryIndex < entryArray.size(); entryIndex++) {
 //	    	  System.out.println("Entry Item:");
 	
@@ -657,10 +661,11 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	    	  if(entryResourceObj.containsKey("resource")) {
 		    	  JSONObject entryResource =new JSONObject(oMapper.writeValueAsString(entryResourceObj.get("resource")));
 //		    	  System.out.println(entryResource.get("resourceType"));
+		    	  
 		    	  if(((String) entryResource.get("resourceType")).equals("DeviceRequest")) {
 		    		  newAppContext.put("request",entryResource);
-		    		
-				  
+		    		  cqlReqJson.put("deviceRequest",entryResource);
+		    		/*
 		    		  if(entryResource.has("codeCodeableConcept")) {
 //		    			  System.out.println("entryResource.has");
 //		    			  System.out.println(entryResource.get("codeCodeableConcept"));
@@ -711,7 +716,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 		    		  }
 		    		  else {
 		    			  newAppContext.put("prior_auth",true);
-		    		  }
+		    		  } */
 		    	  }
 		    	  if(((String) entryResource.get("resourceType")).equals("Patient")) {
 				//    		  oMapper.convertValue(entryResourceObj.get("resource") , Map.class);
@@ -723,7 +728,31 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	//    	  }
 	    	  
 	      }
-		  System.out.println(hookMap);
+	      
+	       URL cqlDataUrl = new URL("http://localhost:4200/getCqlData");
+	        String cqlJsonStr = cqlReqJson.toString();
+	        System.out.println(cqlJsonStr);
+	        byte[] cqlReqDataBytes = cqlJsonStr.getBytes("UTF-8");
+	        HttpURLConnection cqlDataconn = (HttpURLConnection)cqlDataUrl.openConnection();
+	        cqlDataconn.setRequestMethod("POST");
+	        cqlDataconn.setRequestProperty("Content-Type", "application/json");
+	        cqlDataconn.setRequestProperty("Accept","application/json");
+	        if(authorization!= null) {
+	    	   cqlDataconn.setRequestProperty("Authorization",authorization);
+		      }  
+	        cqlDataconn.setDoOutput(true);
+	        cqlDataconn.getOutputStream().write(cqlReqDataBytes);
+	        BufferedReader cqlResReader = new BufferedReader(new InputStreamReader(cqlDataconn.getInputStream(), "UTF-8"));
+	        String line =null;
+	        StringBuilder cqlResStrBuilder = new StringBuilder();
+	        while((line=cqlResReader.readLine())!= null){
+	        	cqlResStrBuilder.append(line);
+	        }
+		   System.out.println("cqlll Reststs Str");
+		   System.out.println(cqlResStrBuilder);
+	       JSONObject cqlResObj = new JSONObject(cqlResStrBuilder.toString());
+	       newAppContext.put("prior_auth",cqlResObj.get("prior_auth"));
+	       newAppContext.put("template",cqlResObj.get("template"));
 //		  List<String> hookList = oMapper.convertValue(hookMap.get(hook) , List.class);
 		 
 		  if(context.containsKey("patientId")) {
@@ -764,7 +793,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  }
       CloseableHttpClient client = HttpClients.createDefault();
       // Get the token and drop the "Bearer"
-      final String authorization = headers.get("authorization");
+      
       String token = null;
       try {
 	       if(authorization != null && authorization.startsWith("Bearer"))
