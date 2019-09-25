@@ -566,7 +566,8 @@
                   {
                      "valueCoding":{
                         "code":"Initial"
-                     }
+                     },
+			"initialSelected":true
                   },
                   {
                      "valueCoding":{
