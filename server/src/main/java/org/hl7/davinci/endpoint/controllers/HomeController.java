@@ -752,7 +752,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 		   System.out.println(cqlResStrBuilder);
 	       JSONObject cqlResObj = new JSONObject(cqlResStrBuilder.toString());
 	       newAppContext.put("prior_auth",cqlResObj.get("prior_auth"));
-	       newAppContext.put("template",cqlResObj.get("template"));
+	       newAppContext.put("template","urn:hl7:davinci:crd:"+cqlResObj.get("template"));
 //		  List<String> hookList = oMapper.convertValue(hookMap.get(hook) , List.class);
 		 
 		  if(context.containsKey("patientId")) {
