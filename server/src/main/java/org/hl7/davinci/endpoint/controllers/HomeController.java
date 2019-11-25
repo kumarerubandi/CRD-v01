@@ -60,6 +60,12 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import java.io.FileWriter;  
+import java.io.FileReader;  
+
+
 
 /**
  * Defines pages by searching for returned string in the resources/templates directory.
@@ -583,6 +589,54 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 
   }
   
+  public JSONObject addAppContext(JSONObject appContext) {
+	  JSONObject res = new JSONObject();
+	  try {
+		  String basePathOfClass = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
+	      System.out.println("---crd path---");
+	    	      
+	      System.out.println("PATHHH");
+	      System.out.println(basePathOfClass);
+		      
+	      String[] splitPath = basePathOfClass.split("build/classes/java/main/");
+	      
+	      System.out.println(splitPath.length > 1);
+	      System.out.println(splitPath.length + "  " + basePathOfClass.split("build/classes/java/main/").length );
+	      boolean fileCreated = false;
+	      String filename = "";
+//	      String launchKey = "";
+	      if(splitPath.length == 1) {
+//	    	  File filesDirectory = new File(splitPath[0]+"src/main/jib/smartAppFhirArtifacts");
+	    	  JSONParser parser = new JSONParser();
+	    	  Object obj = parser.parse(new FileReader(splitPath[0]+"src/main/jib/smartAppFhirArtifacts/launchContext.json"));
+	    	org.json.simple.JSONObject fileObj = (org.json.simple.JSONObject)obj;
+
+
+            String launchKey = this.getSaltString();
+//            while(fileObj.has(launchKey)) {
+//            	launchKey = this.getSaltString();
+//            }
+            
+            fileObj.put(launchKey, appContext);
+
+            FileWriter file = new FileWriter(splitPath[0]+"src/main/jib/smartAppFhirArtifacts/launchContext.json");
+            file.write(fileObj.toString());
+            file.flush();
+            file.close();
+            res.put("launchContext",launchKey);
+            return res;
+	      }	
+	  }
+	  catch(IOException ioEx) {
+		  ioEx.printStackTrace();
+	  }
+  
+	  catch(Exception ex) {
+		  ex.printStackTrace();
+	  }
+	  return res;
+  }
+  
   @RequestMapping(value = "/cds-services/coverage_requirement", method = RequestMethod.POST, 
 		  consumes = "application/json", produces = "application/json")
   @ResponseBody
@@ -748,7 +802,6 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        while((line=cqlResReader.readLine())!= null){
 	        	cqlResStrBuilder.append(line);
 	        }
-		   System.out.println("cqlll Reststs Str");
 		   System.out.println(cqlResStrBuilder);
 	       JSONObject cqlResObj = new JSONObject(cqlResStrBuilder.toString());
 	       newAppContext.put("prior_auth",cqlResObj.get("prior_auth"));
@@ -818,8 +871,8 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        exception.printStackTrace();
 	    }
       String client_Id = "app-token";
-String client_secret = "48bf2c3e-2bd6-4f8d-a5ce-2f94adcb7492";
-HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
+      String client_secret = "48bf2c3e-2bd6-4f8d-a5ce-2f94adcb7492";
+      HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
 	    
 	    //String client_secret = "c6b0c305-6968-4a3a-875d-4fd0dcc0cd4f";
 	    //HttpPost httpPost = new HttpPost("https://valtest.mettles.com:8443/auth/realms/ClientFhirServer/protocol/openid-connect/token/introspect");
@@ -910,37 +963,41 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        }
 	        JSONArray appContext = new JSONArray();
 	        appContext.put(jsonObj);
-	        String[] splitPath = basePathOfClass.split("server/build/classes/java/main/");
-	        System.out.println(splitPath.length > 1);
-	        System.out.println(splitPath.length + "  " + basePathOfClass.split("server/build/classes/").length );
-	        System.out.println(jsonObj);
-	        boolean fileCreated = false;
-	        String filename = "";
-	        if(splitPath.length == 1) {
-	      	  File filesDirectory = new File(splitPath[0]+"data_files");
-	      	  System.out.println(filesDirectory.exists());
-	      	  System.out.println(filesDirectory.isDirectory());
-	      	  if (filesDirectory.exists() && filesDirectory.isDirectory()) {
-	      		  File newFile = new File(filesDirectory,this.getSaltString()+".json");
-	      		  while(newFile.exists()) {
-	      			  newFile = new File(filesDirectory,this.getSaltString()+".json");
-	      		  }
-	      		  
-	      		  if (newFile.createNewFile())
-  				  {
-	      			  filename = newFile.getName();
-  				      System.out.println("File is created!");
-  				      PrintWriter writer = new PrintWriter(newFile, "UTF-8");
-  				      
-	  				  writer.print(appContext.toString());
-	  				  writer.close();
-	  				  fileCreated = true;
-  				      
-  				  } else {
-  				      System.out.println("File already exists.");
-  				  }
-	      	  }
-	        }
+	        System.out.println("PATHHH");
+	        System.out.println(basePathOfClass);
+	        
+//	        String[] splitPath = basePathOfClass.split("build/classes/java/main/");
+//	        
+//	        System.out.println(splitPath.length > 1);
+//	        System.out.println(splitPath.length + "  " + basePathOfClass.split("server/build/classes/").length );
+//	        System.out.println(jsonObj);
+//	        boolean fileCreated = false;
+//	        String filename = "";
+//	        if(splitPath.length == 1) {
+//	      	  File filesDirectory = new File(splitPath[0]+"src/main/jib/smartAppFhirArtifacts");
+//	      	  System.out.println(filesDirectory.exists());
+//	      	  System.out.println(filesDirectory.isDirectory());
+//	      	  if (filesDirectory.exists() && filesDirectory.isDirectory()) {
+//	      		  File newFile = new File(filesDirectory,this.getSaltString()+".json");
+//	      		  while(newFile.exists()) {
+//	      			  newFile = new File(filesDirectory,this.getSaltString()+".json");
+//	      		  }
+//	      		  
+//	      		  if (newFile.createNewFile())
+//  				  {
+//	      			  filename = newFile.getName();
+//  				      System.out.println("File is created!");
+//  				      PrintWriter writer = new PrintWriter(newFile, "UTF-8");
+//  				      
+//	  				  writer.print(appContext.toString());
+//	  				  writer.close();
+//	  				  fileCreated = true;
+//  				      
+//  				  } else {
+//  				      System.out.println("File already exists.");
+//  				  }
+//	      	  }
+//	        }
 	//        System.out.println("");
 	//        System.out.println(sb);
 	        
@@ -979,7 +1036,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        + "&filepath=../../getfile/cms/hcpcs/E0424";
 //	        newAppContext.put("template","urn:hl7:davinci:crd:home-oxygen-questionnaire_2");
 	        
-	        applink.put("appContext",newAppContext);
+	        applink.put("appContext",addAppContext(newAppContext));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
 	        links.add(applink);
@@ -1007,10 +1064,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  	  errorObj.put("exception", req_exception.getMessage());
 	 	  return errorObj.toString();
 	 	}
-     catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+    
 	 catch (Exception exception) {
 	        System.out.println("\n\n\\n\n\n\\n\n\n\n\nEXceptionnnnnn");
 	        exception.printStackTrace();
