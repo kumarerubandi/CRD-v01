@@ -1141,14 +1141,61 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "name": "GetMiddleInitials",
-                        "type": "FunctionRef",
-                        "operand": [
-                            {
-                                "name": "BeneficiaryNameObject",
-                                "type": "ExpressionRef"
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Not",
+                                "operand": {
+                                    "type": "Equal",
+                                    "operand": [
+                                        {
+                                            "type": "Indexer",
+                                            "operand": [
+                                                {
+                                                    "path": "given",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "BeneficiaryNameObject",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                    "value": "0",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "asType": "{http://hl7.org/fhir}string",
+                                            "type": "As",
+                                            "operand": {
+                                                "type": "Null"
+                                            }
+                                        }
+                                    ]
+                                }
                             }
-                        ]
+                        },
+                        "then": {
+                            "name": "GetMiddleInitials",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "name": "BeneficiaryNameObject",
+                                    "type": "ExpressionRef"
+                                }
+                            ]
+                        },
+                        "else": {
+                            "asType": "{urn:hl7-org:elm-types:r1}String",
+                            "type": "As",
+                            "operand": {
+                                "type": "Null"
+                            }
+                        }
                     }
                 },
                 {
