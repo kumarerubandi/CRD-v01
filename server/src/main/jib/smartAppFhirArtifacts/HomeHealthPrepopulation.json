@@ -1168,31 +1168,19 @@
                             }
                         },
                         "then": {
-                            "type": "Concatenate",
+                            "name": "GetMiddleInitials",
+                            "type": "FunctionRef",
                             "operand": [
                                 {
-                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                    "value": " ",
-                                    "type": "Literal"
-                                },
-                                {
-                                    "name": "GetMiddleInitials",
-                                    "type": "FunctionRef",
-                                    "operand": [
-                                        {
-                                            "name": "BeneficiaryNameObject",
-                                            "type": "ExpressionRef"
-                                        }
-                                    ]
+                                    "name": "BeneficiaryNameObject",
+                                    "type": "ExpressionRef"
                                 }
                             ]
                         },
                         "else": {
-                            "asType": "{urn:hl7-org:elm-types:r1}String",
-                            "type": "As",
-                            "operand": {
-                                "type": "Null"
-                            }
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1227,8 +1215,18 @@
                                         "type": "Concatenate",
                                         "operand": [
                                             {
-                                                "name": "PatientFirstName",
-                                                "type": "ExpressionRef"
+                                                "type": "Concatenate",
+                                                "operand": [
+                                                    {
+                                                        "name": "PatientFirstName",
+                                                        "type": "ExpressionRef"
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": " ",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
                                             },
                                             {
                                                 "name": "PatientMiddleInitial",
