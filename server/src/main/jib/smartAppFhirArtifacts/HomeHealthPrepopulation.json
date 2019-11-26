@@ -1151,25 +1151,29 @@
                                     "type": "Equal",
                                     "operand": [
                                         {
-                                            "type": "Indexer",
-                                            "operand": [
-                                                {
-                                                    "path": "given",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "name": "BeneficiaryNameObject",
-                                                        "type": "ExpressionRef"
+                                            "path": "value",
+                                            "type": "Property",
+                                            "source": {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "given",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "BeneficiaryNameObject",
+                                                            "type": "ExpressionRef"
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "1",
+                                                        "type": "Literal"
                                                     }
-                                                },
-                                                {
-                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                    "value": "1",
-                                                    "type": "Literal"
-                                                }
-                                            ]
+                                                ]
+                                            }
                                         },
                                         {
-                                            "asType": "{http://hl7.org/fhir}string",
+                                            "asType": "{urn:hl7-org:elm-types:r1}String",
                                             "type": "As",
                                             "operand": {
                                                 "type": "Null"

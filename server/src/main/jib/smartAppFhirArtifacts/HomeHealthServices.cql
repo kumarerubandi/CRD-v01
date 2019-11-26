@@ -117,7 +117,7 @@ define BeneficiaryName:
 define PatientLastName: "BeneficiaryNameObject".family.value
 
 define PatientMiddleInitial: 
-	if "BeneficiaryNameObject".given[1]!= null then ' '+GetMiddleInitials("BeneficiaryNameObject")
+	if "BeneficiaryNameObject".given[1].value!= null then ' '+GetMiddleInitials("BeneficiaryNameObject")
 	else null
 
 	
