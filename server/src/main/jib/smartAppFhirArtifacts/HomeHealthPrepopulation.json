@@ -1146,41 +1146,25 @@
                             "asType": "{urn:hl7-org:elm-types:r1}Boolean",
                             "type": "As",
                             "operand": {
-                                "type": "Not",
-                                "operand": {
-                                    "type": "Equal",
-                                    "operand": [
-                                        {
-                                            "path": "value",
+                                "type": "Greater",
+                                "operand": [
+                                    {
+                                        "type": "Length",
+                                        "operand": {
+                                            "path": "given",
                                             "type": "Property",
                                             "source": {
-                                                "type": "Indexer",
-                                                "operand": [
-                                                    {
-                                                        "path": "given",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "name": "BeneficiaryNameObject",
-                                                            "type": "ExpressionRef"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                        "value": "1",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            }
-                                        },
-                                        {
-                                            "asType": "{urn:hl7-org:elm-types:r1}String",
-                                            "type": "As",
-                                            "operand": {
-                                                "type": "Null"
+                                                "name": "BeneficiaryNameObject",
+                                                "type": "ExpressionRef"
                                             }
                                         }
-                                    ]
-                                }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                        "value": "1",
+                                        "type": "Literal"
+                                    }
+                                ]
                             }
                         },
                         "then": {
