@@ -1141,14 +1141,47 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "name": "GetMiddleInitials",
-                        "type": "FunctionRef",
-                        "operand": [
-                            {
-                                "name": "BeneficiaryNameObject",
-                                "type": "ExpressionRef"
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Greater",
+                                "operand": [
+                                    {
+                                        "type": "Length",
+                                        "operand": {
+                                            "path": "given",
+                                            "type": "Property",
+                                            "source": {
+                                                "name": "BeneficiaryNameObject",
+                                                "type": "ExpressionRef"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                        "value": "1",
+                                        "type": "Literal"
+                                    }
+                                ]
                             }
-                        ]
+                        },
+                        "then": {
+                            "name": "GetMiddleInitials",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "name": "BeneficiaryNameObject",
+                                    "type": "ExpressionRef"
+                                }
+                            ]
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "",
+                            "type": "Literal"
+                        }
                     }
                 },
                 {
