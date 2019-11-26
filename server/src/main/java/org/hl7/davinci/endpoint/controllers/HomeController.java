@@ -591,7 +591,12 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
   
   public JSONObject addAppContext(JSONObject appContext) {
 	  JSONObject res = new JSONObject();
+	  
 	  try {
+//		  System.out.println("appContext :"+appContext.toString());
+		  if(appContext.has("prior_auth")) {
+			  res.put("prior_auth",appContext.get("prior_auth"));
+		  }
 		  String basePathOfClass = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
 	      System.out.println("---crd path---");
 	    	      
@@ -1035,7 +1040,6 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        + "&request={\"resourceType\":\"DeviceRequest\",\"id\":\"devreq013\",\"meta\":{\"profile\":[\"http:\/\/hl7.org\/fhir\/us\/davinci-crd\/STU3\/StructureDefinition\/profile-devicerequest-stu3\"]},\"extension\":[{\"url\":\"http:\/\/build.fhir.org\/ig\/HL7\/davinci-crd\/STU3\/ext-insurance.html\",\"valueReference\":{\"reference\":\"Coverage\/0f58e588-eecd-4ab3-9316-f3d02a3ba39d\"}}],\"status\":\"draft\",\"codeCodeableConcept\":{\"coding\":[{\"system\":\"https:\/\/bluebutton.cms.gov\/resources\/codesystem\/hcpcs\",\"code\":\"E0424\",\"display\":\"Stationary Compressed Gaseous Oxygen System, Rental\"}]},\"subject\":{\"reference\":\"Patient\/f31500e8-15cb-4e8e-8c6e-a001edc6604e\"},\"performer\":{\"reference\":\"PractitionerRole\/f0b0cf14-4066-403f-b217-e92e73c350eb\"}}"
 //	        + "&filepath=../../getfile/cms/hcpcs/E0424";
 //	        newAppContext.put("template","urn:hl7:davinci:crd:home-oxygen-questionnaire_2");
-	        
 	        applink.put("appContext",addAppContext(newAppContext));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
