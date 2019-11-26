@@ -1069,6 +1069,134 @@
                     }
                 },
                 {
+                    "name": "GetMiddleInitials",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "type": "FunctionDef",
+                    "expression": {
+                        "type": "Substring",
+                        "stringToSub": {
+                            "type": "Combine",
+                            "source": {
+                                "type": "Query",
+                                "source": [
+                                    {
+                                        "alias": "given",
+                                        "expression": {
+                                            "path": "given",
+                                            "type": "Property",
+                                            "source": {
+                                                "name": "name",
+                                                "type": "OperandRef"
+                                            }
+                                        }
+                                    }
+                                ],
+                                "relationship": [],
+                                "return": {
+                                    "expression": {
+                                        "type": "Substring",
+                                        "stringToSub": {
+                                            "path": "value",
+                                            "scope": "given",
+                                            "type": "Property"
+                                        },
+                                        "startIndex": {
+                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                            "value": "0",
+                                            "type": "Literal"
+                                        },
+                                        "length": {
+                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                            "value": "1",
+                                            "type": "Literal"
+                                        }
+                                    }
+                                }
+                            },
+                            "separator": {
+                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                "value": ", ",
+                                "type": "Literal"
+                            }
+                        },
+                        "startIndex": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                            "value": "3",
+                            "type": "Literal"
+                        }
+                    },
+                    "operand": [
+                        {
+                            "name": "name",
+                            "operandTypeSpecifier": {
+                                "name": "{http://hl7.org/fhir}HumanName",
+                                "type": "NamedTypeSpecifier"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "name": "PatientMiddleInitial",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Greater",
+                                "operand": [
+                                    {
+                                        "type": "Length",
+                                        "operand": {
+                                            "path": "given",
+                                            "type": "Property",
+                                            "source": {
+                                                "name": "BeneficiaryNameObject",
+                                                "type": "ExpressionRef"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                        "value": "1",
+                                        "type": "Literal"
+                                    }
+                                ]
+                            }
+                        },
+                        "then": {
+                            "type": "Concatenate",
+                            "operand": [
+                                {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": " ",
+                                    "type": "Literal"
+                                },
+                                {
+                                    "name": "GetMiddleInitials",
+                                    "type": "FunctionRef",
+                                    "operand": [
+                                        {
+                                            "name": "BeneficiaryNameObject",
+                                            "type": "ExpressionRef"
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        "else": {
+                            "asType": "{urn:hl7-org:elm-types:r1}String",
+                            "type": "As",
+                            "operand": {
+                                "type": "Null"
+                            }
+                        }
+                    }
+                },
+                {
                     "name": "PatientLastName",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1096,8 +1224,17 @@
                                 "type": "Concatenate",
                                 "operand": [
                                     {
-                                        "name": "PatientFirstName",
-                                        "type": "ExpressionRef"
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "name": "PatientFirstName",
+                                                "type": "ExpressionRef"
+                                            },
+                                            {
+                                                "name": "PatientMiddleInitial",
+                                                "type": "ExpressionRef"
+                                            }
+                                        ]
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -1111,16 +1248,6 @@
                                 "type": "ExpressionRef"
                             }
                         ]
-                    }
-                },
-                {
-                    "name": "PatientMiddleInitial",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "",
-                        "type": "Literal"
                     }
                 },
                 {
@@ -1296,74 +1423,6 @@
                             }
                         ]
                     }
-                },
-                {
-                    "name": "GetMiddleInitials",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "type": "FunctionDef",
-                    "expression": {
-                        "type": "Substring",
-                        "stringToSub": {
-                            "type": "Combine",
-                            "source": {
-                                "type": "Query",
-                                "source": [
-                                    {
-                                        "alias": "given",
-                                        "expression": {
-                                            "path": "given",
-                                            "type": "Property",
-                                            "source": {
-                                                "name": "name",
-                                                "type": "OperandRef"
-                                            }
-                                        }
-                                    }
-                                ],
-                                "relationship": [],
-                                "return": {
-                                    "expression": {
-                                        "type": "Substring",
-                                        "stringToSub": {
-                                            "path": "value",
-                                            "scope": "given",
-                                            "type": "Property"
-                                        },
-                                        "startIndex": {
-                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                            "value": "0",
-                                            "type": "Literal"
-                                        },
-                                        "length": {
-                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                            "value": "1",
-                                            "type": "Literal"
-                                        }
-                                    }
-                                }
-                            },
-                            "separator": {
-                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                "value": ", ",
-                                "type": "Literal"
-                            }
-                        },
-                        "startIndex": {
-                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                            "value": "3",
-                            "type": "Literal"
-                        }
-                    },
-                    "operand": [
-                        {
-                            "name": "name",
-                            "operandTypeSpecifier": {
-                                "name": "{http://hl7.org/fhir}HumanName",
-                                "type": "NamedTypeSpecifier"
-                            }
-                        }
-                    ]
                 },
                 {
                     "name": "PractitionerMiddleInitial",
