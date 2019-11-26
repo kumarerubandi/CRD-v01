@@ -589,14 +589,17 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 
   }
   
-  public JSONObject addAppContext(JSONObject appContext) {
+  public JSONObject addAppContext(JSONObject appContext,String patientId,JSONObject patient) {
 	  JSONObject res = new JSONObject();
 	  
 	  try {
 //		  System.out.println("appContext :"+appContext.toString());
 		  if(appContext.has("prior_auth")) {
 			  res.put("prior_auth",appContext.get("prior_auth"));
+			  
 		  }
+		  res.put("patientId",patientId);
+		  res.put("patient",patient);
 		  String basePathOfClass = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
 	      System.out.println("---crd path---");
 	    	      
@@ -648,8 +651,8 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
   public String coverageRequirement(@RequestBody Map<String, Object> inputjson,@RequestHeader Map<String,String> headers) {
 	  
 	  System.out.println("------");
-      System.out.println(inputjson);
-      System.out.println(headers);
+//      System.out.println(inputjson);
+//      System.out.println(headers);
       String referer = "";
       if(headers.containsKey("referer")) {
     	  referer = headers.get("referer");
@@ -659,12 +662,17 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
       JSONObject appData = new JSONObject();
       Map<String, Object> context = oMapper.convertValue(inputjson.get("context") , Map.class);
       Map<String, Object> orders = oMapper.convertValue(context.get("orders") , Map.class);
+      
 //		      System.out.println(context);
       List<Object> entryArray = oMapper.convertValue(orders.get("entry") , List.class);
-      
+      String patientId = "";
+      JSONObject patientResource = new JSONObject();
       if(context.containsKey("patientId")) {
-    	  appData.put("patientId",  context.get("patientId").toString());
+    	  patientId = context.get("patientId").toString();
+    	  appData.put("patientId",  patientId);
+    	  
       }
+      
       if(context.containsKey("userId")) {
     	  appData.put("Practitioner", context.get("userId").toString());
       } 
@@ -812,7 +820,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	       newAppContext.put("prior_auth",cqlResObj.get("prior_auth"));
 	       newAppContext.put("template","urn:hl7:davinci:crd:"+cqlResObj.get("template"));
 //		  List<String> hookList = oMapper.convertValue(hookMap.get(hook) , List.class);
-		 
+		  
 		  if(context.containsKey("patientId")) {
 			  String patString = " {\n" + 
 				  		"    		  resource:{\n" + 
@@ -1040,7 +1048,16 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        + "&request={\"resourceType\":\"DeviceRequest\",\"id\":\"devreq013\",\"meta\":{\"profile\":[\"http:\/\/hl7.org\/fhir\/us\/davinci-crd\/STU3\/StructureDefinition\/profile-devicerequest-stu3\"]},\"extension\":[{\"url\":\"http:\/\/build.fhir.org\/ig\/HL7\/davinci-crd\/STU3\/ext-insurance.html\",\"valueReference\":{\"reference\":\"Coverage\/0f58e588-eecd-4ab3-9316-f3d02a3ba39d\"}}],\"status\":\"draft\",\"codeCodeableConcept\":{\"coding\":[{\"system\":\"https:\/\/bluebutton.cms.gov\/resources\/codesystem\/hcpcs\",\"code\":\"E0424\",\"display\":\"Stationary Compressed Gaseous Oxygen System, Rental\"}]},\"subject\":{\"reference\":\"Patient\/f31500e8-15cb-4e8e-8c6e-a001edc6604e\"},\"performer\":{\"reference\":\"PractitionerRole\/f0b0cf14-4066-403f-b217-e92e73c350eb\"}}"
 //	        + "&filepath=../../getfile/cms/hcpcs/E0424";
 //	        newAppContext.put("template","urn:hl7:davinci:crd:home-oxygen-questionnaire_2");
-	        applink.put("appContext",addAppContext(newAppContext));
+	        if(context.containsKey("patient")) {
+	      	  System.out.println(context.get("patient").toString());
+//	      	  appData.put("patientId",  patientId);
+	      	  
+//	      	  Map<String, JSONObject> patientResource = oMapper.convertValue(context.get("patient") , Map.class);
+	      	  patientResource =new JSONObject(oMapper.writeValueAsString(context.get("patient")));
+	      	  System.out.println(patientResource);
+
+	        }
+	        applink.put("appContext",addAppContext(newAppContext,patientId,patientResource));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
 	        links.add(applink);
