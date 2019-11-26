@@ -1069,16 +1069,6 @@
                     }
                 },
                 {
-                    "name": "PatientMiddleInitial",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "",
-                        "type": "Literal"
-                    }
-                },
-                {
                     "name": "PatientLastName",
                     "context": "Patient",
                     "accessLevel": "Public",
@@ -1106,27 +1096,8 @@
                                 "type": "Concatenate",
                                 "operand": [
                                     {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "type": "Concatenate",
-                                                "operand": [
-                                                    {
-                                                        "name": "PatientFirstName",
-                                                        "type": "ExpressionRef"
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": " ",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "name": "PatientMiddleInitial",
-                                                "type": "ExpressionRef"
-                                            }
-                                        ]
+                                        "name": "PatientFirstName",
+                                        "type": "ExpressionRef"
                                     },
                                     {
                                         "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -1140,6 +1111,16 @@
                                 "type": "ExpressionRef"
                             }
                         ]
+                    }
+                },
+                {
+                    "name": "PatientMiddleInitial",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "",
+                        "type": "Literal"
                     }
                 },
                 {
