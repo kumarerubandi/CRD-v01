@@ -112,12 +112,15 @@ define BeneficiaryNameObject:
 	singleton from (Patient.name name where name.use.value = 'official')
 
 define BeneficiaryName: 
-	PatientFirstName + ' '+ PatientMiddleInitial + ' '+ PatientLastName
+	PatientFirstName + PatientMiddleInitial + ' '+ PatientLastName
 
 define PatientLastName: "BeneficiaryNameObject".family.value
+
 define PatientMiddleInitial: 
-	if "BeneficiaryNameObject".given[0]!= null then GetMiddleInitials("BeneficiaryNameObject")
+	if "BeneficiaryNameObject".given[1]!= null then ' '+GetMiddleInitials("BeneficiaryNameObject")
 	else null
+
+	
 define PatientFirstName: "BeneficiaryNameObject".given[0].value
 
 define BeneficiaryGender: Patient.gender.value
