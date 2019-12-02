@@ -30,10 +30,21 @@ public class FhirUriFetcherLocal implements FhirUriFetcher {
       return null;
     }
     fhirUri = fhirUri.replace("urn:hl7:davinci:crd:","");
+    String path = config.getLocalDbFhirArtifacts();
+    if(fhirUri.contains(":")){
+      String[] arrOfStr = fhirUri.split(":");
+      for (int i=0; i < arrOfStr.length; i++){
+        System.out.println("loop---------------"+arrOfStr[i]);
+      } 
+      fhirUri = arrOfStr[1];
+      path = path+"/"+arrOfStr[0];
+    }
+    
     if (!fhirUri.endsWith(".json")) {
       fhirUri = fhirUri + ".json";
     }
-    File file = Paths.get(config.getLocalDbFhirArtifacts(),fhirUri).toFile();
+    
+    File file = Paths.get(path,fhirUri).toFile();
     if (!file.exists()){
       return null;
     }

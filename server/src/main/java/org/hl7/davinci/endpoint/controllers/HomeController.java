@@ -701,8 +701,14 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	 	  return errorObj.toString();
       }
      
-      
-      
+      String payerName = "";
+	  if(inputjson.containsKey("payerName")) {
+    	  payerName  = (String) inputjson.get("payerName");
+      } else {
+    	  JSONObject errorObj = new JSONObject();
+	  	  errorObj.put("exception", "payerName is missing in the request body");
+	 	  return errorObj.toString();
+      }
       
       JSONObject reqJson = new JSONObject();
       JSONObject patientFhir = new JSONObject();
@@ -720,6 +726,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 		  JSONObject hcpcTemplateMap  = oMapper.convertValue(configData.get("hcpc_template_mapper") , JSONObject.class);
 		  JSONObject cqlReqJson = new JSONObject();
 		  cqlReqJson.put("hook",hook);
+		  cqlReqJson.put("payerName",payerName);
 		  
 	      for (int entryIndex=0; entryIndex < entryArray.size(); entryIndex++) {
 //	    	  System.out.println("Entry Item:");
@@ -729,9 +736,9 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 		    	  JSONObject entryResource =new JSONObject(oMapper.writeValueAsString(entryResourceObj.get("resource")));
 //		    	  System.out.println(entryResource.get("resourceType"));
 		    	  
-		    	  if(((String) entryResource.get("resourceType")).equals("DeviceRequest")) {
+		    	  if(((String) entryResource.get("resourceType")).equals("ServiceRequest")) {
 		    		  newAppContext.put("request",entryResource);
-		    		  cqlReqJson.put("deviceRequest",entryResource);
+		    		  cqlReqJson.put("serviceRequest",entryResource);
 		    		/*
 		    		  if(entryResource.has("codeCodeableConcept")) {
 //		    			  System.out.println("entryResource.has");
@@ -817,6 +824,8 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        }
 		   System.out.println(cqlResStrBuilder);
 	       JSONObject cqlResObj = new JSONObject(cqlResStrBuilder.toString());
+		      System.out.println("CDS response----------");
+			  System.out.println(cqlResObj);
 	       newAppContext.put("prior_auth",cqlResObj.get("prior_auth"));
 	       newAppContext.put("template","urn:hl7:davinci:crd:"+cqlResObj.get("template"));
 //		  List<String> hookList = oMapper.convertValue(hookMap.get(hook) , List.class);
@@ -1031,7 +1040,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        	
 //	        }
 //	        applink.put("url",appLinkURL+"launch?launch="+filename.replace(".json", "")+"&iss="+inputjson.get("fhirServer").toString());
-	        applink.put("url","http://cdex.mettles.com:3005/launch");
+	        applink.put("url","http://localhost:3005/launch");
 
 	        applink.put("type","smart");
 	        
