@@ -316,7 +316,6 @@
                "linkId":"5.2",
                "text":"Telephone Number",
                "type":"string",
-               "required":true,
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
