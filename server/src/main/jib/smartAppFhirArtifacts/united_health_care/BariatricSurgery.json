@@ -134,18 +134,6 @@
                      "valueString":"PractitionerPTAN"
                   }
                ]
-            },
-            {
-               "linkId":"2.4",
-               "text":"Physician/Practitioner’s Address",
-               "type":"string",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"PractitionerAddress"
-                  }
-               ]
             }
          ]
       },
@@ -159,7 +147,6 @@
                "text":"Body Mass Index(kg/m2)",
                "type":"integer",
                "required":true,
-		"readOnly": true,
                "code":{
                   "coding":[
                      {
