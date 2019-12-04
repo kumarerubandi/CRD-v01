@@ -54,14 +54,11 @@
          ]
       },
       {
-         "type":"Practitioner"
-      },
-      {
          "type":"Practitioner",
          "codeFilter":[
             {
-               "path":"identifier",
-               "valueSetString":"1932102951"
+               "path":"name",
+               "valueSetString":"McCurdy"
             }
          ]
       },
