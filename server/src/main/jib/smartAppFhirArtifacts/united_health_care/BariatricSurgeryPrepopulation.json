@@ -985,7 +985,7 @@
                                             },
                                             {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org/fhir/sid/us-medicare",
+                                                "value": "urn:oid:2.16.840.1.113883.3.787.0.0",
                                                 "type": "Literal"
                                             }
                                         ]
@@ -1106,46 +1106,11 @@
                         "path": "value",
                         "type": "Property",
                         "source": {
-                            "path": "value",
+                            "path": "id",
                             "type": "Property",
                             "source": {
-                                "type": "SingletonFrom",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "identifier",
-                                            "expression": {
-                                                "path": "identifier",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "Practitioner",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "scope": "identifier",
-                                                    "type": "Property"
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org/fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
-                                    }
-                                }
+                                "name": "Practitioner",
+                                "type": "ExpressionRef"
                             }
                         }
                     }
