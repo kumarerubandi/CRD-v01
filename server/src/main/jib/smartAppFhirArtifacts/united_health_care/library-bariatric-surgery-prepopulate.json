@@ -66,13 +66,15 @@
          ]
       },
       {
-         "type":"Condition"
-      },
-      {
-         "path":"clinicalStatus",
-         "code":[
+         "type":"Condition",
+         "codeFilter":[
             {
-               "code":"active"
+               "path":"clinicalStatus",
+         	"code":[
+		    {
+		       "code":"active"
+		    }
+		 ]	
             }
          ]
       }
