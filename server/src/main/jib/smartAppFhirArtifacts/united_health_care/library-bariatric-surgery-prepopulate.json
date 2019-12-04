@@ -69,12 +69,8 @@
          "type":"Condition",
          "codeFilter":[
             {
-               "path":"clinicalStatus",
-         	"code":[
-		    {
-		       "code":"active"
-		    }
-		 ]	
+               "path":"clinical-status",
+         	"valueSetString":"active"	
             }
          ]
       }
