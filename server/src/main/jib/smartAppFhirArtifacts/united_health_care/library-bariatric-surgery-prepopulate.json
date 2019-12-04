@@ -54,14 +54,11 @@
          ]
       },
       {
-         "type":"Practitioner"
-      },
-      {
          "type":"Practitioner",
          "codeFilter":[
             {
-               "path":"identifier",
-               "valueSetString":"1932102951"
+               "path":"_id",
+               "valueSetString":"1912007"
             }
          ]
       },
@@ -69,12 +66,8 @@
          "type":"Condition",
          "codeFilter":[
             {
-               "path":"clinicalStatus",
-         	"code":[
-		    {
-		       "code":"active"
-		    }
-		 ]	
+               "path":"clinical-status",
+         	"valueSetString":"active"	
             }
          ]
       }
