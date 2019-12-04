@@ -181,7 +181,7 @@
             },
             {
                "linkId":"3.2",
-               "text":"Height",
+               "text":"Height(in centimeters)",
                "type":"integer",
                "required":true,
 		"enableWhen":[
@@ -206,13 +206,13 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Height"
+                     "valueString":"PatientHeight"
                   }
                ]
             },
             {
                "linkId":"3.3",
-               "text":"Weight",
+               "text":"Weight(in pounds)",
                "type":"integer",
                "required":true,
 		"enableWhen":[
@@ -237,13 +237,13 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"Weight"
+                     "valueString":"PatientWeight"
                   }
                ]
             },
             {
                "linkId":"3.4",
-               "text":"Body Mass Index(BMI)",
+               "text":"Body Mass Index(in kg/m2)",
                "type":"string",
                "required":true,
 		"enableWhen":[
@@ -268,7 +268,7 @@
                "extension":[
                   {
                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"BMI"
+                     "valueString":"PatientBMI"
                   }
                ]
             },

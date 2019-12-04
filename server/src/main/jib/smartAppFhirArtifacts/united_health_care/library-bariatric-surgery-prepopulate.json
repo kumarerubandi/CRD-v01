@@ -75,14 +75,5 @@
     },
 	{
       "type": "Observation"
-    },
-{
-      "type": "SupplyRequest",
-       "codeFilter": [
-        {
-          "path": "requester",
-          "valueSetString": "Patient.id"
-        }
-      ]
     }]
 }
