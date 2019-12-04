@@ -15,9 +15,9 @@
             },
             {
                 "startLine": 42,
-                "startChar": 35,
+                "startChar": 37,
                 "endLine": 42,
-                "endChar": 40,
+                "endChar": 42,
                 "message": "Could not resolve library name FHIRHelpers.",
                 "errorType": "semantic",
                 "errorSeverity": "error",
@@ -25,49 +25,9 @@
             },
             {
                 "startLine": 113,
-                "startChar": 57,
+                "startChar": 20,
                 "endLine": 113,
-                "endChar": 74,
-                "message": "Could not validate reference to expression BariatricSurgery because its definition contains errors.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
-            },
-            {
-                "startLine": 147,
-                "startChar": 21,
-                "endLine": 147,
-                "endChar": 37,
-                "message": "Could not resolve library name FHIRHelpers.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
-            },
-            {
-                "startLine": 154,
-                "startChar": 21,
-                "endLine": 154,
-                "endChar": 37,
-                "message": "Could not resolve library name FHIRHelpers.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
-            },
-            {
-                "startLine": 161,
-                "startChar": 21,
-                "endLine": 161,
-                "endChar": 37,
-                "message": "Could not resolve library name FHIRHelpers.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
-            },
-            {
-                "startLine": 173,
-                "startChar": 67,
-                "endLine": 173,
-                "endChar": 84,
+                "endChar": 47,
                 "message": "Could not validate reference to expression BariatricSurgery because its definition contains errors.",
                 "errorType": "semantic",
                 "errorSeverity": "error",
@@ -1446,71 +1406,6 @@
                                 }
                             }
                         ]
-                    }
-                },
-                {
-                    "name": "PatientHeight",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "Null"
-                    }
-                },
-                {
-                    "name": "PatientWeight",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "Null"
-                    }
-                },
-                {
-                    "name": "PatientBMI",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "Null"
-                    }
-                },
-                {
-                    "name": "LocationObject",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "type": "SingletonFrom",
-                        "operand": {
-                            "type": "Query",
-                            "source": [
-                                {
-                                    "alias": "l",
-                                    "expression": {
-                                        "dataType": "{http://hl7.org/fhir}Location",
-                                        "type": "Retrieve"
-                                    }
-                                }
-                            ],
-                            "relationship": [],
-                            "where": {
-                                "type": "Null"
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "FacilityName",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "name",
-                            "type": "Property",
-                            "source": {
-                                "name": "LocationObject",
-                                "type": "ExpressionRef"
-                            }
-                        }
                     }
                 },
                 {

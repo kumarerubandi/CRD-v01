@@ -154,108 +154,12 @@
          "text":"Additional Information",
          "type":"group",
          "item":[
-		{
+            {
                "linkId":"3.1",
-               "text":"Bariatric Surgery Performed",
-               "type":"open-choice",
-               "required":true,
-               "option":[
-                  {
-                     "valueCoding":{
-                        "code":"Initial"
-                     },
-			"initialSelected":true
-                  },
-                  {
-                     "valueCoding":{
-                        "code":"Subsequent"
-                     }
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"PerformedType"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.2",
-               "text":"Height(in centimeters)",
+               "text":"Body Mass Index(kg/m2)",
                "type":"integer",
                "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  },
-		  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
-                  }
-               ],
-               "code":{
-                  "coding":[
-                     {
-                        "system":"http://loinc.org",
-                        "code":"3137-7",
-                        "display":"Height"
-                     }
-                  ]
-               },
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"PatientHeight"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.3",
-               "text":"Weight(in pounds)",
-               "type":"integer",
-               "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  },
-		  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
-                  }
-               ],
-               "code":{
-                  "coding":[
-                     {
-                        "system":"http://loinc.org",
-                        "code":"3141-9",
-                        "display":"Weight"
-                     }
-                  ]
-               },
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"PatientWeight"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.4",
-               "text":"Body Mass Index(in kg/m2)",
-               "type":"string",
-               "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  },
-		  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
-                  }
-               ],
+		"readOnly": true,
                "code":{
                   "coding":[
                      {
@@ -273,7 +177,7 @@
                ]
             },
             {
-               "linkId":"3.5",
+               "linkId":"3.2",
                "text":"Co-morbidities",
                "type":"open-choice",
                "required":true,
@@ -293,23 +197,13 @@
                   {
                      "valueCoding":{
                         "code":"Diabetes"
-                     },
-			"initialSelected":true
+                     }
                   },
                   {
                      "valueCoding":{
                         "code":"Hypertension"
-                     }
-                  }
-               ],
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  },
-		  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
+                     },
+			"initialSelected":true
                   }
                ],
                "extension":[
@@ -320,44 +214,10 @@
                ]
             },
             {
-               "linkId":"3.6",
+               "linkId":"3.3",
                "text":"Is there a previous unsuccessful medical treatment?",
                "type":"boolean",
                "required":true
-            },
-            {
-               "linkId":"3.7",
-               "text":"Name of the facility where the procedure will be performed",
-               "type":"string",
-               "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  },
-		  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
-                  }
-               ],
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"FacilityName"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.8",
-               "text":"Date on which the Initial bariatric surgery was performed",
-               "type":"date",
-               "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
-                  }
-               ]
             }
          ]
       },
@@ -371,16 +231,6 @@
                "text":"Physician certification statement (LP74233-5,LP74233-5)",
                "type":"attachment",
                "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  },
-		  {
-                     "question":"3.1",
-                     "answerBoolean":{"code":"Subsequent"}
-                  }
-               ],
                "code":{
                   "coding":[
                      {
@@ -398,15 +248,9 @@
             },
             {
                "linkId":"4.2",
-               "text":"Medical treatment tried and failed including diet and exercise",
+               "text":"Medical records (11503-0)",
                "type":"attachment",
                "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  }
-               ],
                "code":{
                   "coding":[
                      {
@@ -422,12 +266,6 @@
                "text":"Psychology Initial evaluation note (18738-5)",
                "type":"attachment",
                "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Initial"}
-                  }
-               ],
                "code":{
                   "coding":[
                      {
@@ -443,12 +281,6 @@
                "text":"Surgery Hospital Progress note (64057-3)",
                "type":"attachment",
                "required":true,
-		"enableWhen":[
-                  {
-                     "question":"3.1",
-                     "answerCoding":{"code":"Subsequent"}
-                  }
-               ],
                "code":{
                   "coding":[
                      {
