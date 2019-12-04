@@ -954,22 +954,43 @@
                             "path": "value",
                             "type": "Property",
                             "source": {
-                                "type": "Indexer",
-                                "operand": [
-                                    {
-                                        "path": "identifier",
-                                        "type": "Property",
-                                        "source": {
-                                            "name": "Patient",
-                                            "type": "ExpressionRef"
+                                "type": "SingletonFrom",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "identifier",
+                                            "expression": {
+                                                "path": "identifier",
+                                                "type": "Property",
+                                                "source": {
+                                                    "name": "Patient",
+                                                    "type": "ExpressionRef"
+                                                }
+                                            }
                                         }
-                                    },
-                                    {
-                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                        "value": "1",
-                                        "type": "Literal"
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "system",
+                                                    "scope": "identifier",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "urn:oid:1.1.1.1.1.1",
+                                                "type": "Literal"
+                                            }
+                                        ]
                                     }
-                                ]
+                                }
                             }
                         }
                     }
