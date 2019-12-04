@@ -1040,7 +1040,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        	
 //	        }
 //	        applink.put("url",appLinkURL+"launch?launch="+filename.replace(".json", "")+"&iss="+inputjson.get("fhirServer").toString());
-	        applink.put("url","http://localhost:3005/launch");
+	        applink.put("url","http://cdex.mettles.com:3005/launch");
 
 	        applink.put("type","smart");
 	        
@@ -1066,6 +1066,8 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	      	  System.out.println(patientResource);
 
 	        }
+		newAppContext.put("patientId",patientId);
+		newAppContext.put("patient",patientResource);
 	        applink.put("appContext",addAppContext(newAppContext,patientId,patientResource));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
