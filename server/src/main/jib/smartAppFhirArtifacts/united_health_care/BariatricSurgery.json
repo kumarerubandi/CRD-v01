@@ -212,12 +212,6 @@
                      "valueString":"Co-morbidities"
                   }
                ]
-            },
-            {
-               "linkId":"3.3",
-               "text":"Is there a previous unsuccessful medical treatment?",
-               "type":"boolean",
-               "required":true
             }
          ]
       },
@@ -248,15 +242,15 @@
             },
             {
                "linkId":"4.2",
-               "text":"Medical records (11503-0)",
+               "text":"Targeted history and physical note (34138-8)",
                "type":"attachment",
                "required":true,
                "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
-                        "code":"11503-0",
-                        "display":"Medical records"
+                        "code":"34138-8",
+                        "display":"Targeted history and physical note"
                      }
                   ]
                }
@@ -278,21 +272,36 @@
             },
             {
                "linkId":"4.4",
-               "text":"Surgery Hospital Progress note (64057-3)",
+               "text":"Bariatric surgery Progress note (85515-5)",
                "type":"attachment",
                "required":true,
                "code":{
                   "coding":[
                      {
                         "system":"http://loinc.org",
-                        "code":"64057-3",
-                        "display":"Surgery Hospital Progress note"
+                        "code":"85515-5",
+                        "display":"Bariatric surgery Progress note"
                      }
                   ]
                }
             },
             {
                "linkId":"4.5",
+               "text":"Nutrition and dietetics Progress note (78481-9)",
+               "type":"attachment",
+               "required":true,
+               "code":{
+                  "coding":[
+                     {
+                        "system":"http://loinc.org",
+                        "code":"78481-9",
+                        "display":"Nutrition and dietetics Progress note"
+                     }
+                  ]
+               }
+            },
+            {
+               "linkId":"4.6",
                "text":"Any other relevant document as deemed necessary by the MAC to process the prior authorization",
                "type":"attachment",
                "required":false
