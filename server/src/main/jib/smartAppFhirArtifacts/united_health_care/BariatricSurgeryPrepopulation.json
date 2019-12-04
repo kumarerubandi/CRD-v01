@@ -1103,16 +1103,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "id",
-                            "type": "Property",
-                            "source": {
-                                "name": "Practitioner",
-                                "type": "ExpressionRef"
-                            }
-                        }
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "1932102951",
+                        "type": "Literal"
                     }
                 },
                 {
