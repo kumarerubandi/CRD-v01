@@ -22,16 +22,6 @@
                 "errorType": "semantic",
                 "errorSeverity": "error",
                 "type": "CqlToElmError"
-            },
-            {
-                "startLine": 113,
-                "startChar": 20,
-                "endLine": 113,
-                "endChar": 47,
-                "message": "Could not validate reference to expression BariatricSurgery because its definition contains errors.",
-                "errorType": "semantic",
-                "errorSeverity": "error",
-                "type": "CqlToElmError"
             }
         ],
         "identifier": {
@@ -455,7 +445,23 @@
                             ],
                             "relationship": [],
                             "where": {
-                                "type": "Null"
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "id",
+                                            "scope": "practitioner",
+                                            "type": "Property"
+                                        }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "1912007",
+                                        "type": "Literal"
+                                    }
+                                ]
                             }
                         }
                     }
@@ -1427,64 +1433,23 @@
                             ],
                             "relationship": [],
                             "where": {
-                                "type": "Exists",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "i",
-                                            "expression": {
-                                                "path": "identifier",
-                                                "scope": "p",
-                                                "type": "Property"
-                                            }
+                                "type": "Equal",
+                                "operand": [
+                                    {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "id",
+                                            "scope": "p",
+                                            "type": "Property"
                                         }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "And",
-                                        "operand": [
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "value",
-                                                            "scope": "i",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "1932102951",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "system",
-                                                            "scope": "i",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "http://hl7.org/fhir/sid/us-npi",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "1912007",
+                                        "type": "Literal"
                                     }
-                                }
+                                ]
                             }
                         }
                     }
