@@ -980,9 +980,8 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 			JSONObject jsonObj = new JSONObject();
 	        jsonObj.put("appData", appData);
 	        jsonObj.put("hook", hook);
-	        if(inputjson.containsKey("payerName")) {
-	        	jsonObj.put("payerName", (String) inputjson.get("payerName"));
-	        }
+	        jsonObj.put("payerName", payerName);
+	        
 	        JSONArray appContext = new JSONArray();
 	        appContext.put(jsonObj);
 	        System.out.println("PATHHH");
@@ -1066,8 +1065,9 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	      	  System.out.println(patientResource);
 
 	        }
-		newAppContext.put("patientId",patientId);
-		newAppContext.put("patient",patientResource);
+	        newAppContext.put("patientId",patientId);
+	        newAppContext.put("patient",patientResource);
+	        newAppContext.put("payerName", payerName);
 	        applink.put("appContext",addAppContext(newAppContext,patientId,patientResource));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
