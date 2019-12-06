@@ -42,29 +42,24 @@
           "valueSetString": "A0428"
         }
       ]
-    }, {
-      "type": "Practitioner"
     },
 	{
       "type": "Practitioner",
       "codeFilter": [
         {
-          "path": "identifier",
-          "valueSetString": "1932102951"
+         "path":"_id",
+         "valueSetString":"1912007"
         }
       ]
     },
-    {
-      "type": "Organization"
-    },
 	{
-      "type": "Condition"
-    },
-	{
-      "type": "Location"
-    },
-	{
-      "type": "Observation"
+      "type": "Condition",
+		"codeFilter":[
+            {
+               "path":"clinical-status",
+         	"valueSetString":"active"	
+            }
+         ]
     },
 {
       "type": "SupplyRequest",
