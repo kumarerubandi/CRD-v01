@@ -173,8 +173,7 @@
                   {
                      "valueCoding":{
                         "code":"Cardiac disease"
-                     },
-			"initialSelected":true
+                     }
                   },
                   {
                      "valueCoding":{
@@ -189,8 +188,7 @@
                   {
                      "valueCoding":{
                         "code":"Hypertension"
-                     },
-			"initialSelected":true
+                     }
                   }
                ],
                "extension":[

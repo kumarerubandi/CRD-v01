@@ -14,13 +14,53 @@
                 "type": "CqlToElmError"
             },
             {
-                "startLine": 42,
+                "startLine": 47,
                 "startChar": 37,
-                "endLine": 42,
+                "endLine": 47,
                 "endChar": 42,
                 "message": "Could not resolve library name FHIRHelpers.",
                 "errorType": "semantic",
                 "errorSeverity": "error",
+                "type": "CqlToElmError"
+            },
+            {
+                "startLine": 150,
+                "startChar": 12,
+                "endLine": 150,
+                "endChar": 46,
+                "message": "Could not resolve membership operator for terminology target of the retrieve.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "startLine": 155,
+                "startChar": 12,
+                "endLine": 155,
+                "endChar": 51,
+                "message": "Could not resolve membership operator for terminology target of the retrieve.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "startLine": 160,
+                "startChar": 12,
+                "endLine": 160,
+                "endChar": 37,
+                "message": "Could not resolve membership operator for terminology target of the retrieve.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
+                "type": "CqlToElmError"
+            },
+            {
+                "startLine": 165,
+                "startChar": 12,
+                "endLine": 165,
+                "endChar": 42,
+                "message": "Could not resolve membership operator for terminology target of the retrieve.",
+                "errorType": "semantic",
+                "errorSeverity": "warning",
                 "type": "CqlToElmError"
             }
         ],
@@ -162,6 +202,26 @@
                 {
                     "name": "Bariatric operative procedure (procedure)",
                     "id": "2.16.840.1.113883.3.88.12.80.28",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Cardiovascular Cohort",
+                    "id": "2.16.840.1.113762.1.4.1182.308",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Respiratory Problems Group",
+                    "id": "2.16.840.1.113883.3.666.5.1588",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Hypertension",
+                    "id": "2.16.840.1.113883.3.3157.4022",
+                    "accessLevel": "Public"
+                },
+                {
+                    "name": "Diabetes Mellitus",
+                    "id": "2.16.840.1.113883.3.3157.1329",
                     "accessLevel": "Public"
                 }
             ]
@@ -1368,6 +1428,280 @@
                                         "type": "ExpressionRef"
                                     }
                                 }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "name": "Cardiac Disease",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "c",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Condition",
+                                                "codeProperty": "code",
+                                                "type": "Retrieve",
+                                                "codes": {
+                                                    "name": "Cardiovascular Cohort",
+                                                    "type": "ValueSetRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "clinicalStatus",
+                                                    "scope": "c",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "active",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Cardiac disease",
+                            "type": "Literal"
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "null",
+                            "type": "Literal"
+                        }
+                    }
+                },
+                {
+                    "name": "Respiratory disease",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "c",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Condition",
+                                                "codeProperty": "code",
+                                                "type": "Retrieve",
+                                                "codes": {
+                                                    "name": "Respiratory Problems Group",
+                                                    "type": "ValueSetRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "clinicalStatus",
+                                                    "scope": "c",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "active",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Respiratory disease",
+                            "type": "Literal"
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "null",
+                            "type": "Literal"
+                        }
+                    }
+                },
+                {
+                    "name": "HypertensionCondition",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "c",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Condition",
+                                                "codeProperty": "code",
+                                                "type": "Retrieve",
+                                                "codes": {
+                                                    "name": "Hypertension",
+                                                    "type": "ValueSetRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "clinicalStatus",
+                                                    "scope": "c",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "active",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Hypertension",
+                            "type": "Literal"
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "null",
+                            "type": "Literal"
+                        }
+                    }
+                },
+                {
+                    "name": "DiabetesCondition",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
+                                        {
+                                            "alias": "c",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Condition",
+                                                "codeProperty": "code",
+                                                "type": "Retrieve",
+                                                "codes": {
+                                                    "name": "Diabetes Mellitus",
+                                                    "type": "ValueSetRef"
+                                                }
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equal",
+                                        "operand": [
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "clinicalStatus",
+                                                    "scope": "c",
+                                                    "type": "Property"
+                                                }
+                                            },
+                                            {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                "value": "active",
+                                                "type": "Literal"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "Diabetes",
+                            "type": "Literal"
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "null",
+                            "type": "Literal"
+                        }
+                    }
+                },
+                {
+                    "name": "Co-morbidities",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "type": "List",
+                        "element": [
+                            {
+                                "name": "Cardiac Disease",
+                                "type": "ExpressionRef"
+                            },
+                            {
+                                "name": "Respiratory disease",
+                                "type": "ExpressionRef"
+                            },
+                            {
+                                "name": "DiabetesCondition",
+                                "type": "ExpressionRef"
+                            },
+                            {
+                                "name": "HypertensionCondition",
+                                "type": "ExpressionRef"
                             }
                         ]
                     }
