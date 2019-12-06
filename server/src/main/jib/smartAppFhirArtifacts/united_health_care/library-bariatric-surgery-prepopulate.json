@@ -58,7 +58,7 @@
          "codeFilter":[
             {
                "path":"_id",
-               "valueSetString":"1912007"
+               "valueSetString":"4526007"
             }
          ]
       },
@@ -70,6 +70,9 @@
          	"valueSetString":"active"	
             }
          ]
+      },
+      { 
+         "type":"Coverage",
       }
    ]
 }
