@@ -1039,7 +1039,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        	
 //	        }
 //	        applink.put("url",appLinkURL+"launch?launch="+filename.replace(".json", "")+"&iss="+inputjson.get("fhirServer").toString());
-	        applink.put("url","http://cdex.mettles.com:3005/launch");
+	        
 
 	        applink.put("type","smart");
 	        
@@ -1068,7 +1068,9 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        newAppContext.put("patientId",patientId);
 	        newAppContext.put("patient",patientResource);
 	        newAppContext.put("payerName", payerName);
-	        applink.put("appContext",addAppContext(newAppContext,patientId,patientResource));
+	        JSONObject contextRes = addAppContext(newAppContext,patientId,patientResource);
+	        applink.put("appContext",contextRes);
+	        applink.put("url","http://cdex.mettles.com:3005/launch?iss="+fhirServer+"&launch="+contextRes.getString("launchContext")+"&launchContextId="+contextRes.getString("launchContext"));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
 	        links.add(applink);
@@ -1165,9 +1167,13 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  }
 	  
 	  System.out.println(tokenResponse);
+	  String fhirServer = "";
 	  try {
 		  if(!inputjson.containsKey("fhirServer")) {
 	     	 throw new RequestIncompleteException("Parameter Missing : key 'fhirServer' is missing in given request");	    
+		  }
+		  else {
+			  fhirServer=inputjson.get("fhirServer").toString();
 		  }
 	  }
 	  catch(RequestIncompleteException req_exception) {
@@ -1210,7 +1216,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 			  System.out.println("inputjson.containsKey(");
 			  System.out.println(inputjson.containsKey("patientId"));
 			  if(inputjson.containsKey("patientId")) {
-				  resource= this.getResourceById("Patient",(String) inputjson.get("patientId"),authorization,inputjson.get("fhirServer").toString());
+				  resource= this.getResourceById("Patient",(String) inputjson.get("patientId"),authorization,fhirServer);
 			  }
 			  
 		  }
