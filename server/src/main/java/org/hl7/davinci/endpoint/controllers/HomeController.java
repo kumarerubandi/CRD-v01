@@ -709,7 +709,10 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  	  errorObj.put("exception", "payerName is missing in the request body");
 	 	  return errorObj.toString();
       }
-      
+	  String fhirServer  = "";
+	  if(inputjson.containsKey("fhirServer")) {
+		  fhirServer  = (String) inputjson.get("fhirServer");
+      } 
       JSONObject reqJson = new JSONObject();
       JSONObject patientFhir = new JSONObject();
 //      System.out.println("673");
