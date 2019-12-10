@@ -1040,7 +1040,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        	
 //	        }
 //	        applink.put("url",appLinkURL+"launch?launch="+filename.replace(".json", "")+"&iss="+inputjson.get("fhirServer").toString());
-	        applink.put("url","http://cdex.mettles.com:3005/launch");
+	        applink.put("url","http://localhost:3005/launch");
 
 	        applink.put("type","smart");
 	        

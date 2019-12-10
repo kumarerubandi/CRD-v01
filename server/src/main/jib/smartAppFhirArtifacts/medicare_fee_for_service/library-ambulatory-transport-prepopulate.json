@@ -25,6 +25,7 @@
       "url": "urn:hl7:davinci:crd:medicare_fee_for_service:AmbulatoryTransportPrepopulation.json"
     }
   ],
+  "claimEndpoint":"http://cdex.mettles.com:8180/hapi-fhir-jpaserver/fhir/Claim/$submit",
   "dataRequirement": [ {
       "type": "Procedure",
       "codeFilter": [
