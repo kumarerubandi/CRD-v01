@@ -17,7 +17,7 @@
       {
          "url":"http://hl7.org/fhir/StructureDefinition/cqif-library",
          "valueReference":{
-            "reference":"urn:hl7:davinci:crd:library-home-health-prepopulate"
+            "reference":"urn:hl7:davinci:crd:medicare_fee_for_service:library-home-health-prepopulate"
          }
       }
    ],

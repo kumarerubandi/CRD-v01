@@ -45,23 +45,23 @@
       ]
     },
 	{
-      "type": "Practitioner",
-      "codeFilter": [
-        {
-         "path":"_id",
-         "valueSetString":"1912007"
-        }
-      ]
-    },
-	{
-      "type": "Condition",
-		"codeFilter":[
+         "type":"Practitioner",
+         "codeFilter":[
+            {
+               "path":"_id",
+               "valueSetString":"4526007"
+            }
+         ]
+      },
+      {
+         "type":"Condition",
+         "codeFilter":[
             {
                "path":"clinical-status",
          	"valueSetString":"active"	
             }
          ]
-    },
+      },
 {
       "type": "SupplyRequest",
        "codeFilter": [

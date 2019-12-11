@@ -22,9 +22,10 @@
   "content": [
     {
       "contentType": "application/elm+json",
-      "url": "urn:hl7:davinci:crd:HomeHealthPrepopulation.json"
+      "url": "urn:hl7:davinci:crd:medicare_fee_for_service:HomeHealthPrepopulation.json"
     }
   ],
+  "claimEndpoint":"http://stdrfp.mettles.com:8080/drfp/fhir/Claim/$submit",
   "dataRequirement":[
     {
       "type": "Procedure",
