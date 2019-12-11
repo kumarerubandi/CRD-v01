@@ -594,12 +594,12 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  
 	  try {
 //		  System.out.println("appContext :"+appContext.toString());
-		  if(appContext.has("prior_auth")) {
-			  res.put("prior_auth",appContext.get("prior_auth"));
-			  
-		  }
-		  res.put("patientId",patientId);
-		  res.put("patient",patient);
+//		  if(appContext.has("prior_auth")) {
+//			  res.put("prior_auth",appContext.get("prior_auth"));
+//			  
+//		  }
+		  //res.put("patientId",patientId);
+		  //res.put("patient",patient);
 		  String basePathOfClass = getClass().getProtectionDomain().getCodeSource().getLocation().getFile();
 	      System.out.println("---crd path---");
 	    	      
@@ -1080,10 +1080,18 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        newAppContext.put("patientId",patientId);
 	        newAppContext.put("patient",patientResource);
 	        newAppContext.put("payerName", payerName);
+//<<<<<<< Updated upstream
 			newAppContext.put("practitionerNpi", practitionerNpi);
-	        JSONObject contextRes = addAppContext(newAppContext,patientId,patientResource);
+//	        JSONObject contextRes = addAppContext(newAppContext,patientId,patientResource);
+	        JSONObject launchContextRes = addAppContext(newAppContext,patientId,patientResource);
+	        JSONObject contextRes = new JSONObject();
+	        if(newAppContext.has("prior_auth")) {
+	        	contextRes.put("prior_auth",newAppContext.get("prior_auth"));
+				  
+			 }
+//>>>>>>> Stashed changes
 	        applink.put("appContext",contextRes);
-	        applink.put("url","http://cdex.mettles.com:3005/launch?iss="+fhirServer+"&launch="+contextRes.getString("launchContext")+"&launchContextId="+contextRes.getString("launchContext"));
+	        applink.put("url","http://cdex.mettles.com:3005/launch?iss="+fhirServer+"&launch="+launchContextRes.getString("launchContext")+"&launchContextId="+launchContextRes.getString("launchContext"));
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
 	        links.add(applink);
