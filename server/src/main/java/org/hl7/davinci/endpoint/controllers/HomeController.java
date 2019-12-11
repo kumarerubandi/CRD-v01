@@ -709,6 +709,14 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	  	  errorObj.put("exception", "payerName is missing in the request body");
 	 	  return errorObj.toString();
       }
+	  String practitionerNpi = "";
+	  if(inputjson.containsKey("userId")) {
+    	  practitionerNpi  = (String) inputjson.get("userId");
+      } else {
+    	  JSONObject errorObj = new JSONObject();
+	  	  errorObj.put("exception", "UserId is missing in the request body");
+	 	  return errorObj.toString();
+      }
 	  String fhirServer  = "";
 	  if(inputjson.containsKey("fhirServer")) {
 		  fhirServer  = (String) inputjson.get("fhirServer");
@@ -984,6 +992,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        jsonObj.put("appData", appData);
 	        jsonObj.put("hook", hook);
 	        jsonObj.put("payerName", payerName);
+			jsonObj.put("practitionerNpi", practitionerNpi);
 	        
 	        JSONArray appContext = new JSONArray();
 	        appContext.put(jsonObj);
@@ -1071,6 +1080,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	        newAppContext.put("patientId",patientId);
 	        newAppContext.put("patient",patientResource);
 	        newAppContext.put("payerName", payerName);
+			newAppContext.put("practitionerNpi", practitionerNpi);
 	        JSONObject contextRes = addAppContext(newAppContext,patientId,patientResource);
 	        applink.put("appContext",contextRes);
 	        applink.put("url","http://cdex.mettles.com:3005/launch?iss="+fhirServer+"&launch="+contextRes.getString("launchContext")+"&launchContextId="+contextRes.getString("launchContext"));
