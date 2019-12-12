@@ -137,8 +137,8 @@ define BeneficiaryMedicareNumber:
 // Practitioner info
 define Practitioner: 
 	singleton from (
-  		[Practitioner] practitioner
-    		where ('Practitioner/' + practitioner.id.value) = "HomeHealthCare".performer[0].actor.reference.value)
+  		[Practitioner] practitioner where practitioner.id.value = 'mettles-Practitioner-1')
+    		//where ('Practitioner/' + practitioner.id.value) = "HomeHealthCare".performer[0].actor.reference.value)
     
 define PractitionerNameObject: 
 	singleton from ("Practitioner".name)
@@ -169,8 +169,8 @@ define PractitionerAddress:
 // Agency info
 define Agency: 
 	singleton from (
-  		[Organization] agency
-    		where ('Organization/' + agency.id.value) = "HomeHealthCare".performer[0].onBehalfOf.reference.value)
+  		[Organization] agency where agency.id.value= 'mettles-Organization-1')
+    		//where ('Organization/' + agency.id.value) = "HomeHealthCare".performer[0].onBehalfOf.reference.value)
     
 define AgencyName: "Agency".name.value
 
@@ -236,8 +236,10 @@ define PreClaimReview: 'Pre-Claim Review'
 //Requestor info
 define Requestor: 
 	singleton from (
-  		[Practitioner] p
-    		where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
+  		[Practitioner] practitioner where practitioner.id.value = 'mettles-Practitioner-1')
+	//singleton from (
+  	//	[Practitioner] p
+    	//	where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
     		
 define RequestorNameObject: 
 	singleton from ("Requestor".name)
