@@ -213,7 +213,7 @@ define PractitionerLastName: "PractitionerNameObject".family.value
 define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 
-define PractitionerTelephone: '1932102951'
+define PractitionerTelephone: '(257) 563-7401'
 	//(singleton from (
   	//	"Practitioner".identifier identifier
     	//	where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
@@ -422,7 +422,7 @@ define RequestorLastName: "RequestorNameObject".family.value
 define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
 define RequestorFirstName: "RequestorNameObject".given[0].value
 
-define RequestorTelephone: '1935467921'
+define RequestorTelephone: '(257) 563-7401'
 	//(singleton from (
   	//	"Requestor".telecom tele
     	//	where tele.system.value = 'phone' and tele.use.value='work')).value.value
