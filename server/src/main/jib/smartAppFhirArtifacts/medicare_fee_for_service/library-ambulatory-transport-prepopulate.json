@@ -62,6 +62,9 @@
             }
          ]
       },
+		      {
+         "type":"Practitioner"
+		      },
 {
       "type": "SupplyRequest",
        "codeFilter": [
