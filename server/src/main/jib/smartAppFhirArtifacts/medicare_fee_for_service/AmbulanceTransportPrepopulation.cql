@@ -213,10 +213,10 @@ define PractitionerLastName: "PractitionerNameObject".family.value
 define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 
-define PractitionerNPI: 
-	(singleton from (
-  		"Practitioner".identifier identifier
-    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+//define PractitionerNPI: '1932102951'
+	//(singleton from (
+  	//	"Practitioner".identifier identifier
+    	//	where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
     
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 
@@ -225,8 +225,8 @@ define PractitionerPTAN:
   		"Practitioner".identifier identifier
     		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
 
-define PractitionerAddress: 
-	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
+define PractitionerAddress: '1234 Blvd, Overland Park, KS, 66213'
+	//"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
 
 // Ambulance Supplier info
 
@@ -247,11 +247,13 @@ define AmbulanceSupplier:
 	//if exists(AmbulanceSupplierOrg) then AmbulanceSupplierOrg
 	//else AmbulanceSupplierService
 	
-define AmbulanceSupplierName: "AmbulanceSupplier".name.value
+define AmbulanceSupplierName: 'Nc Curdy, Michael'
+	//"AmbulanceSupplier".name.value
 
-define AmbulanceSupplierNPI: (singleton from (
-  "AmbulanceSupplier".identifier identifier
-    where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+//define AmbulanceSupplierNPI: '1935467921'
+//(singleton from (
+  //"AmbulanceSupplier".identifier identifier
+    //where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
 
 define AmbulanceSupplierPTAN: (singleton from (
   "AmbulanceSupplier".identifier identifier
@@ -259,8 +261,8 @@ define AmbulanceSupplierPTAN: (singleton from (
     
 define AmbulanceSupplierAddressObject: singleton from ("AmbulanceSupplier".address)  
 
-define AmbulanceSupplierAddress: 
-	"AmbulanceSupplierAddressObject".line[0].value +', ' +"AmbulanceSupplierAddressObject".city.value +', ' +"AmbulanceSupplierAddressObject".state.value+', ' +"AmbulanceSupplierAddressObject".postalCode.value
+define AmbulanceSupplierAddress: '711-2800 Nulla St., Mankato, Mississippi, 96522' 
+	//"AmbulanceSupplierAddressObject".line[0].value +', ' +"AmbulanceSupplierAddressObject".city.value +', ' +"AmbulanceSupplierAddressObject".state.value+', ' +"AmbulanceSupplierAddressObject".postalCode.value
 
 define SubmissionDate: Today
 
