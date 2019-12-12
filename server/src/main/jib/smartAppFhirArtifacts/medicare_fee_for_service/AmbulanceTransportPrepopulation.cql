@@ -422,10 +422,10 @@ define RequestorLastName: "RequestorNameObject".family.value
 define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
 define RequestorFirstName: "RequestorNameObject".given[0].value
 
-define RequestorTelephone: 
-	(singleton from (
-  		"Requestor".telecom tele
-    		where tele.system.value = 'phone' and tele.use.value='work')).value.value
+define RequestorTelephone: '1935467921'
+	//(singleton from (
+  	//	"Requestor".telecom tele
+    	//	where tele.system.value = 'phone' and tele.use.value='work')).value.value
 
 //define Typeofrequest: {'Initial'}
 

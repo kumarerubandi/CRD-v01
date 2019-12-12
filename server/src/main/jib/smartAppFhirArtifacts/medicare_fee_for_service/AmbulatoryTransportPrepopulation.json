@@ -4872,75 +4872,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "value",
-                            "type": "Property",
-                            "source": {
-                                "type": "SingletonFrom",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "tele",
-                                            "expression": {
-                                                "path": "telecom",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "Requestor",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "And",
-                                        "operand": [
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "system",
-                                                            "scope": "tele",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "phone",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "use",
-                                                            "scope": "tele",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "work",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "1935467921",
+                        "type": "Literal"
                     }
                 },
                 {
