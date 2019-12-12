@@ -213,7 +213,7 @@ define PractitionerLastName: "PractitionerNameObject".family.value
 define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 
-//define PractitionerNPI: '1932102951'
+define PractitionerTelephone: '1932102951'
 	//(singleton from (
   	//	"Practitioner".identifier identifier
     	//	where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value

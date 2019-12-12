@@ -1425,6 +1425,16 @@
                     }
                 },
                 {
+                    "name": "PractitionerTelephone",
+                    "context": "Patient",
+                    "accessLevel": "Public",
+                    "expression": {
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "1932102951",
+                        "type": "Literal"
+                    }
+                },
+                {
                     "name": "PractitionerAddressObject",
                     "context": "Patient",
                     "accessLevel": "Public",
