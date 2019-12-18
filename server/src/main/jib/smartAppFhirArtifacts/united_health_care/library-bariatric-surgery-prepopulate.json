@@ -4,6 +4,8 @@
    "version":"0.0.1",
    "title":"Bariatric Surgery",
    "status":"draft",
+   
+"claimEndpoint":"http://cdex.mettles.com/payerfhir/hapi-fhir-jpaserver/fhir/Claim/$submit",
    "type":{
       "coding":[
          {
