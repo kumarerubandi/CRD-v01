@@ -170,9 +170,9 @@ define PractitionerAddress:
 //Vital signs
 define PatientPulserate:
 	if exists([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8867-4") 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8867-4') 
 	then (Last([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8867-4" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8867-4' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
 	).value)
@@ -180,32 +180,32 @@ define PatientPulserate:
 
 define Respiratoryrate:
 	if exists([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"9279-1") then (Last([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"9279-1" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'9279-1') then (Last([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'9279-1' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
 	).value) else '18'
 
 define SystolicBloodPressure:
 	if exists([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8480-6") then (Last([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8480-6" and  FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8480-6') then (Last([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8480-6' and  FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
 	).value) else '135'
 
 define DiastolicBloodPressure:
 	if exists([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8462-4") then (Last([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8462-4" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8462-4') then (Last([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8462-4' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
 	).value) else '89'
 
 define BodyTemperature:
 	if exists([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8310-5") then (Last([Observation]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"8310-5" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8310-5') then (Last([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'8310-5' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
 	).value) else '99.8'
@@ -213,44 +213,44 @@ define BodyTemperature:
 //Diagnosis/Procedure
 define "Chestpain on Exertion":
 	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"R07.9" 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'R07.9' 
 			and (P.onset as Period) starts during "Measurement Period") then 'Chestpain on Exertion'
 	else ''
 
 define "Arthritis":
 	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"M17.0" 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'M17.0' 
 			and (P.onset as Period) starts during "Measurement Period") then 'Arthritis'
 	else ''
 
 define "Electrocardiogram":
 	if exists([Procedure]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"164847006" ) then 'Electrocardiogram'
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'164847006' ) then 'Electrocardiogram'
 			//and (P.performed as Period) starts during "Measurement Period"
 	else ''
 
 //Other info
 define "Chest Pain":
 	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"R07.9" 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'R07.9' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 
 define "Arm Pain":
 	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"M79.603" 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'M79.603'
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 
 define "Jaw Pain":
 	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"R68.84" 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'R68.84' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 
 define "Shortness of Breath":
 	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~"R06.02" 
+		where FHIRHelpers.ToConcept(P.code).codes[0]~'R06.02' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 
