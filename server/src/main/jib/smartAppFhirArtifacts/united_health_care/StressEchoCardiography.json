@@ -478,55 +478,64 @@
                 "linkId":"7.1",
                 "text":"Is the chest pain substernal?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":true}]
              },
           {
                 "linkId":"7.2",
                 "text":"Is there arm pain?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":true}]
              },
               {
                 "linkId":"7.3",
                 "text":"Is there jaw pain?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":false}]
              },
               {
                 "linkId":"7.4",
                 "text":"Is the pain relieved with nitroglycerin or rest?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":false}]
              },
              {
                 "linkId":"7.5",
                 "text":"Is there shortness of breath?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":true}]
              },
              {
                 "linkId":"7.6",
                 "text":"Does the pain wake the patient from sleep?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":true}]
              },
              {
                 "linkId":"7.7",
                 "text":"Is the pain worse with inspiration?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":false}]
              },
              {
                 "linkId":"7.8",
                 "text":"Does the pain occur at rest?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":false}]
              },
              {
                 "linkId":"7.9",
                 "text":"Is the pain brought on by exercise or emotional upset?",
                 "type":"boolean",
-                "required":true
+                "required":true,
+		"initial":[{"valueBoolean":true}]
              }
           ]
        } 
