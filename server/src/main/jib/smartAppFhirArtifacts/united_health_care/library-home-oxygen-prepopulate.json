@@ -1,0 +1,190 @@
+{
+    "resourceType": "Library",
+    "id": "urn:hl7:davinci:crd:united_health_care:library-home-oxygen-prepopulate",
+    "version": "0.0.1",
+    "title": "Catheterization",
+    "status": "draft",
+    "claimEndpoint": "http://cdex.mettles.com/payerfhir/hapi-fhir-jpaserver/fhir/Claim/$submit",
+    "type": {
+        "coding": [
+            {
+                "code": "logic-library"
+            }
+        ]
+    },
+    "relatedArtifact": [
+        {
+            "type": "depends-on",
+            "resource": {
+                "reference": "urn:hl7:davinci:crd:library-fhir-helpers"
+            }
+        }
+    ],
+    "content": [
+        {
+            "contentType": "application/elm+json",
+            "url": "urn:hl7:davinci:crd:united_health_care:HomeOxygenPrepopulation.json"
+        }
+    ],
+    "dataRequirement": [
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E1390"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E1391"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0424"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0439"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E1405"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E1406"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0431"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0434"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E1392"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0433"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "K0738"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0441"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0442"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0443"
+                }
+            ]
+        },
+        {
+            "type": "Procedure",
+            "codeFilter": [
+                {
+                    "path": "code",
+                    "valueSetString": "E0444"
+                }
+            ]
+        },
+        {
+            "type": "Practitioner",
+            "codeFilter": [
+                {
+                    "path": "_id",
+                    "valueSetString": "4526007"
+                }
+            ]
+        },
+        {
+            "type": "Condition",
+            "codeFilter": [
+                {
+                    "path": "clinical-status",
+                    "valueSetString": "active"
+                }
+            ]
+        },
+        {
+            "type": "Organization"
+        },
+        {
+            "type": "Coverage"
+        }
+    ]
+}
