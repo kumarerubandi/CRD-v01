@@ -127,13 +127,13 @@ define BeneficiaryDateOfBirth: Patient.birthDate.value
 define BeneficiaryMedicareNumber:
 	(singleton from (
   	Patient.identifier identifier
-   	 where identifier.system.value = 'http://hl7.org/fhir/sid/us-medicare')).value.value
+   	 where identifier.system.value = 'http://hospital.smarthealthit.org')).value.value
 
 
 // Practitioner info
 define Practitioner: 
 	singleton from (
-  		[Practitioner] practitioner)
+  		[Practitioner]practitioner)
     		//where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".recorder.reference.value)
     
 define PractitionerNameObject: 
@@ -148,9 +148,10 @@ define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 
 define PractitionerNPI: 
-	//if exists("Practitioner".identifier) then (singleton from (
-  	//	"Practitioner".identifier identifier
-    	//	where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value) else 
+	if exists("Practitioner".identifier) then ((singleton from (
+  		"Practitioner".identifier identifier
+    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value) 
+    	else 
 	'1935467921'
     
 define PractitionerPTAN:
@@ -160,8 +161,8 @@ define PractitionerPTAN:
 
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 
-define PractitionerAddress: 
-	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
+define PractitionerAddress:  ''
+	//"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
 
 //Other info
 
@@ -178,7 +179,7 @@ define PatientPulserate:
 	).value)
 	else '75'
 
-define Respiratoryrate:
+define PatientRespiratoryrate:
 	if exists([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~'9279-1') then (Last([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~'9279-1' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
@@ -217,7 +218,7 @@ define "Chestpain on Exertion": 'Chestpain on Exertion'
 			//and (P.onset as Period) starts during "Measurement Period") then 'Chestpain on Exertion'
 	//else ''
 
-define "Arthritis": ''
+define "Arthritis": 'Arthritis'
 	//if exists([Condition]P
 		//where FHIRHelpers.ToConcept(P.code).codes[0]~'M17.0' 
 			//and (P.onset as Period) starts during "Measurement Period") then 'Arthritis'
@@ -259,8 +260,8 @@ define "Shortness of Breath":
 //Requestor info
 define Requestor: 
 	singleton from (
-  		[Practitioner] p)
-    		//where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
+  		[Practitioner]practitioner)
+    		//where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".recorder.reference.value)
     		
 define RequestorNameObject: 
 	singleton from ("Requestor".name)

@@ -2,9 +2,9 @@
     "library": {
         "annotation": [
             {
-                "startLine": 173,
+                "startLine": 174,
                 "startChar": 9,
-                "endLine": 173,
+                "endLine": 174,
                 "endChar": 55,
                 "message": "Could not resolve call to operator Equivalent with signature (System.Code,System.String).",
                 "errorType": "semantic",
@@ -12,9 +12,9 @@
                 "type": "CqlToElmError"
             },
             {
-                "startLine": 183,
+                "startLine": 184,
                 "startChar": 9,
-                "endLine": 183,
+                "endLine": 184,
                 "endChar": 55,
                 "message": "Could not resolve call to operator Equivalent with signature (System.Code,System.String).",
                 "errorType": "semantic",
@@ -22,9 +22,9 @@
                 "type": "CqlToElmError"
             },
             {
-                "startLine": 191,
+                "startLine": 192,
                 "startChar": 9,
-                "endLine": 191,
+                "endLine": 192,
                 "endChar": 55,
                 "message": "Could not resolve call to operator Equivalent with signature (System.Code,System.String).",
                 "errorType": "semantic",
@@ -32,9 +32,9 @@
                 "type": "CqlToElmError"
             },
             {
-                "startLine": 199,
+                "startLine": 200,
                 "startChar": 9,
-                "endLine": 199,
+                "endLine": 200,
                 "endChar": 55,
                 "message": "Could not resolve call to operator Equivalent with signature (System.Code,System.String).",
                 "errorType": "semantic",
@@ -42,9 +42,9 @@
                 "type": "CqlToElmError"
             },
             {
-                "startLine": 207,
+                "startLine": 208,
                 "startChar": 9,
-                "endLine": 207,
+                "endLine": 208,
                 "endChar": 55,
                 "message": "Could not resolve call to operator Equivalent with signature (System.Code,System.String).",
                 "errorType": "semantic",
@@ -830,7 +830,7 @@
                                             },
                                             {
                                                 "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org/fhir/sid/us-medicare",
+                                                "value": "http://hospital.smarthealthit.org",
                                                 "type": "Literal"
                                             }
                                         ]
@@ -969,9 +969,74 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "1935467921",
-                        "type": "Literal"
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "path": "identifier",
+                                    "type": "Property",
+                                    "source": {
+                                        "name": "Practitioner",
+                                        "type": "ExpressionRef"
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "path": "value",
+                                "type": "Property",
+                                "source": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "identifier",
+                                                "expression": {
+                                                    "path": "identifier",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "Practitioner",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "Equal",
+                                            "operand": [
+                                                {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "path": "system",
+                                                        "scope": "identifier",
+                                                        "type": "Property"
+                                                    }
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                    "value": "http://hl7.org/fhir/sid/us-npi",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "1935467921",
+                            "type": "Literal"
+                        }
                     }
                 },
                 {
@@ -1135,107 +1200,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "type": "Concatenate",
-                        "operand": [
-                            {
-                                "type": "Concatenate",
-                                "operand": [
-                                    {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "type": "Concatenate",
-                                                "operand": [
-                                                    {
-                                                        "type": "Concatenate",
-                                                        "operand": [
-                                                            {
-                                                                "type": "Concatenate",
-                                                                "operand": [
-                                                                    {
-                                                                        "path": "value",
-                                                                        "type": "Property",
-                                                                        "source": {
-                                                                            "type": "Indexer",
-                                                                            "operand": [
-                                                                                {
-                                                                                    "path": "line",
-                                                                                    "type": "Property",
-                                                                                    "source": {
-                                                                                        "name": "PractitionerAddressObject",
-                                                                                        "type": "ExpressionRef"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                                    "value": "0",
-                                                                                    "type": "Literal"
-                                                                                }
-                                                                            ]
-                                                                        }
-                                                                    },
-                                                                    {
-                                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                        "value": ", ",
-                                                                        "type": "Literal"
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "path": "value",
-                                                                "type": "Property",
-                                                                "source": {
-                                                                    "path": "city",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "PractitionerAddressObject",
-                                                                        "type": "ExpressionRef"
-                                                                    }
-                                                                }
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": ", ",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "state",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "name": "PractitionerAddressObject",
-                                                        "type": "ExpressionRef"
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                        "value": ", ",
-                                        "type": "Literal"
-                                    }
-                                ]
-                            },
-                            {
-                                "path": "value",
-                                "type": "Property",
-                                "source": {
-                                    "path": "postalCode",
-                                    "type": "Property",
-                                    "source": {
-                                        "name": "PractitionerAddressObject",
-                                        "type": "ExpressionRef"
-                                    }
-                                }
-                            }
-                        ]
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "",
+                        "type": "Literal"
                     }
                 },
                 {
@@ -1328,7 +1295,7 @@
                     }
                 },
                 {
-                    "name": "Respiratoryrate",
+                    "name": "PatientRespiratoryrate",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
@@ -1699,7 +1666,7 @@
                     "accessLevel": "Public",
                     "expression": {
                         "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "",
+                        "value": "Arthritis",
                         "type": "Literal"
                     }
                 },
@@ -1763,7 +1730,7 @@
                             "type": "Query",
                             "source": [
                                 {
-                                    "alias": "p",
+                                    "alias": "practitioner",
                                     "expression": {
                                         "dataType": "{http://hl7.org/fhir}Practitioner",
                                         "type": "Retrieve"
