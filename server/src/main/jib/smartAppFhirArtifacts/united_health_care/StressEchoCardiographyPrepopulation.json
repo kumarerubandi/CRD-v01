@@ -1200,9 +1200,107 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                        "value": "",
-                        "type": "Literal"
+                        "type": "Concatenate",
+                        "operand": [
+                            {
+                                "type": "Concatenate",
+                                "operand": [
+                                    {
+                                        "type": "Concatenate",
+                                        "operand": [
+                                            {
+                                                "type": "Concatenate",
+                                                "operand": [
+                                                    {
+                                                        "type": "Concatenate",
+                                                        "operand": [
+                                                            {
+                                                                "type": "Concatenate",
+                                                                "operand": [
+                                                                    {
+                                                                        "path": "value",
+                                                                        "type": "Property",
+                                                                        "source": {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "line",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "PractitionerAddressObject",
+                                                                                        "type": "ExpressionRef"
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        }
+                                                                    },
+                                                                    {
+                                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                                        "value": ", ",
+                                                                        "type": "Literal"
+                                                                    }
+                                                                ]
+                                                            },
+                                                            {
+                                                                "path": "value",
+                                                                "type": "Property",
+                                                                "source": {
+                                                                    "path": "city",
+                                                                    "type": "Property",
+                                                                    "source": {
+                                                                        "name": "PractitionerAddressObject",
+                                                                        "type": "ExpressionRef"
+                                                                    }
+                                                                }
+                                                            }
+                                                        ]
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                        "value": ", ",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "path": "value",
+                                                "type": "Property",
+                                                "source": {
+                                                    "path": "state",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "PractitionerAddressObject",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                }
+                                            }
+                                        ]
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": ", ",
+                                        "type": "Literal"
+                                    }
+                                ]
+                            },
+                            {
+                                "path": "value",
+                                "type": "Property",
+                                "source": {
+                                    "path": "postalCode",
+                                    "type": "Property",
+                                    "source": {
+                                        "name": "PractitionerAddressObject",
+                                        "type": "ExpressionRef"
+                                    }
+                                }
+                            }
+                        ]
                     }
                 },
                 {

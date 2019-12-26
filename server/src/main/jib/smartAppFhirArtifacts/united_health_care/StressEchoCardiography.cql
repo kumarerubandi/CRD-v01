@@ -161,8 +161,8 @@ define PractitionerPTAN:
 
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 
-define PractitionerAddress:  ''
-	//"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
+define PractitionerAddress:  
+	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
 
 //Other info
 
