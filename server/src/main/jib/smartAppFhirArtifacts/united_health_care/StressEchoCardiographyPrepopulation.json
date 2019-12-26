@@ -932,50 +932,73 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "value",
-                            "type": "Property",
-                            "source": {
-                                "type": "SingletonFrom",
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
                                 "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "identifier",
-                                            "expression": {
-                                                "path": "identifier",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "Practitioner",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "scope": "identifier",
-                                                    "type": "Property"
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org/fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
+                                    "path": "identifier",
+                                    "type": "Property",
+                                    "source": {
+                                        "name": "Practitioner",
+                                        "type": "ExpressionRef"
                                     }
                                 }
                             }
+                        },
+                        "then": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "path": "value",
+                                "type": "Property",
+                                "source": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "identifier",
+                                                "expression": {
+                                                    "path": "identifier",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "Practitioner",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "Equal",
+                                            "operand": [
+                                                {
+                                                    "path": "value",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "path": "system",
+                                                        "scope": "identifier",
+                                                        "type": "Property"
+                                                    }
+                                                },
+                                                {
+                                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                    "value": "http://hl7.org/fhir/sid/us-npi",
+                                                    "type": "Literal"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "1935467921",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1248,119 +1271,193 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "type": "Last",
-                            "source": {
-                                "type": "Query",
-                                "source": [
-                                    {
-                                        "alias": "P",
-                                        "expression": {
-                                            "dataType": "{http://hl7.org/fhir}Observation",
-                                            "type": "Retrieve"
-                                        }
-                                    }
-                                ],
-                                "relationship": [],
-                                "where": {
-                                    "type": "And",
-                                    "operand": [
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
                                         {
-                                            "type": "And",
-                                            "operand": [
-                                                {
-                                                    "type": "Equivalent",
-                                                    "operand": [
-                                                        {
-                                                            "type": "Indexer",
-                                                            "operand": [
-                                                                {
-                                                                    "path": "codes",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "ToConcept",
-                                                                        "libraryName": "FHIRHelpers",
-                                                                        "type": "FunctionRef",
-                                                                        "operand": [
-                                                                            {
-                                                                                "path": "code",
-                                                                                "scope": "P",
-                                                                                "type": "Property"
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                    "value": "0",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "name": "8867-4",
-                                                            "type": "CodeRef"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "In",
-                                                    "operand": [
-                                                        {
-                                                            "name": "ToDateTime",
+                                            "alias": "P",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Observation",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equivalent",
+                                        "operand": [
+                                            {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "codes",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "ToConcept",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
                                                             "operand": [
                                                                 {
-                                                                    "path": "issued",
+                                                                    "path": "code",
                                                                     "scope": "P",
                                                                     "type": "Property"
                                                                 }
                                                             ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "8867-4",
+                                                "type": "CodeRef"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "name": "ToString",
+                            "libraryName": "FHIRHelpers",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "asType": "{http://hl7.org/fhir}string",
+                                    "type": "As",
+                                    "operand": {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Last",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "P",
+                                                        "expression": {
+                                                            "dataType": "{http://hl7.org/fhir}Observation",
+                                                            "type": "Retrieve"
+                                                        }
+                                                    }
+                                                ],
+                                                "relationship": [],
+                                                "where": {
+                                                    "type": "And",
+                                                    "operand": [
+                                                        {
+                                                            "type": "And",
+                                                            "operand": [
+                                                                {
+                                                                    "type": "Equivalent",
+                                                                    "operand": [
+                                                                        {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "codes",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "ToConcept",
+                                                                                        "libraryName": "FHIRHelpers",
+                                                                                        "type": "FunctionRef",
+                                                                                        "operand": [
+                                                                                            {
+                                                                                                "path": "code",
+                                                                                                "scope": "P",
+                                                                                                "type": "Property"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "8867-4",
+                                                                            "type": "CodeRef"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "In",
+                                                                    "operand": [
+                                                                        {
+                                                                            "name": "ToDateTime",
+                                                                            "libraryName": "FHIRHelpers",
+                                                                            "type": "FunctionRef",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "issued",
+                                                                                    "scope": "P",
+                                                                                    "type": "Property"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "Measurement Period",
+                                                                            "type": "ParameterRef"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         },
                                                         {
-                                                            "name": "Measurement Period",
-                                                            "type": "ParameterRef"
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "P",
+                                                                    "type": "Property"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "sort": {
+                                                    "by": [
+                                                        {
+                                                            "direction": "asc",
+                                                            "type": "ByExpression",
+                                                            "expression": {
+                                                                "name": "ToDateTime",
+                                                                "libraryName": "FHIRHelpers",
+                                                                "type": "FunctionRef",
+                                                                "operand": [
+                                                                    {
+                                                                        "name": "issued",
+                                                                        "type": "IdentifierRef"
+                                                                    }
+                                                                ]
+                                                            }
                                                         }
                                                     ]
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Not",
-                                            "operand": {
-                                                "type": "IsNull",
-                                                "operand": {
-                                                    "path": "value",
-                                                    "scope": "P",
-                                                    "type": "Property"
-                                                }
                                             }
                                         }
-                                    ]
-                                },
-                                "sort": {
-                                    "by": [
-                                        {
-                                            "direction": "asc",
-                                            "type": "ByExpression",
-                                            "expression": {
-                                                "name": "ToDateTime",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                    {
-                                                        "name": "issued",
-                                                        "type": "IdentifierRef"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
+                                    }
                                 }
-                            }
+                            ]
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "75",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1369,119 +1466,193 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "type": "Last",
-                            "source": {
-                                "type": "Query",
-                                "source": [
-                                    {
-                                        "alias": "P",
-                                        "expression": {
-                                            "dataType": "{http://hl7.org/fhir}Observation",
-                                            "type": "Retrieve"
-                                        }
-                                    }
-                                ],
-                                "relationship": [],
-                                "where": {
-                                    "type": "And",
-                                    "operand": [
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
                                         {
-                                            "type": "And",
-                                            "operand": [
-                                                {
-                                                    "type": "Equivalent",
-                                                    "operand": [
-                                                        {
-                                                            "type": "Indexer",
-                                                            "operand": [
-                                                                {
-                                                                    "path": "codes",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "ToConcept",
-                                                                        "libraryName": "FHIRHelpers",
-                                                                        "type": "FunctionRef",
-                                                                        "operand": [
-                                                                            {
-                                                                                "path": "code",
-                                                                                "scope": "P",
-                                                                                "type": "Property"
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                    "value": "0",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "name": "9279-1",
-                                                            "type": "CodeRef"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "In",
-                                                    "operand": [
-                                                        {
-                                                            "name": "ToDateTime",
+                                            "alias": "P",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Observation",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equivalent",
+                                        "operand": [
+                                            {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "codes",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "ToConcept",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
                                                             "operand": [
                                                                 {
-                                                                    "path": "issued",
+                                                                    "path": "code",
                                                                     "scope": "P",
                                                                     "type": "Property"
                                                                 }
                                                             ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "9279-1",
+                                                "type": "CodeRef"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "name": "ToString",
+                            "libraryName": "FHIRHelpers",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "asType": "{http://hl7.org/fhir}string",
+                                    "type": "As",
+                                    "operand": {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Last",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "P",
+                                                        "expression": {
+                                                            "dataType": "{http://hl7.org/fhir}Observation",
+                                                            "type": "Retrieve"
+                                                        }
+                                                    }
+                                                ],
+                                                "relationship": [],
+                                                "where": {
+                                                    "type": "And",
+                                                    "operand": [
+                                                        {
+                                                            "type": "And",
+                                                            "operand": [
+                                                                {
+                                                                    "type": "Equivalent",
+                                                                    "operand": [
+                                                                        {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "codes",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "ToConcept",
+                                                                                        "libraryName": "FHIRHelpers",
+                                                                                        "type": "FunctionRef",
+                                                                                        "operand": [
+                                                                                            {
+                                                                                                "path": "code",
+                                                                                                "scope": "P",
+                                                                                                "type": "Property"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "9279-1",
+                                                                            "type": "CodeRef"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "In",
+                                                                    "operand": [
+                                                                        {
+                                                                            "name": "ToDateTime",
+                                                                            "libraryName": "FHIRHelpers",
+                                                                            "type": "FunctionRef",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "issued",
+                                                                                    "scope": "P",
+                                                                                    "type": "Property"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "Measurement Period",
+                                                                            "type": "ParameterRef"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         },
                                                         {
-                                                            "name": "Measurement Period",
-                                                            "type": "ParameterRef"
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "P",
+                                                                    "type": "Property"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "sort": {
+                                                    "by": [
+                                                        {
+                                                            "direction": "asc",
+                                                            "type": "ByExpression",
+                                                            "expression": {
+                                                                "name": "ToDateTime",
+                                                                "libraryName": "FHIRHelpers",
+                                                                "type": "FunctionRef",
+                                                                "operand": [
+                                                                    {
+                                                                        "name": "issued",
+                                                                        "type": "IdentifierRef"
+                                                                    }
+                                                                ]
+                                                            }
                                                         }
                                                     ]
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Not",
-                                            "operand": {
-                                                "type": "IsNull",
-                                                "operand": {
-                                                    "path": "value",
-                                                    "scope": "P",
-                                                    "type": "Property"
-                                                }
                                             }
                                         }
-                                    ]
-                                },
-                                "sort": {
-                                    "by": [
-                                        {
-                                            "direction": "asc",
-                                            "type": "ByExpression",
-                                            "expression": {
-                                                "name": "ToDateTime",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                    {
-                                                        "name": "issued",
-                                                        "type": "IdentifierRef"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
+                                    }
                                 }
-                            }
+                            ]
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "18",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1490,119 +1661,193 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "type": "Last",
-                            "source": {
-                                "type": "Query",
-                                "source": [
-                                    {
-                                        "alias": "P",
-                                        "expression": {
-                                            "dataType": "{http://hl7.org/fhir}Observation",
-                                            "type": "Retrieve"
-                                        }
-                                    }
-                                ],
-                                "relationship": [],
-                                "where": {
-                                    "type": "And",
-                                    "operand": [
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
                                         {
-                                            "type": "And",
-                                            "operand": [
-                                                {
-                                                    "type": "Equivalent",
-                                                    "operand": [
-                                                        {
-                                                            "type": "Indexer",
-                                                            "operand": [
-                                                                {
-                                                                    "path": "codes",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "ToConcept",
-                                                                        "libraryName": "FHIRHelpers",
-                                                                        "type": "FunctionRef",
-                                                                        "operand": [
-                                                                            {
-                                                                                "path": "code",
-                                                                                "scope": "P",
-                                                                                "type": "Property"
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                    "value": "0",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "name": "8480-6",
-                                                            "type": "CodeRef"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "In",
-                                                    "operand": [
-                                                        {
-                                                            "name": "ToDateTime",
+                                            "alias": "P",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Observation",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equivalent",
+                                        "operand": [
+                                            {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "codes",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "ToConcept",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
                                                             "operand": [
                                                                 {
-                                                                    "path": "issued",
+                                                                    "path": "code",
                                                                     "scope": "P",
                                                                     "type": "Property"
                                                                 }
                                                             ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "8480-6",
+                                                "type": "CodeRef"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "name": "ToString",
+                            "libraryName": "FHIRHelpers",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "asType": "{http://hl7.org/fhir}string",
+                                    "type": "As",
+                                    "operand": {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Last",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "P",
+                                                        "expression": {
+                                                            "dataType": "{http://hl7.org/fhir}Observation",
+                                                            "type": "Retrieve"
+                                                        }
+                                                    }
+                                                ],
+                                                "relationship": [],
+                                                "where": {
+                                                    "type": "And",
+                                                    "operand": [
+                                                        {
+                                                            "type": "And",
+                                                            "operand": [
+                                                                {
+                                                                    "type": "Equivalent",
+                                                                    "operand": [
+                                                                        {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "codes",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "ToConcept",
+                                                                                        "libraryName": "FHIRHelpers",
+                                                                                        "type": "FunctionRef",
+                                                                                        "operand": [
+                                                                                            {
+                                                                                                "path": "code",
+                                                                                                "scope": "P",
+                                                                                                "type": "Property"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "8480-6",
+                                                                            "type": "CodeRef"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "In",
+                                                                    "operand": [
+                                                                        {
+                                                                            "name": "ToDateTime",
+                                                                            "libraryName": "FHIRHelpers",
+                                                                            "type": "FunctionRef",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "issued",
+                                                                                    "scope": "P",
+                                                                                    "type": "Property"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "Measurement Period",
+                                                                            "type": "ParameterRef"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         },
                                                         {
-                                                            "name": "Measurement Period",
-                                                            "type": "ParameterRef"
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "P",
+                                                                    "type": "Property"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "sort": {
+                                                    "by": [
+                                                        {
+                                                            "direction": "asc",
+                                                            "type": "ByExpression",
+                                                            "expression": {
+                                                                "name": "ToDateTime",
+                                                                "libraryName": "FHIRHelpers",
+                                                                "type": "FunctionRef",
+                                                                "operand": [
+                                                                    {
+                                                                        "name": "issued",
+                                                                        "type": "IdentifierRef"
+                                                                    }
+                                                                ]
+                                                            }
                                                         }
                                                     ]
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Not",
-                                            "operand": {
-                                                "type": "IsNull",
-                                                "operand": {
-                                                    "path": "value",
-                                                    "scope": "P",
-                                                    "type": "Property"
-                                                }
                                             }
                                         }
-                                    ]
-                                },
-                                "sort": {
-                                    "by": [
-                                        {
-                                            "direction": "asc",
-                                            "type": "ByExpression",
-                                            "expression": {
-                                                "name": "ToDateTime",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                    {
-                                                        "name": "issued",
-                                                        "type": "IdentifierRef"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
+                                    }
                                 }
-                            }
+                            ]
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "135",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1611,119 +1856,193 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "type": "Last",
-                            "source": {
-                                "type": "Query",
-                                "source": [
-                                    {
-                                        "alias": "P",
-                                        "expression": {
-                                            "dataType": "{http://hl7.org/fhir}Observation",
-                                            "type": "Retrieve"
-                                        }
-                                    }
-                                ],
-                                "relationship": [],
-                                "where": {
-                                    "type": "And",
-                                    "operand": [
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
                                         {
-                                            "type": "And",
-                                            "operand": [
-                                                {
-                                                    "type": "Equivalent",
-                                                    "operand": [
-                                                        {
-                                                            "type": "Indexer",
-                                                            "operand": [
-                                                                {
-                                                                    "path": "codes",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "ToConcept",
-                                                                        "libraryName": "FHIRHelpers",
-                                                                        "type": "FunctionRef",
-                                                                        "operand": [
-                                                                            {
-                                                                                "path": "code",
-                                                                                "scope": "P",
-                                                                                "type": "Property"
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                    "value": "0",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "name": "8462-4",
-                                                            "type": "CodeRef"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "In",
-                                                    "operand": [
-                                                        {
-                                                            "name": "ToDateTime",
+                                            "alias": "P",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Observation",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equivalent",
+                                        "operand": [
+                                            {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "codes",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "ToConcept",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
                                                             "operand": [
                                                                 {
-                                                                    "path": "issued",
+                                                                    "path": "code",
                                                                     "scope": "P",
                                                                     "type": "Property"
                                                                 }
                                                             ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "8462-4",
+                                                "type": "CodeRef"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "name": "ToString",
+                            "libraryName": "FHIRHelpers",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "asType": "{http://hl7.org/fhir}string",
+                                    "type": "As",
+                                    "operand": {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Last",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "P",
+                                                        "expression": {
+                                                            "dataType": "{http://hl7.org/fhir}Observation",
+                                                            "type": "Retrieve"
+                                                        }
+                                                    }
+                                                ],
+                                                "relationship": [],
+                                                "where": {
+                                                    "type": "And",
+                                                    "operand": [
+                                                        {
+                                                            "type": "And",
+                                                            "operand": [
+                                                                {
+                                                                    "type": "Equivalent",
+                                                                    "operand": [
+                                                                        {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "codes",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "ToConcept",
+                                                                                        "libraryName": "FHIRHelpers",
+                                                                                        "type": "FunctionRef",
+                                                                                        "operand": [
+                                                                                            {
+                                                                                                "path": "code",
+                                                                                                "scope": "P",
+                                                                                                "type": "Property"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "8462-4",
+                                                                            "type": "CodeRef"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "In",
+                                                                    "operand": [
+                                                                        {
+                                                                            "name": "ToDateTime",
+                                                                            "libraryName": "FHIRHelpers",
+                                                                            "type": "FunctionRef",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "issued",
+                                                                                    "scope": "P",
+                                                                                    "type": "Property"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "Measurement Period",
+                                                                            "type": "ParameterRef"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         },
                                                         {
-                                                            "name": "Measurement Period",
-                                                            "type": "ParameterRef"
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "P",
+                                                                    "type": "Property"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "sort": {
+                                                    "by": [
+                                                        {
+                                                            "direction": "asc",
+                                                            "type": "ByExpression",
+                                                            "expression": {
+                                                                "name": "ToDateTime",
+                                                                "libraryName": "FHIRHelpers",
+                                                                "type": "FunctionRef",
+                                                                "operand": [
+                                                                    {
+                                                                        "name": "issued",
+                                                                        "type": "IdentifierRef"
+                                                                    }
+                                                                ]
+                                                            }
                                                         }
                                                     ]
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Not",
-                                            "operand": {
-                                                "type": "IsNull",
-                                                "operand": {
-                                                    "path": "value",
-                                                    "scope": "P",
-                                                    "type": "Property"
-                                                }
                                             }
                                         }
-                                    ]
-                                },
-                                "sort": {
-                                    "by": [
-                                        {
-                                            "direction": "asc",
-                                            "type": "ByExpression",
-                                            "expression": {
-                                                "name": "ToDateTime",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                    {
-                                                        "name": "issued",
-                                                        "type": "IdentifierRef"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
+                                    }
                                 }
-                            }
+                            ]
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "89",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -1732,119 +2051,193 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "type": "Last",
-                            "source": {
-                                "type": "Query",
-                                "source": [
-                                    {
-                                        "alias": "P",
-                                        "expression": {
-                                            "dataType": "{http://hl7.org/fhir}Observation",
-                                            "type": "Retrieve"
-                                        }
-                                    }
-                                ],
-                                "relationship": [],
-                                "where": {
-                                    "type": "And",
-                                    "operand": [
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
+                                "operand": {
+                                    "type": "Query",
+                                    "source": [
                                         {
-                                            "type": "And",
-                                            "operand": [
-                                                {
-                                                    "type": "Equivalent",
-                                                    "operand": [
-                                                        {
-                                                            "type": "Indexer",
-                                                            "operand": [
-                                                                {
-                                                                    "path": "codes",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "ToConcept",
-                                                                        "libraryName": "FHIRHelpers",
-                                                                        "type": "FunctionRef",
-                                                                        "operand": [
-                                                                            {
-                                                                                "path": "code",
-                                                                                "scope": "P",
-                                                                                "type": "Property"
-                                                                            }
-                                                                        ]
-                                                                    }
-                                                                },
-                                                                {
-                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                    "value": "0",
-                                                                    "type": "Literal"
-                                                                }
-                                                            ]
-                                                        },
-                                                        {
-                                                            "name": "8310-5",
-                                                            "type": "CodeRef"
-                                                        }
-                                                    ]
-                                                },
-                                                {
-                                                    "type": "In",
-                                                    "operand": [
-                                                        {
-                                                            "name": "ToDateTime",
+                                            "alias": "P",
+                                            "expression": {
+                                                "dataType": "{http://hl7.org/fhir}Observation",
+                                                "type": "Retrieve"
+                                            }
+                                        }
+                                    ],
+                                    "relationship": [],
+                                    "where": {
+                                        "type": "Equivalent",
+                                        "operand": [
+                                            {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                    {
+                                                        "path": "codes",
+                                                        "type": "Property",
+                                                        "source": {
+                                                            "name": "ToConcept",
                                                             "libraryName": "FHIRHelpers",
                                                             "type": "FunctionRef",
                                                             "operand": [
                                                                 {
-                                                                    "path": "issued",
+                                                                    "path": "code",
                                                                     "scope": "P",
                                                                     "type": "Property"
                                                                 }
                                                             ]
+                                                        }
+                                                    },
+                                                    {
+                                                        "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                        "value": "0",
+                                                        "type": "Literal"
+                                                    }
+                                                ]
+                                            },
+                                            {
+                                                "name": "8310-5",
+                                                "type": "CodeRef"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "then": {
+                            "name": "ToString",
+                            "libraryName": "FHIRHelpers",
+                            "type": "FunctionRef",
+                            "operand": [
+                                {
+                                    "asType": "{http://hl7.org/fhir}string",
+                                    "type": "As",
+                                    "operand": {
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "type": "Last",
+                                            "source": {
+                                                "type": "Query",
+                                                "source": [
+                                                    {
+                                                        "alias": "P",
+                                                        "expression": {
+                                                            "dataType": "{http://hl7.org/fhir}Observation",
+                                                            "type": "Retrieve"
+                                                        }
+                                                    }
+                                                ],
+                                                "relationship": [],
+                                                "where": {
+                                                    "type": "And",
+                                                    "operand": [
+                                                        {
+                                                            "type": "And",
+                                                            "operand": [
+                                                                {
+                                                                    "type": "Equivalent",
+                                                                    "operand": [
+                                                                        {
+                                                                            "type": "Indexer",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "codes",
+                                                                                    "type": "Property",
+                                                                                    "source": {
+                                                                                        "name": "ToConcept",
+                                                                                        "libraryName": "FHIRHelpers",
+                                                                                        "type": "FunctionRef",
+                                                                                        "operand": [
+                                                                                            {
+                                                                                                "path": "code",
+                                                                                                "scope": "P",
+                                                                                                "type": "Property"
+                                                                                            }
+                                                                                        ]
+                                                                                    }
+                                                                                },
+                                                                                {
+                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                                                    "value": "0",
+                                                                                    "type": "Literal"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "8310-5",
+                                                                            "type": "CodeRef"
+                                                                        }
+                                                                    ]
+                                                                },
+                                                                {
+                                                                    "type": "In",
+                                                                    "operand": [
+                                                                        {
+                                                                            "name": "ToDateTime",
+                                                                            "libraryName": "FHIRHelpers",
+                                                                            "type": "FunctionRef",
+                                                                            "operand": [
+                                                                                {
+                                                                                    "path": "issued",
+                                                                                    "scope": "P",
+                                                                                    "type": "Property"
+                                                                                }
+                                                                            ]
+                                                                        },
+                                                                        {
+                                                                            "name": "Measurement Period",
+                                                                            "type": "ParameterRef"
+                                                                        }
+                                                                    ]
+                                                                }
+                                                            ]
                                                         },
                                                         {
-                                                            "name": "Measurement Period",
-                                                            "type": "ParameterRef"
+                                                            "type": "Not",
+                                                            "operand": {
+                                                                "type": "IsNull",
+                                                                "operand": {
+                                                                    "path": "value",
+                                                                    "scope": "P",
+                                                                    "type": "Property"
+                                                                }
+                                                            }
+                                                        }
+                                                    ]
+                                                },
+                                                "sort": {
+                                                    "by": [
+                                                        {
+                                                            "direction": "asc",
+                                                            "type": "ByExpression",
+                                                            "expression": {
+                                                                "name": "ToDateTime",
+                                                                "libraryName": "FHIRHelpers",
+                                                                "type": "FunctionRef",
+                                                                "operand": [
+                                                                    {
+                                                                        "name": "issued",
+                                                                        "type": "IdentifierRef"
+                                                                    }
+                                                                ]
+                                                            }
                                                         }
                                                     ]
                                                 }
-                                            ]
-                                        },
-                                        {
-                                            "type": "Not",
-                                            "operand": {
-                                                "type": "IsNull",
-                                                "operand": {
-                                                    "path": "value",
-                                                    "scope": "P",
-                                                    "type": "Property"
-                                                }
                                             }
                                         }
-                                    ]
-                                },
-                                "sort": {
-                                    "by": [
-                                        {
-                                            "direction": "asc",
-                                            "type": "ByExpression",
-                                            "expression": {
-                                                "name": "ToDateTime",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                    {
-                                                        "name": "issued",
-                                                        "type": "IdentifierRef"
-                                                    }
-                                                ]
-                                            }
-                                        }
-                                    ]
+                                    }
                                 }
-                            }
+                            ]
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "99.8",
+                            "type": "Literal"
                         }
                     }
                 },
@@ -2598,78 +2991,7 @@
                                     }
                                 }
                             ],
-                            "relationship": [],
-                            "where": {
-                                "type": "And",
-                                "operand": [
-                                    {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "value",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "identifier",
-                                                                "scope": "p",
-                                                                "type": "Property"
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "1932102951",
-                                                "type": "Literal"
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "identifier",
-                                                                "scope": "p",
-                                                                "type": "Property"
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org.fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
-                                    }
-                                ]
-                            }
+                            "relationship": []
                         }
                     }
                 },
@@ -2781,74 +3103,97 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "value",
-                            "type": "Property",
-                            "source": {
-                                "type": "SingletonFrom",
+                        "type": "If",
+                        "condition": {
+                            "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                            "type": "As",
+                            "operand": {
+                                "type": "Exists",
                                 "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "tele",
-                                            "expression": {
-                                                "path": "telecom",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "Requestor",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "And",
-                                        "operand": [
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "system",
-                                                            "scope": "tele",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "phone",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "use",
-                                                            "scope": "tele",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "work",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            }
-                                        ]
+                                    "path": "telecom",
+                                    "type": "Property",
+                                    "source": {
+                                        "name": "Requestor",
+                                        "type": "ExpressionRef"
                                     }
                                 }
                             }
+                        },
+                        "then": {
+                            "path": "value",
+                            "type": "Property",
+                            "source": {
+                                "path": "value",
+                                "type": "Property",
+                                "source": {
+                                    "type": "SingletonFrom",
+                                    "operand": {
+                                        "type": "Query",
+                                        "source": [
+                                            {
+                                                "alias": "tele",
+                                                "expression": {
+                                                    "path": "telecom",
+                                                    "type": "Property",
+                                                    "source": {
+                                                        "name": "Requestor",
+                                                        "type": "ExpressionRef"
+                                                    }
+                                                }
+                                            }
+                                        ],
+                                        "relationship": [],
+                                        "where": {
+                                            "type": "And",
+                                            "operand": [
+                                                {
+                                                    "type": "Equal",
+                                                    "operand": [
+                                                        {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "path": "system",
+                                                                "scope": "tele",
+                                                                "type": "Property"
+                                                            }
+                                                        },
+                                                        {
+                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                            "value": "phone",
+                                                            "type": "Literal"
+                                                        }
+                                                    ]
+                                                },
+                                                {
+                                                    "type": "Equal",
+                                                    "operand": [
+                                                        {
+                                                            "path": "value",
+                                                            "type": "Property",
+                                                            "source": {
+                                                                "path": "use",
+                                                                "scope": "tele",
+                                                                "type": "Property"
+                                                            }
+                                                        },
+                                                        {
+                                                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                                            "value": "work",
+                                                            "type": "Literal"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "else": {
+                            "valueType": "{urn:hl7-org:elm-types:r1}String",
+                            "value": "(257) 563-7401",
+                            "type": "Literal"
                         }
                     }
                 },

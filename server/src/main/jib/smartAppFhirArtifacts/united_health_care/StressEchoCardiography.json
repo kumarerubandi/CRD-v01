@@ -125,18 +125,6 @@
              },
              {
                 "linkId":"2.3",
-                "text":"Physician/Practitioner PTAN",
-                "type":"string",
-                "required":false,
-                "extension":[
-                   {
-                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"PractitionerPTAN"
-                   }
-                ]
-             },
-             {
-                "linkId":"2.4",
                 "text":"Physician/Practitioner’s Address",
                 "type":"string",
                 "required":true,

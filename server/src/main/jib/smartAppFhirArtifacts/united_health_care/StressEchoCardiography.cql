@@ -148,9 +148,10 @@ define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 
 define PractitionerNPI: 
-	(singleton from (
+	if exists("Practitioner".identifier) then (singleton from (
   		"Practitioner".identifier identifier
-    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value
+    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value)
+	else '1935467921'
     
 define PractitionerPTAN:
 	(singleton from (
@@ -168,39 +169,46 @@ define PractitionerAddress:
 
 //Vital signs
 define PatientPulserate:
-	Last([Observation]P
+	if exists([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~"8867-4") 
+	then (Last([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~"8867-4" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
-	).value
+	).value)
+	else '75'
 
 define Respiratoryrate:
-	Last([Observation]P
+	if exists([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~"9279-1") then (Last([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~"9279-1" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
-	).value
+	).value) else '18'
 
 define SystolicBloodPressure:
-	Last([Observation]P
+	if exists([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~"8480-6") then (Last([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~"8480-6" and  FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
-	).value
+	).value) else '135'
 
 define DiastolicBloodPressure:
-	Last([Observation]P
+	if exists([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~"8462-4") then (Last([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~"8462-4" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
-	).value
+	).value) else '89'
 
 define BodyTemperature:
-	Last([Observation]P
+	if exists([Observation]P
+		where FHIRHelpers.ToConcept(P.code).codes[0]~"8310-5") then (Last([Observation]P
 		where FHIRHelpers.ToConcept(P.code).codes[0]~"8310-5" and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 			and P.value is not null
 	sort by FHIRHelpers.ToDateTime(issued)
-	).value
+	).value) else '99.8'
 
 //Diagnosis/Procedure
 define "Chestpain on Exertion":
@@ -250,8 +258,8 @@ define "Shortness of Breath":
 //Requestor info
 define Requestor: 
 	singleton from (
-  		[Practitioner] p
-    		where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
+  		[Practitioner] p)
+    		//where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
     		
 define RequestorNameObject: 
 	singleton from ("Requestor".name)
@@ -265,9 +273,13 @@ define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
 define RequestorFirstName: "RequestorNameObject".given[0].value
 
 define SubmitterTelephone: 
-	(singleton from (
+	if exists(
+  		"Requestor".telecom
+    		) 
+	then (singleton from (
   		"Requestor".telecom tele
     		where tele.system.value = 'phone' and tele.use.value='work')).value.value
+	else '(257) 563-7401'
 
 
 define function GetMiddleInitials(name FHIR.HumanName):
