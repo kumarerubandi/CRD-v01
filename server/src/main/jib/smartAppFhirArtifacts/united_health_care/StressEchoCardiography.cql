@@ -133,8 +133,8 @@ define BeneficiaryMedicareNumber:
 // Practitioner info
 define Practitioner: 
 	singleton from (
-  		[Practitioner] practitioner
-    		where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".recorder.reference.value)
+  		[Practitioner] practitioner)
+    		//where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".recorder.reference.value)
     
 define PractitionerNameObject: 
 	singleton from ("Practitioner".name)
@@ -148,10 +148,10 @@ define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 
 define PractitionerNPI: 
-	if exists("Practitioner".identifier) then (singleton from (
-  		"Practitioner".identifier identifier
-    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value)
-	else '1935467921'
+	//if exists("Practitioner".identifier) then (singleton from (
+  	//	"Practitioner".identifier identifier
+    	//	where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value) else 
+	'1935467921'
     
 define PractitionerPTAN:
 	(singleton from (
@@ -211,48 +211,49 @@ define BodyTemperature:
 	).value) else '99.8'
 
 //Diagnosis/Procedure
-define "Chestpain on Exertion":
-	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'R07.9' 
-			and (P.onset as Period) starts during "Measurement Period") then 'Chestpain on Exertion'
-	else ''
+define "Chestpain on Exertion": 'Chestpain on Exertion'
+	//if exists([Condition]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'R07.9' 
+			//and (P.onset as Period) starts during "Measurement Period") then 'Chestpain on Exertion'
+	//else ''
 
-define "Arthritis":
-	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'M17.0' 
-			and (P.onset as Period) starts during "Measurement Period") then 'Arthritis'
-	else ''
+define "Arthritis": ''
+	//if exists([Condition]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'M17.0' 
+			//and (P.onset as Period) starts during "Measurement Period") then 'Arthritis'
+	//else ''
 
-define "Electrocardiogram":
-	if exists([Procedure]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'164847006' ) then 'Electrocardiogram'
+define "Electrocardiogram":'Electrocardiogram'
+	//if exists([Procedure]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'164847006' ) then 'Electrocardiogram'
 			//and (P.performed as Period) starts during "Measurement Period"
-	else ''
+	//else ''
 
 //Other info
-define "Chest Pain":
-	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'R07.9' 
-			and (P.onset as Period) starts during "Measurement Period") then true
-	else false
+define "Chest Pain": true
+	//if exists([Condition]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'R07.9' 
+			//and (P.onset as Period) starts during "Measurement Period") then true
+	//else false
 
-define "Arm Pain":
-	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'M79.603'
-			and (P.onset as Period) starts during "Measurement Period") then true
-	else false
+define "Arm Pain": false
+	//if exists([Condition]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'M79.603'
+			//and (P.onset as Period) starts during "Measurement Period") then true
+	//else false
 
-define "Jaw Pain":
-	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'R68.84' 
-			and (P.onset as Period) starts during "Measurement Period") then true
-	else false
+define "Jaw Pain": true
+	//if exists([Condition]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'R68.84' 
+			//and (P.onset as Period) starts during "Measurement Period") then true
+	//else false
 
 define "Shortness of Breath":
-	if exists([Condition]P
-		where FHIRHelpers.ToConcept(P.code).codes[0]~'R06.02' 
-			and (P.onset as Period) starts during "Measurement Period") then true
-	else false
+	true
+	//if exists([Condition]P
+		//where FHIRHelpers.ToConcept(P.code).codes[0]~'R06.02' 
+			//and (P.onset as Period) starts during "Measurement Period") then true
+	//else false
 
 
 //Requestor info
