@@ -17,7 +17,7 @@
     {
       "url": "http://hl7.org/fhir/StructureDefinition/cqif-library",
       "valueReference": {
-        "reference": "urn:hl7:davinci:crd:library-home-oxygen-prepopulate"
+        "reference": "urn:hl7:davinci:crd:united_health_care:library-home-oxygen-prepopulate"
       }
     }
   ],
