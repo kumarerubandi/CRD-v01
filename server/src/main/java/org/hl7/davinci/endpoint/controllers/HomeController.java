@@ -64,6 +64,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import java.io.FileWriter;  
 import java.io.FileReader;  
+import java.sql.*;  
 
 
 
@@ -611,7 +612,28 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	      System.out.println(splitPath.length > 1);
 	      System.out.println(splitPath.length + "  " + basePathOfClass.split("build/classes/java/main/").length );
 	      boolean fileCreated = false;
-	      String filename = "";
+	      String filename = "";     
+	      String launchKey = this.getSaltString();
+
+    	  Class.forName("com.mysql.cj.jdbc.Driver");  
+	      Connection con=DriverManager.getConnection(  
+	      "jdbc:mysql://localhost:3306/crd","prathima","prathima");  
+	      Statement stmt=con.createStatement();  
+//		      ResultSet rs=stmt.executeQuery("select * from launchContext;");  
+//		      System.out.println("))))))))))))))))"); 
+//		      while(rs.next())
+//		      {   
+//		          System.out.println(rs.getString(1));    //First Column
+//		          System.out.println(rs.getString(2));    //Second Column
+//		   
+//		      }
+	      PreparedStatement pstmt = con.prepareStatement("INSERT INTO launchContext (id,context_json) values (?, ?)");
+
+//	      stmt.execute("INSERT INTO launchContext (id,context_json) values(\""+launchKey+"\",'"+appContext.toString().replace("\"","\\\"")+"'");
+       
+	      pstmt.setString(1,launchKey);
+	      pstmt.setObject(2,appContext+"");
+	      pstmt.executeUpdate();
 //	      String launchKey = "";
 	      if(splitPath.length == 1) {
 //	    	  File filesDirectory = new File(splitPath[0]+"src/main/jib/smartAppFhirArtifacts");
@@ -620,7 +642,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	    	org.json.simple.JSONObject fileObj = (org.json.simple.JSONObject)obj;
 
 
-            String launchKey = this.getSaltString();
+            
 //            while(fileObj.has(launchKey)) {
 //            	launchKey = this.getSaltString();
 //            }
