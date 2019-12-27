@@ -30,6 +30,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-data-rest')
     compile('org.springframework.boot:spring-boot-starter-thymeleaf')
     compile('org.springframework.boot:spring-boot-starter-security')
+    runtimeOnly 'mysql:mysql-connector-java'
     
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.9.3'
 	

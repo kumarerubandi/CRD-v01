@@ -21,6 +21,9 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.core.io.support.ResourcePatternResolver;
 import org.zeroturnaround.zip.ZipUtil;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import javax.sql.DataSource;
 
 @SpringBootApplication
 // Finds the FhirServlet and runs it
@@ -76,6 +79,12 @@ public class Application {
       }
     };
   }
+  
+//  @Bean(name = "dataSource2")
+//  @ConfigurationProperties("database2.datasource")
+//  public DataSource dataSource2(){
+//      return DataSourceBuilder.create().build();
+//  }
 
 
 }
