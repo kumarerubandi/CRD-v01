@@ -819,53 +819,18 @@
                                 "type": "Equal",
                                 "operand": [
                                     {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "Practitioner/",
-                                                "type": "Literal"
-                                            },
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "id",
-                                                    "scope": "practitioner",
-                                                    "type": "Property"
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
                                         "path": "value",
                                         "type": "Property",
                                         "source": {
-                                            "path": "reference",
-                                            "type": "Property",
-                                            "source": {
-                                                "path": "actor",
-                                                "type": "Property",
-                                                "source": {
-                                                    "type": "Indexer",
-                                                    "operand": [
-                                                        {
-                                                            "path": "performer",
-                                                            "type": "Property",
-                                                            "source": {
-                                                                "name": "NonEmergentAmbulanceTransport",
-                                                                "type": "ExpressionRef"
-                                                            }
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "0",
-                                                            "type": "Literal"
-                                                        }
-                                                    ]
-                                                }
-                                            }
+                                            "path": "id",
+                                            "scope": "practitioner",
+                                            "type": "Property"
                                         }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "4526007",
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -1460,55 +1425,13 @@
                     }
                 },
                 {
-                    "name": "PractitionerNPI",
+                    "name": "PractitionerTelephone",
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "value",
-                            "type": "Property",
-                            "source": {
-                                "type": "SingletonFrom",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "identifier",
-                                            "expression": {
-                                                "path": "identifier",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "Practitioner",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "scope": "identifier",
-                                                    "type": "Property"
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org/fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "(257) 563-7401",
+                        "type": "Literal"
                     }
                 },
                 {
@@ -1672,107 +1595,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "type": "Concatenate",
-                        "operand": [
-                            {
-                                "type": "Concatenate",
-                                "operand": [
-                                    {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "type": "Concatenate",
-                                                "operand": [
-                                                    {
-                                                        "type": "Concatenate",
-                                                        "operand": [
-                                                            {
-                                                                "type": "Concatenate",
-                                                                "operand": [
-                                                                    {
-                                                                        "path": "value",
-                                                                        "type": "Property",
-                                                                        "source": {
-                                                                            "type": "Indexer",
-                                                                            "operand": [
-                                                                                {
-                                                                                    "path": "line",
-                                                                                    "type": "Property",
-                                                                                    "source": {
-                                                                                        "name": "PractitionerAddressObject",
-                                                                                        "type": "ExpressionRef"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                                    "value": "0",
-                                                                                    "type": "Literal"
-                                                                                }
-                                                                            ]
-                                                                        }
-                                                                    },
-                                                                    {
-                                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                        "value": ", ",
-                                                                        "type": "Literal"
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "path": "value",
-                                                                "type": "Property",
-                                                                "source": {
-                                                                    "path": "city",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "PractitionerAddressObject",
-                                                                        "type": "ExpressionRef"
-                                                                    }
-                                                                }
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": ", ",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "state",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "name": "PractitionerAddressObject",
-                                                        "type": "ExpressionRef"
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                        "value": ", ",
-                                        "type": "Literal"
-                                    }
-                                ]
-                            },
-                            {
-                                "path": "value",
-                                "type": "Property",
-                                "source": {
-                                    "path": "postalCode",
-                                    "type": "Property",
-                                    "source": {
-                                        "name": "PractitionerAddressObject",
-                                        "type": "ExpressionRef"
-                                    }
-                                }
-                            }
-                        ]
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "1234 Blvd, Overland Park, KS, 66213",
+                        "type": "Literal"
                     }
                 },
                 {
@@ -1780,68 +1605,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "name",
-                            "type": "Property",
-                            "source": {
-                                "name": "AmbulanceSupplier",
-                                "type": "ExpressionRef"
-                            }
-                        }
-                    }
-                },
-                {
-                    "name": "AmbulanceSupplierNPI",
-                    "context": "Patient",
-                    "accessLevel": "Public",
-                    "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "value",
-                            "type": "Property",
-                            "source": {
-                                "type": "SingletonFrom",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "identifier",
-                                            "expression": {
-                                                "path": "identifier",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "AmbulanceSupplier",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "scope": "identifier",
-                                                    "type": "Property"
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org/fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "Nc Curdy, Michael",
+                        "type": "Literal"
                     }
                 },
                 {
@@ -1977,107 +1743,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "type": "Concatenate",
-                        "operand": [
-                            {
-                                "type": "Concatenate",
-                                "operand": [
-                                    {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "type": "Concatenate",
-                                                "operand": [
-                                                    {
-                                                        "type": "Concatenate",
-                                                        "operand": [
-                                                            {
-                                                                "type": "Concatenate",
-                                                                "operand": [
-                                                                    {
-                                                                        "path": "value",
-                                                                        "type": "Property",
-                                                                        "source": {
-                                                                            "type": "Indexer",
-                                                                            "operand": [
-                                                                                {
-                                                                                    "path": "line",
-                                                                                    "type": "Property",
-                                                                                    "source": {
-                                                                                        "name": "AmbulanceSupplierAddressObject",
-                                                                                        "type": "ExpressionRef"
-                                                                                    }
-                                                                                },
-                                                                                {
-                                                                                    "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                                    "value": "0",
-                                                                                    "type": "Literal"
-                                                                                }
-                                                                            ]
-                                                                        }
-                                                                    },
-                                                                    {
-                                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                                        "value": ", ",
-                                                                        "type": "Literal"
-                                                                    }
-                                                                ]
-                                                            },
-                                                            {
-                                                                "path": "value",
-                                                                "type": "Property",
-                                                                "source": {
-                                                                    "path": "city",
-                                                                    "type": "Property",
-                                                                    "source": {
-                                                                        "name": "AmbulanceSupplierAddressObject",
-                                                                        "type": "ExpressionRef"
-                                                                    }
-                                                                }
-                                                            }
-                                                        ]
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": ", ",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "state",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "name": "AmbulanceSupplierAddressObject",
-                                                        "type": "ExpressionRef"
-                                                    }
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
-                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                        "value": ", ",
-                                        "type": "Literal"
-                                    }
-                                ]
-                            },
-                            {
-                                "path": "value",
-                                "type": "Property",
-                                "source": {
-                                    "path": "postalCode",
-                                    "type": "Property",
-                                    "source": {
-                                        "name": "AmbulanceSupplierAddressObject",
-                                        "type": "ExpressionRef"
-                                    }
-                                }
-                            }
-                        ]
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "711-2800 Nulla St., Mankato, Mississippi, 96522",
+                        "type": "Literal"
                     }
                 },
                 {
@@ -5066,7 +4734,7 @@
                             "type": "Query",
                             "source": [
                                 {
-                                    "alias": "p",
+                                    "alias": "practitioner",
                                     "expression": {
                                         "dataType": "{http://hl7.org/fhir}Practitioner",
                                         "type": "Retrieve"
@@ -5075,73 +4743,21 @@
                             ],
                             "relationship": [],
                             "where": {
-                                "type": "And",
+                                "type": "Equal",
                                 "operand": [
                                     {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "value",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "identifier",
-                                                                "scope": "p",
-                                                                "type": "Property"
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "1932102951",
-                                                "type": "Literal"
-                                            }
-                                        ]
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "id",
+                                            "scope": "practitioner",
+                                            "type": "Property"
+                                        }
                                     },
                                     {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "identifier",
-                                                                "scope": "p",
-                                                                "type": "Property"
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org.fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "4526007",
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -5256,75 +4872,9 @@
                     "context": "Patient",
                     "accessLevel": "Public",
                     "expression": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                            "path": "value",
-                            "type": "Property",
-                            "source": {
-                                "type": "SingletonFrom",
-                                "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                        {
-                                            "alias": "tele",
-                                            "expression": {
-                                                "path": "telecom",
-                                                "type": "Property",
-                                                "source": {
-                                                    "name": "Requestor",
-                                                    "type": "ExpressionRef"
-                                                }
-                                            }
-                                        }
-                                    ],
-                                    "relationship": [],
-                                    "where": {
-                                        "type": "And",
-                                        "operand": [
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "system",
-                                                            "scope": "tele",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "phone",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            },
-                                            {
-                                                "type": "Equal",
-                                                "operand": [
-                                                    {
-                                                        "path": "value",
-                                                        "type": "Property",
-                                                        "source": {
-                                                            "path": "use",
-                                                            "scope": "tele",
-                                                            "type": "Property"
-                                                        }
-                                                    },
-                                                    {
-                                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                        "value": "work",
-                                                        "type": "Literal"
-                                                    }
-                                                ]
-                                            }
-                                        ]
-                                    }
-                                }
-                            }
-                        }
+                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                        "value": "(257) 563-7401",
+                        "type": "Literal"
                     }
                 },
                 {

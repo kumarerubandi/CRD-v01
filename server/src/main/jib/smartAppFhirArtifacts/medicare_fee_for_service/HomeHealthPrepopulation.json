@@ -590,53 +590,18 @@
                                 "type": "Equal",
                                 "operand": [
                                     {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "Practitioner/",
-                                                "type": "Literal"
-                                            },
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "id",
-                                                    "scope": "practitioner",
-                                                    "type": "Property"
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
                                         "path": "value",
                                         "type": "Property",
                                         "source": {
-                                            "path": "reference",
-                                            "type": "Property",
-                                            "source": {
-                                                "path": "actor",
-                                                "type": "Property",
-                                                "source": {
-                                                    "type": "Indexer",
-                                                    "operand": [
-                                                        {
-                                                            "path": "performer",
-                                                            "type": "Property",
-                                                            "source": {
-                                                                "name": "HomeHealthCare",
-                                                                "type": "ExpressionRef"
-                                                            }
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "0",
-                                                            "type": "Literal"
-                                                        }
-                                                    ]
-                                                }
-                                            }
+                                            "path": "id",
+                                            "scope": "practitioner",
+                                            "type": "Property"
                                         }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "mettles-Practitioner-1",
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -665,53 +630,18 @@
                                 "type": "Equal",
                                 "operand": [
                                     {
-                                        "type": "Concatenate",
-                                        "operand": [
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "Organization/",
-                                                "type": "Literal"
-                                            },
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "id",
-                                                    "scope": "agency",
-                                                    "type": "Property"
-                                                }
-                                            }
-                                        ]
-                                    },
-                                    {
                                         "path": "value",
                                         "type": "Property",
                                         "source": {
-                                            "path": "reference",
-                                            "type": "Property",
-                                            "source": {
-                                                "path": "onBehalfOf",
-                                                "type": "Property",
-                                                "source": {
-                                                    "type": "Indexer",
-                                                    "operand": [
-                                                        {
-                                                            "path": "performer",
-                                                            "type": "Property",
-                                                            "source": {
-                                                                "name": "HomeHealthCare",
-                                                                "type": "ExpressionRef"
-                                                            }
-                                                        },
-                                                        {
-                                                            "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                            "value": "0",
-                                                            "type": "Literal"
-                                                        }
-                                                    ]
-                                                }
-                                            }
+                                            "path": "id",
+                                            "scope": "agency",
+                                            "type": "Property"
                                         }
+                                    },
+                                    {
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "mettles-Organization-1",
+                                        "type": "Literal"
                                     }
                                 ]
                             }
@@ -2963,7 +2893,7 @@
                             "type": "Query",
                             "source": [
                                 {
-                                    "alias": "p",
+                                    "alias": "practitioner",
                                     "expression": {
                                         "dataType": "{http://hl7.org/fhir}Practitioner",
                                         "type": "Retrieve"
@@ -2972,73 +2902,21 @@
                             ],
                             "relationship": [],
                             "where": {
-                                "type": "And",
+                                "type": "Equal",
                                 "operand": [
                                     {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "value",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "identifier",
-                                                                "scope": "p",
-                                                                "type": "Property"
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "1932102951",
-                                                "type": "Literal"
-                                            }
-                                        ]
+                                        "path": "value",
+                                        "type": "Property",
+                                        "source": {
+                                            "path": "id",
+                                            "scope": "practitioner",
+                                            "type": "Property"
+                                        }
                                     },
                                     {
-                                        "type": "Equal",
-                                        "operand": [
-                                            {
-                                                "path": "value",
-                                                "type": "Property",
-                                                "source": {
-                                                    "path": "system",
-                                                    "type": "Property",
-                                                    "source": {
-                                                        "type": "Indexer",
-                                                        "operand": [
-                                                            {
-                                                                "path": "identifier",
-                                                                "scope": "p",
-                                                                "type": "Property"
-                                                            },
-                                                            {
-                                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                                "value": "0",
-                                                                "type": "Literal"
-                                                            }
-                                                        ]
-                                                    }
-                                                }
-                                            },
-                                            {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "http://hl7.org.fhir/sid/us-npi",
-                                                "type": "Literal"
-                                            }
-                                        ]
+                                        "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                        "value": "mettles-Practitioner-1",
+                                        "type": "Literal"
                                     }
                                 ]
                             }

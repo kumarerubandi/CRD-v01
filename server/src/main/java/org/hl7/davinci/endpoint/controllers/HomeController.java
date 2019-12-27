@@ -491,7 +491,7 @@ public class HomeController {
       
       String client_Id = "app-token";
 String client_secret = "48bf2c3e-2bd6-4f8d-a5ce-2f94adcb7492";
-HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
+HttpPost httpPost = new HttpPost("https://auth.mettles.com/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
 	    
 	    //String client_secret = "c6b0c305-6968-4a3a-875d-4fd0dcc0cd4f";
 	   // HttpPost httpPost = new HttpPost("https://valtest.mettles.com:8443/auth/realms/ClientFhirServer/protocol/openid-connect/token/introspect");
@@ -526,7 +526,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
       	
       		
 	        // execute method and handle any error responses.
-	    	URL url = new URL("http://localhost:4200/execute_cql");
+	    	URL url = new URL("http://localhost/cds/execute_cql");
 	        Gson gsonObj = new Gson();
 	        reqJson.put("request_for", "decision");
 	        String jsonStr = reqJson.toString();
@@ -927,7 +927,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	    }
       String client_Id = "app-token";
       String client_secret = "48bf2c3e-2bd6-4f8d-a5ce-2f94adcb7492";
-      HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
+      HttpPost httpPost = new HttpPost("https://auth.mettles.com/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
 	    
 	    //String client_secret = "c6b0c305-6968-4a3a-875d-4fd0dcc0cd4f";
 	    //HttpPost httpPost = new HttpPost("https://valtest.mettles.com:8443/auth/realms/ClientFhirServer/protocol/openid-connect/token/introspect");
@@ -1073,7 +1073,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 //	        	
 //	        }
 //	        applink.put("url",appLinkURL+"launch?launch="+filename.replace(".json", "")+"&iss="+inputjson.get("fhirServer").toString());
-	        applink.put("url","http://localhost:3005/launch");
+	        applink.put("url","http://localhost/launch");
 
 	        applink.put("type","smart");
 	        
@@ -1112,8 +1112,8 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 				  
 			 }
 //>>>>>>> Stashed changes
-	        applink.put("appContext",contextRes);
-	        applink.put("url","http://cdex.mettles.com:3005/launch?iss="+fhirServer+"&launch="+launchContextRes.getString("launchContext")+"&launchContextId="+launchContextRes.getString("launchContext"));
+	        applink.put("appContext",launchContextRes.getString("launchContext"));
+	        applink.put("url","http://localhost:3005/launch");
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
 	        links.add(applink);
@@ -1347,7 +1347,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	      
 	    String client_Id = "app-token";
 String client_secret = "48bf2c3e-2bd6-4f8d-a5ce-2f94adcb7492";
-HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
+HttpPost httpPost = new HttpPost("https://auth.mettles.com/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
 	    
 	    //String client_secret = "c6b0c305-6968-4a3a-875d-4fd0dcc0cd4f";
 	    //HttpPost httpPost = new HttpPost("https://valtest.mettles.com:8443/auth/realms/ClientFhirServer/protocol/openid-connect/token/introspect");
@@ -1464,7 +1464,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/Prov
 	      
 	    String client_Id = "app-token";
 	    String client_secret = "48bf2c3e-2bd6-4f8d-a5ce-2f94adcb7492";
-	    HttpPost httpPost = new HttpPost("https://auth.mettles.com:8443/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
+	    HttpPost httpPost = new HttpPost("https://auth.mettles.com/auth/realms/ProviderCredentials/protocol/openid-connect/token/introspect");
 	    List<NameValuePair> params = new ArrayList<NameValuePair>();
 	    params.add(new BasicNameValuePair("client_id", client_Id));
 	    params.add(new BasicNameValuePair("client_secret", client_secret));

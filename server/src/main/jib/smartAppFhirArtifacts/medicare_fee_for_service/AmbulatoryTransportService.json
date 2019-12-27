@@ -383,30 +383,6 @@
             },
             {
                "linkId":"2.2",
-               "text":"Physician/Practitioner NPI",
-               "type":"string",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"PractitionerNPI"
-                  }
-               ]
-            },
-            {
-               "linkId":"2.3",
-               "text":"Physician/Practitioner PTAN",
-               "type":"string",
-               "required":false,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"PractitionerPTAN"
-                  }
-               ]
-            },
-            {
-               "linkId":"2.4",
                "text":"Physician/Practitioner Address",
                "type":"string",
                "required":true,
@@ -418,7 +394,7 @@
                ]
             },
             {
-               "linkId":"2.5",
+               "linkId":"2.3",
                "text":"Physician/Practitioner Telephone",
                "type":"string",
                "required":false,
@@ -450,29 +426,6 @@
             },
             {
                "linkId":"3.2",
-               "text":"Ambulance Supplier NPI",
-               "type":"string",
-               "required":true,
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"AmbulanceSupplierNPI"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.4",
-               "text":"Ambulance Supplier PTAN",
-               "type":"string",
-               "extension":[
-                  {
-                     "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                     "valueString":"AmbulanceSupplierPTAN"
-                  }
-               ]
-            },
-            {
-               "linkId":"3.5",
                "text":"Ambulance Supplier Address",
                "type":"string",
                "required":true,
