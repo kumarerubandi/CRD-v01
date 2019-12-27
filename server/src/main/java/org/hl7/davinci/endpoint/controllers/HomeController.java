@@ -1091,7 +1091,7 @@ HttpPost httpPost = new HttpPost("https://auth.mettles.com/auth/realms/ProviderC
 			 }
 //>>>>>>> Stashed changes
 	        applink.put("appContext",launchContextRes.getString("launchContext"));
-	        applink.put("url","http://cdex.mettles.com/launch");
+	        applink.put("url","http://localhost:3005/launch");
 	        //	        applink.put("appContext",jsonObj.get("requirements"));
 ////	        applink.put("appContext", filename.replace(".json", ""));
 	        links.add(applink);
