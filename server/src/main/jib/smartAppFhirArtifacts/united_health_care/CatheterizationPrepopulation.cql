@@ -118,7 +118,7 @@ define BeneficiaryMedicareNumber:
 define Practitioner: 
 	singleton from (
   		[Practitioner] practitioner
-    		where ('Practitioner/' + practitioner.id.value) = "Catheterization".recorder.reference.value)
+    		where ('Practitioner/' + practitioner.id.value) = "Catheterization".performer[0].actor.reference.value)
     
 define PractitionerNameObject: 
 	singleton from ("Practitioner".name)
@@ -147,39 +147,39 @@ define ServiceDate: "Catheterization".performed.start.value
 //Diagnosis/Procedure
 define "Coronary Artery Disease":
 	if exists([Condition]P
-		where P.code.coding.code ='I25.10' 
-			and (P.onset as Period) starts during "Measurement Period") then 'Coronary Artery Disease'
+		where P.code.coding[0].code = 'I25.10')
+	then 'Coronary Artery Disease'
 	else ''
 define "Arthritis":
 	if exists([Condition]P
-		where P.code.coding.code ='M17.0' 
-			and (P.onset as Period) starts during "Measurement Period") then 'Arthritis'
+		where P.code.coding[0].code = 'M17.0')
+	then 'Arthritis'
 	else ''
 define "Electrocardiogram":
 	if exists([Procedure]P
-		where P.code.coding.code ='164847006' ) then 'Electrocardiogram'
-			//and (P.performed as Period) starts during "Measurement Period"
+		where P.code.coding[0].code ='164847006') 
+	then 'Electrocardiogram'
 	else ''
 define "Abnormal": 'abnormal'
 //Other info
 define "Chest Pain":
 	if exists([Condition]P
-		where P.code.coding.code ='R07.9' 
+		where P.code.coding[0].code ='R07.9' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 define "Arm Pain":
 	if exists([Condition]P
-		where P.code.coding.code ='M79.603' 
+		where P.code.coding[0].code ='M79.603' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 define "Jaw Pain":
 	if exists([Condition]P
-		where P.code.coding.code = 'R68.84' 
+		where P.code.coding[0].code = 'R68.84' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 define "Shortness of Breath":
 	if exists([Condition]P
-		where P.code.coding.code = 'R06.02' 
+		where P.code.coding[0].code = 'R06.02' 
 			and (P.onset as Period) starts during "Measurement Period") then true
 	else false
 //Requestor info
