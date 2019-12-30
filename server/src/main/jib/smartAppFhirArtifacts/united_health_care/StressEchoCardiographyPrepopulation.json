@@ -1409,12 +1409,13 @@
                      }
                   },
                   "then": {
-                     "name": "ToString",
-                     "libraryName": "FHIRHelpers",
-                     "type": "FunctionRef",
-                     "operand": [
-                        {
-                           "asType": "{http://hl7.org/fhir}string",
+                     "path": "value",
+                     "type": "Property",
+                     "source": {
+                        "path": "unit",
+                        "type": "Property",
+                        "source": {
+                           "strict": false,
                            "type": "As",
                            "operand": {
                               "path": "value",
@@ -1435,9 +1436,13 @@
                                     "relationship": []
                                  }
                               }
+                           },
+                           "asTypeSpecifier": {
+                              "name": "{http://hl7.org/fhir}Quantity",
+                              "type": "NamedTypeSpecifier"
                            }
                         }
-                     ]
+                     }
                   },
                   "else": {
                      "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -1529,12 +1534,13 @@
                      }
                   },
                   "then": {
-                     "name": "ToString",
-                     "libraryName": "FHIRHelpers",
-                     "type": "FunctionRef",
-                     "operand": [
-                        {
-                           "asType": "{http://hl7.org/fhir}string",
+                     "path": "value",
+                     "type": "Property",
+                     "source": {
+                        "path": "unit",
+                        "type": "Property",
+                        "source": {
+                           "strict": false,
                            "type": "As",
                            "operand": {
                               "path": "value",
@@ -1555,9 +1561,13 @@
                                     "relationship": []
                                  }
                               }
+                           },
+                           "asTypeSpecifier": {
+                              "name": "{http://hl7.org/fhir}Quantity",
+                              "type": "NamedTypeSpecifier"
                            }
                         }
-                     ]
+                     }
                   },
                   "else": {
                      "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -1593,150 +1603,42 @@
                               "type": "And",
                               "operand": [
                                  {
-                                    "type": "And",
+                                    "type": "Equal",
                                     "operand": [
                                        {
-                                          "type": "Equal",
+                                          "name": "ToString",
+                                          "libraryName": "FHIRHelpers",
+                                          "type": "FunctionRef",
                                           "operand": [
                                              {
-                                                "name": "ToString",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                   {
-                                                      "path": "code",
-                                                      "type": "Property",
-                                                      "source": {
-                                                         "type": "Indexer",
-                                                         "operand": [
-                                                            {
-                                                               "path": "coding",
-                                                               "type": "Property",
-                                                               "source": {
-                                                                  "path": "code",
-                                                                  "scope": "P",
-                                                                  "type": "Property"
-                                                               }
-                                                            },
-                                                            {
-                                                               "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                               "value": "0",
-                                                               "type": "Literal"
-                                                            }
-                                                         ]
+                                                "path": "code",
+                                                "type": "Property",
+                                                "source": {
+                                                   "type": "Indexer",
+                                                   "operand": [
+                                                      {
+                                                         "path": "coding",
+                                                         "type": "Property",
+                                                         "source": {
+                                                            "path": "code",
+                                                            "scope": "P",
+                                                            "type": "Property"
+                                                         }
+                                                      },
+                                                      {
+                                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                         "value": "0",
+                                                         "type": "Literal"
                                                       }
-                                                   }
-                                                ]
-                                             },
-                                             {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "55284-4",
-                                                "type": "Literal"
+                                                   ]
+                                                }
                                              }
                                           ]
                                        },
                                        {
-                                          "type": "Equal",
-                                          "operand": [
-                                             {
-                                                "name": "ToString",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                   {
-                                                      "path": "code",
-                                                      "type": "Property",
-                                                      "source": {
-                                                         "type": "Indexer",
-                                                         "operand": [
-                                                            {
-                                                               "type": "Flatten",
-                                                               "operand": {
-                                                                  "type": "Query",
-                                                                  "source": [
-                                                                     {
-                                                                        "alias": "$this",
-                                                                        "expression": {
-                                                                           "type": "Query",
-                                                                           "source": [
-                                                                              {
-                                                                                 "alias": "$this",
-                                                                                 "expression": {
-                                                                                    "path": "component",
-                                                                                    "scope": "P",
-                                                                                    "type": "Property"
-                                                                                 }
-                                                                              }
-                                                                           ],
-                                                                           "where": {
-                                                                              "type": "Not",
-                                                                              "operand": {
-                                                                                 "type": "IsNull",
-                                                                                 "operand": {
-                                                                                    "path": "code",
-                                                                                    "type": "Property",
-                                                                                    "source": {
-                                                                                       "name": "$this",
-                                                                                       "type": "AliasRef"
-                                                                                    }
-                                                                                 }
-                                                                              }
-                                                                           },
-                                                                           "return": {
-                                                                              "expression": {
-                                                                                 "path": "code",
-                                                                                 "type": "Property",
-                                                                                 "source": {
-                                                                                    "name": "$this",
-                                                                                    "type": "AliasRef"
-                                                                                 }
-                                                                              }
-                                                                           }
-                                                                        }
-                                                                     }
-                                                                  ],
-                                                                  "where": {
-                                                                     "type": "Not",
-                                                                     "operand": {
-                                                                        "type": "IsNull",
-                                                                        "operand": {
-                                                                           "path": "coding",
-                                                                           "type": "Property",
-                                                                           "source": {
-                                                                              "name": "$this",
-                                                                              "type": "AliasRef"
-                                                                           }
-                                                                        }
-                                                                     }
-                                                                  },
-                                                                  "return": {
-                                                                     "expression": {
-                                                                        "path": "coding",
-                                                                        "type": "Property",
-                                                                        "source": {
-                                                                           "name": "$this",
-                                                                           "type": "AliasRef"
-                                                                        }
-                                                                     }
-                                                                  }
-                                                               }
-                                                            },
-                                                            {
-                                                               "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                               "value": "0",
-                                                               "type": "Literal"
-                                                            }
-                                                         ]
-                                                      }
-                                                   }
-                                                ]
-                                             },
-                                             {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "8480-6",
-                                                "type": "Literal"
-                                             }
-                                          ]
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "8480-6",
+                                          "type": "Literal"
                                        }
                                     ]
                                  },
@@ -1757,12 +1659,13 @@
                      }
                   },
                   "then": {
-                     "name": "ToString",
-                     "libraryName": "FHIRHelpers",
-                     "type": "FunctionRef",
-                     "operand": [
-                        {
-                           "asType": "{http://hl7.org/fhir}string",
+                     "path": "value",
+                     "type": "Property",
+                     "source": {
+                        "path": "unit",
+                        "type": "Property",
+                        "source": {
+                           "strict": false,
                            "type": "As",
                            "operand": {
                               "path": "value",
@@ -1783,9 +1686,13 @@
                                     "relationship": []
                                  }
                               }
+                           },
+                           "asTypeSpecifier": {
+                              "name": "{http://hl7.org/fhir}Quantity",
+                              "type": "NamedTypeSpecifier"
                            }
                         }
-                     ]
+                     }
                   },
                   "else": {
                      "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -1821,150 +1728,42 @@
                               "type": "And",
                               "operand": [
                                  {
-                                    "type": "And",
+                                    "type": "Equal",
                                     "operand": [
                                        {
-                                          "type": "Equal",
+                                          "name": "ToString",
+                                          "libraryName": "FHIRHelpers",
+                                          "type": "FunctionRef",
                                           "operand": [
                                              {
-                                                "name": "ToString",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                   {
-                                                      "path": "code",
-                                                      "type": "Property",
-                                                      "source": {
-                                                         "type": "Indexer",
-                                                         "operand": [
-                                                            {
-                                                               "path": "coding",
-                                                               "type": "Property",
-                                                               "source": {
-                                                                  "path": "code",
-                                                                  "scope": "P",
-                                                                  "type": "Property"
-                                                               }
-                                                            },
-                                                            {
-                                                               "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                               "value": "0",
-                                                               "type": "Literal"
-                                                            }
-                                                         ]
+                                                "path": "code",
+                                                "type": "Property",
+                                                "source": {
+                                                   "type": "Indexer",
+                                                   "operand": [
+                                                      {
+                                                         "path": "coding",
+                                                         "type": "Property",
+                                                         "source": {
+                                                            "path": "code",
+                                                            "scope": "P",
+                                                            "type": "Property"
+                                                         }
+                                                      },
+                                                      {
+                                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                         "value": "0",
+                                                         "type": "Literal"
                                                       }
-                                                   }
-                                                ]
-                                             },
-                                             {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "55284-4",
-                                                "type": "Literal"
+                                                   ]
+                                                }
                                              }
                                           ]
                                        },
                                        {
-                                          "type": "Equal",
-                                          "operand": [
-                                             {
-                                                "name": "ToString",
-                                                "libraryName": "FHIRHelpers",
-                                                "type": "FunctionRef",
-                                                "operand": [
-                                                   {
-                                                      "path": "code",
-                                                      "type": "Property",
-                                                      "source": {
-                                                         "type": "Indexer",
-                                                         "operand": [
-                                                            {
-                                                               "type": "Flatten",
-                                                               "operand": {
-                                                                  "type": "Query",
-                                                                  "source": [
-                                                                     {
-                                                                        "alias": "$this",
-                                                                        "expression": {
-                                                                           "type": "Query",
-                                                                           "source": [
-                                                                              {
-                                                                                 "alias": "$this",
-                                                                                 "expression": {
-                                                                                    "path": "component",
-                                                                                    "scope": "P",
-                                                                                    "type": "Property"
-                                                                                 }
-                                                                              }
-                                                                           ],
-                                                                           "where": {
-                                                                              "type": "Not",
-                                                                              "operand": {
-                                                                                 "type": "IsNull",
-                                                                                 "operand": {
-                                                                                    "path": "code",
-                                                                                    "type": "Property",
-                                                                                    "source": {
-                                                                                       "name": "$this",
-                                                                                       "type": "AliasRef"
-                                                                                    }
-                                                                                 }
-                                                                              }
-                                                                           },
-                                                                           "return": {
-                                                                              "expression": {
-                                                                                 "path": "code",
-                                                                                 "type": "Property",
-                                                                                 "source": {
-                                                                                    "name": "$this",
-                                                                                    "type": "AliasRef"
-                                                                                 }
-                                                                              }
-                                                                           }
-                                                                        }
-                                                                     }
-                                                                  ],
-                                                                  "where": {
-                                                                     "type": "Not",
-                                                                     "operand": {
-                                                                        "type": "IsNull",
-                                                                        "operand": {
-                                                                           "path": "coding",
-                                                                           "type": "Property",
-                                                                           "source": {
-                                                                              "name": "$this",
-                                                                              "type": "AliasRef"
-                                                                           }
-                                                                        }
-                                                                     }
-                                                                  },
-                                                                  "return": {
-                                                                     "expression": {
-                                                                        "path": "coding",
-                                                                        "type": "Property",
-                                                                        "source": {
-                                                                           "name": "$this",
-                                                                           "type": "AliasRef"
-                                                                        }
-                                                                     }
-                                                                  }
-                                                               }
-                                                            },
-                                                            {
-                                                               "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                               "value": "1",
-                                                               "type": "Literal"
-                                                            }
-                                                         ]
-                                                      }
-                                                   }
-                                                ]
-                                             },
-                                             {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                                "value": "8462-4",
-                                                "type": "Literal"
-                                             }
-                                          ]
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "8462-4",
+                                          "type": "Literal"
                                        }
                                     ]
                                  },
@@ -1985,12 +1784,13 @@
                      }
                   },
                   "then": {
-                     "name": "ToString",
-                     "libraryName": "FHIRHelpers",
-                     "type": "FunctionRef",
-                     "operand": [
-                        {
-                           "asType": "{http://hl7.org/fhir}string",
+                     "path": "value",
+                     "type": "Property",
+                     "source": {
+                        "path": "unit",
+                        "type": "Property",
+                        "source": {
+                           "strict": false,
                            "type": "As",
                            "operand": {
                               "path": "value",
@@ -2011,9 +1811,13 @@
                                     "relationship": []
                                  }
                               }
+                           },
+                           "asTypeSpecifier": {
+                              "name": "{http://hl7.org/fhir}Quantity",
+                              "type": "NamedTypeSpecifier"
                            }
                         }
-                     ]
+                     }
                   },
                   "else": {
                      "valueType": "{urn:hl7-org:elm-types:r1}String",
@@ -2105,12 +1909,13 @@
                      }
                   },
                   "then": {
-                     "name": "ToString",
-                     "libraryName": "FHIRHelpers",
-                     "type": "FunctionRef",
-                     "operand": [
-                        {
-                           "asType": "{http://hl7.org/fhir}string",
+                     "path": "value",
+                     "type": "Property",
+                     "source": {
+                        "path": "unit",
+                        "type": "Property",
+                        "source": {
+                           "strict": false,
                            "type": "As",
                            "operand": {
                               "path": "value",
@@ -2131,9 +1936,13 @@
                                     "relationship": []
                                  }
                               }
+                           },
+                           "asTypeSpecifier": {
+                              "name": "{http://hl7.org/fhir}Quantity",
+                              "type": "NamedTypeSpecifier"
                            }
                         }
-                     ]
+                     }
                   },
                   "else": {
                      "valueType": "{urn:hl7-org:elm-types:r1}String",

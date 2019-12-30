@@ -173,33 +173,31 @@ define ServiceDate: "StressEchocardiography".performed.start.value
 define PatientPulserate:
 	if exists([Observation]P
 		where P.code.coding[0].code = '8867-4' and P.value is not null)
-	then (Last([Observation]P).value)
+	then (Last([Observation]P).value as Quantity).unit.value
 	else ''
 
 define PatientRespiratoryrate:
 	if exists([Observation]P
 		where P.code.coding[0].code = '9279-1' and P.value is not null) 
-	then (Last([Observation]P).value)
+	then (Last([Observation]P).value as Quantity).unit.value
 	else ''
 
 define SystolicBloodPressure:
 	if exists([Observation]P
-		where P.code.coding[0].code = '55284-4'  
-			and P.component.code.coding[0].code ='8480-6' 
-				and P.value is not null)
-	then (Last([Observation]P).value)
+		where P.code.coding[0].code = '8480-6' and P.value is not null)
+	then (Last([Observation]P).value as Quantity).unit.value
 	else ''
 
 define DiastolicBloodPressure:
 	if exists([Observation]P
-		where P.code.coding[0].code = '55284-4' and P.component.code.coding[1].code = '8462-4' and P.value is not null) 
-	then (Last([Observation]P).value)
+		where P.code.coding[0].code = '8462-4' and P.value is not null) 
+	then (Last([Observation]P).value as Quantity).unit.value
 	else ''
 
 define BodyTemperature:
 	if exists([Observation]P
 		where P.code.coding[0].code = '8310-5' and P.value is not null) 
-	then (Last([Observation]P).value) 
+	then (Last([Observation]P).value as Quantity).unit.value
 	else ''
 
 //Diagnosis/Procedure
