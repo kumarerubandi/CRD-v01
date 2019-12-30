@@ -118,25 +118,13 @@
             ]
         },
         {
-            "type": "Practitioner",
-            "codeFilter": [
-                {
-                    "path": "_id",
-                    "valueSetString": "4526007"
-                }
-            ]
-        },
-        {
             "type": "Condition",
             "codeFilter": [
                 {
-                    "path": "clinical-status",
-                    "valueSetString": "active"
+                    "path": "code",
+                    "valueSetString": "I25.10,R07.9,M17.0,M79.603,R68.84,R06.02"
                 }
             ]
-        },
-        {
-            "type": "Organization"
         },
         {
             "type": "Coverage"

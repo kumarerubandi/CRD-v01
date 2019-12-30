@@ -32,36 +32,45 @@
           "codeFilter":[
              {
                 "path":"code",
-                "valueSetString":"C8928"
+                "valueSetString":"93350"
              }
           ]
        },
        {
-          "type":"Procedure",
-          "codeFilter":[
-             {
-                "path":"code",
-                "valueSetString":"C8930"
-             }
-          ]
-       },
-       {
-          "type":"Practitioner",
-          "codeFilter":[
-             {
-                "path":"_id",
-                "valueSetString":"1070"
-             }
-          ]
-       },
+         "type":"Procedure",
+         "codeFilter":[
+            {
+               "path":"code",
+               "valueSetString":"93351"
+            }
+         ]
+      },
+      {
+         "type":"Procedure",
+         "codeFilter":[
+            {
+               "path":"code",
+               "valueSetString":"164847006"
+            }
+         ]
+      },
        {
           "type":"Condition",
           "codeFilter":[
              {
-                "path":"clinical-status",
-              "valueSetString":"active"	
+                "path":"code",
+              "valueSetString":"R07.9,M17.0,M79.603,R68.84,R06.02"	
              }
           ]
+       },
+       {
+          "type":"Observation",
+          "codeFilter":[
+             {
+             "path":"code",
+             "valueSetString": "8867-4,9279-1,8480-6,8462-4,8310-5"
+          }
+         ]
        },
        { 
           "type":"Coverage"
