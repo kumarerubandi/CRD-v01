@@ -95,6 +95,8 @@ define "F2FEncounterCodes": { '99354', '99355', '99356', '99357' }
 
 define "StressEchocardiographyCodes": { '93350', '93351'}
 
+
+
 define StressEchocardiography:
 	singleton from (
   		[Procedure] procedure
@@ -133,8 +135,8 @@ define BeneficiaryMedicareNumber:
 // Practitioner info
 define Practitioner: 
 	singleton from (
-  		[Practitioner]practitioner)
-    		//where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".recorder.reference.value)
+  		[Practitioner]practitioner
+    		where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".performer[0].actor.reference.value)
     
 define PractitionerNameObject: 
 	singleton from ("Practitioner".name)
@@ -151,8 +153,7 @@ define PractitionerNPI:
 	if exists("Practitioner".identifier) then ((singleton from (
   		"Practitioner".identifier identifier
     		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value) 
-    	else 
-	'1935467921'
+    	else ''
     
 define PractitionerPTAN:
 	(singleton from (
@@ -166,95 +167,82 @@ define PractitionerAddress:
 
 //Other info
 
-//define ServiceDate: "StressEchocardiography".performed.start.value
+define ServiceDate: "StressEchocardiography".performed.start.value
 
 //Vital signs
 define PatientPulserate:
 	if exists([Observation]P
-		where P.code.coding.code ='8867-4' and P.value is not null)
+		where P.code.coding[0].code = '8867-4' and P.value is not null)
 	then (Last([Observation]P).value)
-		//where FHIRHelpers.ToConcept(P.code).codes[0]~'8867-4' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
-	
 	else ''
 
 define PatientRespiratoryrate:
 	if exists([Observation]P
-		where P.code.coding.code ='9279-1' and P.value is not null) 
+		where P.code.coding[0].code = '9279-1' and P.value is not null) 
 	then (Last([Observation]P).value)
-		//where FHIRHelpers.ToConcept(P.code).codes[0]~'9279-1' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 	else ''
 
 define SystolicBloodPressure:
 	if exists([Observation]P
-		where P.code.coding.code ='55284-4' 
-			and P.component.code.coding.code ='8480-6' 
+		where P.code.coding[0].code = '55284-4'  
+			and P.component.code.coding[0].code ='8480-6' 
 				and P.value is not null)
-	then (Last([Observation]P).component.value)
-		//where FHIRHelpers.ToConcept(P.code).codes[0]~'8480-6' and  FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+	then (Last([Observation]P).value)
 	else ''
 
 define DiastolicBloodPressure:
 	if exists([Observation]P
-		where P.code.coding.code ='55284-4' and P.component.code.coding.code ='8462-4' and P.value is not null) 
-	then (Last([Observation]P).component.value)
-		//where FHIRHelpers.ToConcept(P.code).codes[0]~'8462-4' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
+		where P.code.coding[0].code = '55284-4' and P.component.code.coding[1].code = '8462-4' and P.value is not null) 
+	then (Last([Observation]P).value)
 	else ''
 
 define BodyTemperature:
 	if exists([Observation]P
-		where P.code.coding.code ='8310-5' and P.value is not null) 
+		where P.code.coding[0].code = '8310-5' and P.value is not null) 
 	then (Last([Observation]P).value) 
-		//where FHIRHelpers.ToConcept(P.code).codes[0]~'8310-5' and FHIRHelpers.ToDateTime(P.issued) during "Measurement Period"
 	else ''
 
 //Diagnosis/Procedure
 define "Chestpain on Exertion":
 	if exists([Condition]P
-		where P.code.coding.code ='R07.9')
-			//and (P.onset as Period) starts during "Measurement Period"
+		where P.code.coding[0].code ='R07.9')
 	then 'Chestpain on Exertion'
 	else ''
 
 define "Arthritis": 
 	if exists([Condition]P
-		where P.code.coding.code ='M17.0')
-			//and (P.onset as Period) starts during "Measurement Period") 
+		where P.code.coding[0].code = 'M17.0')
 	then 'Arthritis'
 	else ''
 
 define "Electrocardiogram":
 	if exists([Procedure]P
-		where P.code.coding.code ='164847006') 
+		where P.code.coding[0].code = '164847006') 
 	then 'Electrocardiogram'
-			//and (P.performed as Period) starts during "Measurement Period"
 	else ''
 
 //Other info
 define "Chest Pain":
 	if exists([Condition]P
-		where P.code.coding.code ='R07.9') 
-			//and (P.onset as Period) starts during "Measurement Period") 
+		where P.code.coding[0].code = 'R07.9') 
 	then true
 	else false
 
 define "Arm Pain": 
 	if exists([Condition]P
-		where P.code.coding.code ='M79.603')
-			//and (P.onset as Period) starts during "Measurement Period") 
+		where P.code.coding[0].code = 'M79.603')
 	then true
 	else false
 
 define "Jaw Pain":
 	if exists([Condition]P
-		where P.code.coding.code ='R68.84') 
-			//and (P.onset as Period) starts during "Measurement Period") 
+		where P.code.coding[0].code = 'R68.84') 
 	then true
 	else false
 
 define "Shortness of Breath":
 	if exists([Condition]P
-		where P.code.coding.code ='R06.02') 
-			//and (P.onset as Period) starts during "Measurement Period") 
+		where P.code.coding[0].code = 'R06.02')  
 	then true
 	else false
 
