@@ -82,13 +82,13 @@
              },
              {
                 "linkId":"1.3",
-                "text":"Beneficiary’s Identification Number",
+                "text":"Beneficiary’s Medicare Number",
                 "type":"string",
                 "required":true,
                 "extension":[
                    {
                       "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"BeneficiaryIdentificationNumber"
+                      "valueString":"BeneficiaryMedicareNumber"
                    }
                 ]
              }

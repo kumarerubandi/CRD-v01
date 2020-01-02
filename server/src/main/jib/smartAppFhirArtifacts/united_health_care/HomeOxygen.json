@@ -217,7 +217,7 @@
         {
           "linkId": "3.2",
           "text": "Arterial oxygen saturation (Patient on room air while at rest and awake when tested)",
-          "type": "quantity",
+          "type": "string",
           "required": false,
           "extension": [
             {
@@ -229,7 +229,7 @@
         {
           "linkId": "3.3",
           "text": "Arterial Partial Pressure of Oxygen (PO2) (Patient on room air while at rest and awake when tested)",
-          "type": "quantity",
+          "type": "string",
           "required": false,
           "extension": [
             {
@@ -241,7 +241,7 @@
         {
           "linkId": "3.4",
           "text": "Arterial oxygen saturation (Patient tested during exercise)",
-          "type": "quantity",
+          "type": "string",
           "required": false,
           "extension": [
             {
@@ -253,7 +253,7 @@
         {
           "linkId": "3.5",
           "text": "Arterial Partial Pressure of Oxygen (PO2) (Patient tested during exercise)",
-          "type": "quantity",
+          "type": "string",
           "required": false
         },
         {
@@ -334,7 +334,7 @@
         {
           "linkId": "3.11",
           "text": "Recent hematocrit result",
-          "type": "quantity",
+          "type": "string",
           "required": false,
           "enableWhen": [
             {
@@ -396,7 +396,7 @@
         {
           "linkId": "4.4b",
           "text": "Since > 4 LPM prescribed, enter arterial oxygen saturation or PO2 while patient was on 4 LPM in stable state.",
-          "type": "quantity",
+          "type": "string",
           "required": true,
           "enableWhen": [
             {
