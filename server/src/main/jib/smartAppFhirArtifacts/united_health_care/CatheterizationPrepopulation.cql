@@ -84,58 +84,36 @@ context Patient
 define "F2FEncounterCodes": { '99354', '99355', '99356', '99357' }
 define "StressEchocardiographyCodes": { '93350', '93351'}
 define "CatheterizationCodes": { '93452', '93453', '93454', '93455', '93456', '93457', '93458', '93459', '93460', '93461'}
-define CatheterizationProcedure:
-	singleton from([Procedure]procedure
-		where procedure.code.coding[0].code.value in "CatheterizationCodes")
-		
-define Catheterization:
-	if exists("CatheterizationProcedure")
-	then ("CatheterizationProcedure".code.coding[0].code.value)
-	else ''
-	
-define StressEchocardiographyProcedure:
-	[Procedure] procedure
-    		where procedure.code.coding[0].code.value in "StressEchocardiographyCodes"
-    		
- define StressEchocardiography:
-	if exists("StressEchocardiographyProcedure")
-	then ("StressEchocardiographyProcedure".code.coding[0].code.value)
-    else ''
+define "Catheterization":
+	singleton from (
+  		[Procedure] procedure
+    		where procedure.code.coding[0].code.value in "CatheterizationCodes"
+    		 )
     		
 define Today: Today()
 // Beneficiary info
-
 define BeneficiaryNameObject: 
 	singleton from (Patient.name name where name.use.value = 'official')
-
 define BeneficiaryName: 
 	PatientFirstName +' '+PatientMiddleInitial + ' '+ PatientLastName
 	//PatientFirstName + ' '+ PatientLastName
-
 define PatientLastName: "BeneficiaryNameObject".family.value
-
 define PatientMiddleInitial: 
 	if (Length("BeneficiaryNameObject".given)>1) then GetMiddleInitials("BeneficiaryNameObject")
 	else ''
-
 	
 define PatientFirstName: "BeneficiaryNameObject".given[0].value
-
 define BeneficiaryGender: Patient.gender.value
-
 define BeneficiaryDateOfBirth: Patient.birthDate.value
-
 define BeneficiaryIdentificationNumber:
 	(singleton from (
   	Patient.identifier identifier
    	 where identifier.system.value = 'http://hl7.org/fhir/sid/us-medicare')).value.value
-
 // Practitioner info
-
 define Practitioner: 
 	singleton from (
-  		[Practitioner]practitioner
-    		where ('Practitioner/' + practitioner.id.value) = "CatheterizationProcedure".performer[0].actor.reference.value)
+  		[Practitioner] practitioner
+    		where ('Practitioner/' + practitioner.id.value) = "Catheterization".performer[0].actor.reference.value)
     
 define PractitionerNameObject: 
 	singleton from ("Practitioner".name)
@@ -150,67 +128,65 @@ define PractitionerNPI:
 	if exists("Practitioner".identifier) then ((singleton from (
   		"Practitioner".identifier identifier
     		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value) 
-    	else ''
-    
+    	else 
+	'1935467921'
 define PractitionerPTAN:
 	(singleton from (
   		"Practitioner".identifier identifier
     		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
-define PractitionerAddress:  
+define PractitionerAddress: 
 	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
-
 //Other info
-//define ServiceDate: 
-//	if exists("CatheterizationProcedure")
-//	then ("CatheterizationProcedure".performed as DateTime)
-//	else ''
-
+define ServiceDate: "Catheterization".performed.start.value
 //Diagnosis/Procedure
-
 define "Coronary Artery Disease":
 	if exists([Condition]P
-		where P.code.coding[0].code = 'I25.10')
-	then 'Coronary Artery Disease'
+		where P.code.coding[0].code ='I25.10')
+			then 'Coronary Artery Disease'
 	else ''
 define "Arthritis":
 	if exists([Condition]P
-		where P.code.coding[0].code = 'M17.0')
-	then 'Arthritis'
+		where P.code.coding[0].code ='M17.0') 
+			then 'Arthritis'
 	else ''
 define "Electrocardiogram":
 	if exists([Procedure]P
-		where P.code.coding[0].code ='164847006') 
-	then 'Electrocardiogram'
+		where P.code.coding[0].code ='164847006' ) then 'Electrocardiogram'
 	else ''
+define StressEchocardiogram:
+	if exists([Procedure]P
+    		where P.code.coding[0].code.value in "StressEchocardiographyCodes")
+		then 'StressEchocardiography'
+	else ''
+    		
 define "Abnormal": 'abnormal'
 //Other info
 define "Chest Pain":
 	if exists([Condition]P
-		where P.code.coding[0].code ='R07.9' 
-			and (P.onset as Period) starts during "Measurement Period") then true
+		where P.code.coding[0].code ='R07.9')
+			 then true
 	else false
 define "Arm Pain":
 	if exists([Condition]P
-		where P.code.coding[0].code ='M79.603' 
-			and (P.onset as Period) starts during "Measurement Period") then true
+		where P.code.coding[0].code ='M79.603')
+			then true
 	else false
 define "Jaw Pain":
 	if exists([Condition]P
-		where P.code.coding[0].code = 'R68.84' 
-			and (P.onset as Period) starts during "Measurement Period") then true
+		where P.code.coding[0].code = 'R68.84')
+		then true
 	else false
 define "Shortness of Breath":
 	if exists([Condition]P
-		where P.code.coding[0].code = 'R06.02' 
-			and (P.onset as Period) starts during "Measurement Period") then true
+		where P.code.coding[0].code = 'R06.02')
+		then true
 	else false
-	
 //Requestor info
 define Requestor: 
 	singleton from (
-  		[Practitioner]practitioner)
-    		//where ('Practitioner/' + practitioner.id.value) = "StressEchocardiography".recorder.reference.value)
+  		[Practitioner] p
+    		where p.identifier[0].value.value = '1932102951' and p.identifier[0].system.value='http://hl7.org.fhir/sid/us-npi')
     		
 define RequestorNameObject: 
 	singleton from ("Requestor".name)
@@ -222,13 +198,9 @@ define RequestorLastName: "RequestorNameObject".family.value
 define RequestorMiddleInitial: GetMiddleInitials("RequestorNameObject")
 define RequestorFirstName: "RequestorNameObject".given[0].value
 define SubmitterTelephone: 
-	if exists(
-  		"Requestor".telecom
-    		) 
-	then (singleton from (
+	(singleton from (
   		"Requestor".telecom tele
     		where tele.system.value = 'phone' and tele.use.value='work')).value.value
-	else '(257) 563-7401'
 define function GetMiddleInitials(name FHIR.HumanName):
   Substring(Combine((name.given given return Substring(given.value,0,1)),', '),3)
 define function GetProcedure(ProcedureList List<Procedure>, ProcedureCode String):

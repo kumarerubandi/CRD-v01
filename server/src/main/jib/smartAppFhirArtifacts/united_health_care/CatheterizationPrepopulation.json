@@ -535,7 +535,7 @@
                }
             },
             {
-               "name": "CatheterizationProcedure",
+               "name": "Catheterization",
                "context": "Patient",
                "accessLevel": "Public",
                "expression": {
@@ -588,230 +588,6 @@
                            }
                         ]
                      }
-                  }
-               }
-            },
-            {
-               "name": "Catheterization",
-               "context": "Patient",
-               "accessLevel": "Public",
-               "expression": {
-                  "type": "If",
-                  "condition": {
-                     "asType": "{urn:hl7-org:elm-types:r1}Boolean",
-                     "type": "As",
-                     "operand": {
-                        "type": "Exists",
-                        "operand": {
-                           "type": "ToList",
-                           "operand": {
-                              "name": "CatheterizationProcedure",
-                              "type": "ExpressionRef"
-                           }
-                        }
-                     }
-                  },
-                  "then": {
-                     "path": "value",
-                     "type": "Property",
-                     "source": {
-                        "path": "code",
-                        "type": "Property",
-                        "source": {
-                           "type": "Indexer",
-                           "operand": [
-                              {
-                                 "path": "coding",
-                                 "type": "Property",
-                                 "source": {
-                                    "path": "code",
-                                    "type": "Property",
-                                    "source": {
-                                       "name": "CatheterizationProcedure",
-                                       "type": "ExpressionRef"
-                                    }
-                                 }
-                              },
-                              {
-                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                 "value": "0",
-                                 "type": "Literal"
-                              }
-                           ]
-                        }
-                     }
-                  },
-                  "else": {
-                     "valueType": "{urn:hl7-org:elm-types:r1}String",
-                     "value": "",
-                     "type": "Literal"
-                  }
-               }
-            },
-            {
-               "name": "StressEchocardiographyProcedure",
-               "context": "Patient",
-               "accessLevel": "Public",
-               "expression": {
-                  "type": "Query",
-                  "source": [
-                     {
-                        "alias": "procedure",
-                        "expression": {
-                           "dataType": "{http://hl7.org/fhir}Procedure",
-                           "type": "Retrieve"
-                        }
-                     }
-                  ],
-                  "relationship": [],
-                  "where": {
-                     "type": "In",
-                     "operand": [
-                        {
-                           "path": "value",
-                           "type": "Property",
-                           "source": {
-                              "path": "code",
-                              "type": "Property",
-                              "source": {
-                                 "type": "Indexer",
-                                 "operand": [
-                                    {
-                                       "path": "coding",
-                                       "type": "Property",
-                                       "source": {
-                                          "path": "code",
-                                          "scope": "procedure",
-                                          "type": "Property"
-                                       }
-                                    },
-                                    {
-                                       "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                       "value": "0",
-                                       "type": "Literal"
-                                    }
-                                 ]
-                              }
-                           }
-                        },
-                        {
-                           "name": "StressEchocardiographyCodes",
-                           "type": "ExpressionRef"
-                        }
-                     ]
-                  }
-               }
-            },
-            {
-               "name": "StressEchocardiography",
-               "context": "Patient",
-               "accessLevel": "Public",
-               "expression": {
-                  "type": "If",
-                  "condition": {
-                     "asType": "{urn:hl7-org:elm-types:r1}Boolean",
-                     "type": "As",
-                     "operand": {
-                        "type": "Exists",
-                        "operand": {
-                           "name": "StressEchocardiographyProcedure",
-                           "type": "ExpressionRef"
-                        }
-                     }
-                  },
-                  "then": {
-                     "path": "value",
-                     "type": "Property",
-                     "source": {
-                        "path": "code",
-                        "type": "Property",
-                        "source": {
-                           "type": "Indexer",
-                           "operand": [
-                              {
-                                 "type": "Flatten",
-                                 "operand": {
-                                    "type": "Query",
-                                    "source": [
-                                       {
-                                          "alias": "$this",
-                                          "expression": {
-                                             "type": "Query",
-                                             "source": [
-                                                {
-                                                   "alias": "$this",
-                                                   "expression": {
-                                                      "name": "StressEchocardiographyProcedure",
-                                                      "type": "ExpressionRef"
-                                                   }
-                                                }
-                                             ],
-                                             "where": {
-                                                "type": "Not",
-                                                "operand": {
-                                                   "type": "IsNull",
-                                                   "operand": {
-                                                      "path": "code",
-                                                      "type": "Property",
-                                                      "source": {
-                                                         "name": "$this",
-                                                         "type": "AliasRef"
-                                                      }
-                                                   }
-                                                }
-                                             },
-                                             "return": {
-                                                "expression": {
-                                                   "path": "code",
-                                                   "type": "Property",
-                                                   "source": {
-                                                      "name": "$this",
-                                                      "type": "AliasRef"
-                                                   }
-                                                }
-                                             }
-                                          }
-                                       }
-                                    ],
-                                    "where": {
-                                       "type": "Not",
-                                       "operand": {
-                                          "type": "IsNull",
-                                          "operand": {
-                                             "path": "coding",
-                                             "type": "Property",
-                                             "source": {
-                                                "name": "$this",
-                                                "type": "AliasRef"
-                                             }
-                                          }
-                                       }
-                                    },
-                                    "return": {
-                                       "expression": {
-                                          "path": "coding",
-                                          "type": "Property",
-                                          "source": {
-                                             "name": "$this",
-                                             "type": "AliasRef"
-                                          }
-                                       }
-                                    }
-                                 }
-                              },
-                              {
-                                 "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                 "value": "0",
-                                 "type": "Literal"
-                              }
-                           ]
-                        }
-                     }
-                  },
-                  "else": {
-                     "valueType": "{urn:hl7-org:elm-types:r1}String",
-                     "value": "",
-                     "type": "Literal"
                   }
                }
             },
@@ -1216,7 +992,7 @@
                                              "path": "performer",
                                              "type": "Property",
                                              "source": {
-                                                "name": "CatheterizationProcedure",
+                                                "name": "Catheterization",
                                                 "type": "ExpressionRef"
                                              }
                                           },
@@ -1408,7 +1184,7 @@
                   },
                   "else": {
                      "valueType": "{urn:hl7-org:elm-types:r1}String",
-                     "value": "",
+                     "value": "1935467921",
                      "type": "Literal"
                   }
                }
@@ -1678,6 +1454,27 @@
                }
             },
             {
+               "name": "ServiceDate",
+               "context": "Patient",
+               "accessLevel": "Public",
+               "expression": {
+                  "path": "value",
+                  "type": "Property",
+                  "source": {
+                     "path": "start",
+                     "type": "Property",
+                     "source": {
+                        "path": "performed",
+                        "type": "Property",
+                        "source": {
+                           "name": "Catheterization",
+                           "type": "ExpressionRef"
+                        }
+                     }
+                  }
+               }
+            },
+            {
                "name": "Coronary Artery Disease",
                "context": "Patient",
                "accessLevel": "Public",
@@ -1912,6 +1709,80 @@
                }
             },
             {
+               "name": "StressEchocardiogram",
+               "context": "Patient",
+               "accessLevel": "Public",
+               "expression": {
+                  "type": "If",
+                  "condition": {
+                     "asType": "{urn:hl7-org:elm-types:r1}Boolean",
+                     "type": "As",
+                     "operand": {
+                        "type": "Exists",
+                        "operand": {
+                           "type": "Query",
+                           "source": [
+                              {
+                                 "alias": "P",
+                                 "expression": {
+                                    "dataType": "{http://hl7.org/fhir}Procedure",
+                                    "type": "Retrieve"
+                                 }
+                              }
+                           ],
+                           "relationship": [],
+                           "where": {
+                              "type": "In",
+                              "operand": [
+                                 {
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                       "path": "code",
+                                       "type": "Property",
+                                       "source": {
+                                          "type": "Indexer",
+                                          "operand": [
+                                             {
+                                                "path": "coding",
+                                                "type": "Property",
+                                                "source": {
+                                                   "path": "code",
+                                                   "scope": "P",
+                                                   "type": "Property"
+                                                }
+                                             },
+                                             {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                "value": "0",
+                                                "type": "Literal"
+                                             }
+                                          ]
+                                       }
+                                    }
+                                 },
+                                 {
+                                    "name": "StressEchocardiographyCodes",
+                                    "type": "ExpressionRef"
+                                 }
+                              ]
+                           }
+                        }
+                     }
+                  },
+                  "then": {
+                     "valueType": "{urn:hl7-org:elm-types:r1}String",
+                     "value": "StressEchocardiography",
+                     "type": "Literal"
+                  },
+                  "else": {
+                     "valueType": "{urn:hl7-org:elm-types:r1}String",
+                     "value": "",
+                     "type": "Literal"
+                  }
+               }
+            },
+            {
                "name": "Abnormal",
                "context": "Patient",
                "accessLevel": "Public",
@@ -1945,79 +1816,42 @@
                            ],
                            "relationship": [],
                            "where": {
-                              "type": "And",
+                              "type": "Equal",
                               "operand": [
                                  {
-                                    "type": "Equal",
+                                    "name": "ToString",
+                                    "libraryName": "FHIRHelpers",
+                                    "type": "FunctionRef",
                                     "operand": [
                                        {
-                                          "name": "ToString",
-                                          "libraryName": "FHIRHelpers",
-                                          "type": "FunctionRef",
-                                          "operand": [
-                                             {
-                                                "path": "code",
-                                                "type": "Property",
-                                                "source": {
-                                                   "type": "Indexer",
-                                                   "operand": [
-                                                      {
-                                                         "path": "coding",
-                                                         "type": "Property",
-                                                         "source": {
-                                                            "path": "code",
-                                                            "scope": "P",
-                                                            "type": "Property"
-                                                         }
-                                                      },
-                                                      {
-                                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                         "value": "0",
-                                                         "type": "Literal"
-                                                      }
-                                                   ]
+                                          "path": "code",
+                                          "type": "Property",
+                                          "source": {
+                                             "type": "Indexer",
+                                             "operand": [
+                                                {
+                                                   "path": "coding",
+                                                   "type": "Property",
+                                                   "source": {
+                                                      "path": "code",
+                                                      "scope": "P",
+                                                      "type": "Property"
+                                                   }
+                                                },
+                                                {
+                                                   "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                   "value": "0",
+                                                   "type": "Literal"
                                                 }
-                                             }
-                                          ]
-                                       },
-                                       {
-                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                          "value": "R07.9",
-                                          "type": "Literal"
+                                             ]
+                                          }
                                        }
                                     ]
                                  },
                                  {
-                                    "type": "In",
-                                    "operand": [
-                                       {
-                                          "type": "Start",
-                                          "operand": {
-                                             "name": "ToInterval",
-                                             "libraryName": "FHIRHelpers",
-                                             "type": "FunctionRef",
-                                             "operand": [
-                                                {
-                                                   "strict": false,
-                                                   "type": "As",
-                                                   "operand": {
-                                                      "path": "onset",
-                                                      "scope": "P",
-                                                      "type": "Property"
-                                                   },
-                                                   "asTypeSpecifier": {
-                                                      "name": "{http://hl7.org/fhir}Period",
-                                                      "type": "NamedTypeSpecifier"
-                                                   }
-                                                }
-                                             ]
-                                          }
-                                       },
-                                       {
-                                          "name": "Measurement Period",
-                                          "type": "ParameterRef"
-                                       }
-                                    ]
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "R07.9",
+                                    "type": "Literal"
                                  }
                               ]
                            }
@@ -2060,79 +1894,42 @@
                            ],
                            "relationship": [],
                            "where": {
-                              "type": "And",
+                              "type": "Equal",
                               "operand": [
                                  {
-                                    "type": "Equal",
+                                    "name": "ToString",
+                                    "libraryName": "FHIRHelpers",
+                                    "type": "FunctionRef",
                                     "operand": [
                                        {
-                                          "name": "ToString",
-                                          "libraryName": "FHIRHelpers",
-                                          "type": "FunctionRef",
-                                          "operand": [
-                                             {
-                                                "path": "code",
-                                                "type": "Property",
-                                                "source": {
-                                                   "type": "Indexer",
-                                                   "operand": [
-                                                      {
-                                                         "path": "coding",
-                                                         "type": "Property",
-                                                         "source": {
-                                                            "path": "code",
-                                                            "scope": "P",
-                                                            "type": "Property"
-                                                         }
-                                                      },
-                                                      {
-                                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                         "value": "0",
-                                                         "type": "Literal"
-                                                      }
-                                                   ]
+                                          "path": "code",
+                                          "type": "Property",
+                                          "source": {
+                                             "type": "Indexer",
+                                             "operand": [
+                                                {
+                                                   "path": "coding",
+                                                   "type": "Property",
+                                                   "source": {
+                                                      "path": "code",
+                                                      "scope": "P",
+                                                      "type": "Property"
+                                                   }
+                                                },
+                                                {
+                                                   "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                   "value": "0",
+                                                   "type": "Literal"
                                                 }
-                                             }
-                                          ]
-                                       },
-                                       {
-                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                          "value": "M79.603",
-                                          "type": "Literal"
+                                             ]
+                                          }
                                        }
                                     ]
                                  },
                                  {
-                                    "type": "In",
-                                    "operand": [
-                                       {
-                                          "type": "Start",
-                                          "operand": {
-                                             "name": "ToInterval",
-                                             "libraryName": "FHIRHelpers",
-                                             "type": "FunctionRef",
-                                             "operand": [
-                                                {
-                                                   "strict": false,
-                                                   "type": "As",
-                                                   "operand": {
-                                                      "path": "onset",
-                                                      "scope": "P",
-                                                      "type": "Property"
-                                                   },
-                                                   "asTypeSpecifier": {
-                                                      "name": "{http://hl7.org/fhir}Period",
-                                                      "type": "NamedTypeSpecifier"
-                                                   }
-                                                }
-                                             ]
-                                          }
-                                       },
-                                       {
-                                          "name": "Measurement Period",
-                                          "type": "ParameterRef"
-                                       }
-                                    ]
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "M79.603",
+                                    "type": "Literal"
                                  }
                               ]
                            }
@@ -2175,79 +1972,42 @@
                            ],
                            "relationship": [],
                            "where": {
-                              "type": "And",
+                              "type": "Equal",
                               "operand": [
                                  {
-                                    "type": "Equal",
+                                    "name": "ToString",
+                                    "libraryName": "FHIRHelpers",
+                                    "type": "FunctionRef",
                                     "operand": [
                                        {
-                                          "name": "ToString",
-                                          "libraryName": "FHIRHelpers",
-                                          "type": "FunctionRef",
-                                          "operand": [
-                                             {
-                                                "path": "code",
-                                                "type": "Property",
-                                                "source": {
-                                                   "type": "Indexer",
-                                                   "operand": [
-                                                      {
-                                                         "path": "coding",
-                                                         "type": "Property",
-                                                         "source": {
-                                                            "path": "code",
-                                                            "scope": "P",
-                                                            "type": "Property"
-                                                         }
-                                                      },
-                                                      {
-                                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                         "value": "0",
-                                                         "type": "Literal"
-                                                      }
-                                                   ]
+                                          "path": "code",
+                                          "type": "Property",
+                                          "source": {
+                                             "type": "Indexer",
+                                             "operand": [
+                                                {
+                                                   "path": "coding",
+                                                   "type": "Property",
+                                                   "source": {
+                                                      "path": "code",
+                                                      "scope": "P",
+                                                      "type": "Property"
+                                                   }
+                                                },
+                                                {
+                                                   "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                   "value": "0",
+                                                   "type": "Literal"
                                                 }
-                                             }
-                                          ]
-                                       },
-                                       {
-                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                          "value": "R68.84",
-                                          "type": "Literal"
+                                             ]
+                                          }
                                        }
                                     ]
                                  },
                                  {
-                                    "type": "In",
-                                    "operand": [
-                                       {
-                                          "type": "Start",
-                                          "operand": {
-                                             "name": "ToInterval",
-                                             "libraryName": "FHIRHelpers",
-                                             "type": "FunctionRef",
-                                             "operand": [
-                                                {
-                                                   "strict": false,
-                                                   "type": "As",
-                                                   "operand": {
-                                                      "path": "onset",
-                                                      "scope": "P",
-                                                      "type": "Property"
-                                                   },
-                                                   "asTypeSpecifier": {
-                                                      "name": "{http://hl7.org/fhir}Period",
-                                                      "type": "NamedTypeSpecifier"
-                                                   }
-                                                }
-                                             ]
-                                          }
-                                       },
-                                       {
-                                          "name": "Measurement Period",
-                                          "type": "ParameterRef"
-                                       }
-                                    ]
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "R68.84",
+                                    "type": "Literal"
                                  }
                               ]
                            }
@@ -2290,79 +2050,42 @@
                            ],
                            "relationship": [],
                            "where": {
-                              "type": "And",
+                              "type": "Equal",
                               "operand": [
                                  {
-                                    "type": "Equal",
+                                    "name": "ToString",
+                                    "libraryName": "FHIRHelpers",
+                                    "type": "FunctionRef",
                                     "operand": [
                                        {
-                                          "name": "ToString",
-                                          "libraryName": "FHIRHelpers",
-                                          "type": "FunctionRef",
-                                          "operand": [
-                                             {
-                                                "path": "code",
-                                                "type": "Property",
-                                                "source": {
-                                                   "type": "Indexer",
-                                                   "operand": [
-                                                      {
-                                                         "path": "coding",
-                                                         "type": "Property",
-                                                         "source": {
-                                                            "path": "code",
-                                                            "scope": "P",
-                                                            "type": "Property"
-                                                         }
-                                                      },
-                                                      {
-                                                         "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                         "value": "0",
-                                                         "type": "Literal"
-                                                      }
-                                                   ]
+                                          "path": "code",
+                                          "type": "Property",
+                                          "source": {
+                                             "type": "Indexer",
+                                             "operand": [
+                                                {
+                                                   "path": "coding",
+                                                   "type": "Property",
+                                                   "source": {
+                                                      "path": "code",
+                                                      "scope": "P",
+                                                      "type": "Property"
+                                                   }
+                                                },
+                                                {
+                                                   "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                   "value": "0",
+                                                   "type": "Literal"
                                                 }
-                                             }
-                                          ]
-                                       },
-                                       {
-                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                          "value": "R06.02",
-                                          "type": "Literal"
+                                             ]
+                                          }
                                        }
                                     ]
                                  },
                                  {
-                                    "type": "In",
-                                    "operand": [
-                                       {
-                                          "type": "Start",
-                                          "operand": {
-                                             "name": "ToInterval",
-                                             "libraryName": "FHIRHelpers",
-                                             "type": "FunctionRef",
-                                             "operand": [
-                                                {
-                                                   "strict": false,
-                                                   "type": "As",
-                                                   "operand": {
-                                                      "path": "onset",
-                                                      "scope": "P",
-                                                      "type": "Property"
-                                                   },
-                                                   "asTypeSpecifier": {
-                                                      "name": "{http://hl7.org/fhir}Period",
-                                                      "type": "NamedTypeSpecifier"
-                                                   }
-                                                }
-                                             ]
-                                          }
-                                       },
-                                       {
-                                          "name": "Measurement Period",
-                                          "type": "ParameterRef"
-                                       }
-                                    ]
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "R06.02",
+                                    "type": "Literal"
                                  }
                               ]
                            }
@@ -2391,14 +2114,85 @@
                      "type": "Query",
                      "source": [
                         {
-                           "alias": "practitioner",
+                           "alias": "p",
                            "expression": {
                               "dataType": "{http://hl7.org/fhir}Practitioner",
                               "type": "Retrieve"
                            }
                         }
                      ],
-                     "relationship": []
+                     "relationship": [],
+                     "where": {
+                        "type": "And",
+                        "operand": [
+                           {
+                              "type": "Equal",
+                              "operand": [
+                                 {
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                       "path": "value",
+                                       "type": "Property",
+                                       "source": {
+                                          "type": "Indexer",
+                                          "operand": [
+                                             {
+                                                "path": "identifier",
+                                                "scope": "p",
+                                                "type": "Property"
+                                             },
+                                             {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                "value": "0",
+                                                "type": "Literal"
+                                             }
+                                          ]
+                                       }
+                                    }
+                                 },
+                                 {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "1932102951",
+                                    "type": "Literal"
+                                 }
+                              ]
+                           },
+                           {
+                              "type": "Equal",
+                              "operand": [
+                                 {
+                                    "path": "value",
+                                    "type": "Property",
+                                    "source": {
+                                       "path": "system",
+                                       "type": "Property",
+                                       "source": {
+                                          "type": "Indexer",
+                                          "operand": [
+                                             {
+                                                "path": "identifier",
+                                                "scope": "p",
+                                                "type": "Property"
+                                             },
+                                             {
+                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                "value": "0",
+                                                "type": "Literal"
+                                             }
+                                          ]
+                                       }
+                                    }
+                                 },
+                                 {
+                                    "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                    "value": "http://hl7.org.fhir/sid/us-npi",
+                                    "type": "Literal"
+                                 }
+                              ]
+                           }
+                        ]
+                     }
                   }
                }
             },
@@ -2510,97 +2304,74 @@
                "context": "Patient",
                "accessLevel": "Public",
                "expression": {
-                  "type": "If",
-                  "condition": {
-                     "asType": "{urn:hl7-org:elm-types:r1}Boolean",
-                     "type": "As",
-                     "operand": {
-                        "type": "Exists",
-                        "operand": {
-                           "path": "telecom",
-                           "type": "Property",
-                           "source": {
-                              "name": "Requestor",
-                              "type": "ExpressionRef"
-                           }
-                        }
-                     }
-                  },
-                  "then": {
+                  "path": "value",
+                  "type": "Property",
+                  "source": {
                      "path": "value",
                      "type": "Property",
                      "source": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                           "type": "SingletonFrom",
-                           "operand": {
-                              "type": "Query",
-                              "source": [
-                                 {
-                                    "alias": "tele",
-                                    "expression": {
-                                       "path": "telecom",
-                                       "type": "Property",
-                                       "source": {
-                                          "name": "Requestor",
-                                          "type": "ExpressionRef"
-                                       }
+                        "type": "SingletonFrom",
+                        "operand": {
+                           "type": "Query",
+                           "source": [
+                              {
+                                 "alias": "tele",
+                                 "expression": {
+                                    "path": "telecom",
+                                    "type": "Property",
+                                    "source": {
+                                       "name": "Requestor",
+                                       "type": "ExpressionRef"
                                     }
                                  }
-                              ],
-                              "relationship": [],
-                              "where": {
-                                 "type": "And",
-                                 "operand": [
-                                    {
-                                       "type": "Equal",
-                                       "operand": [
-                                          {
-                                             "path": "value",
-                                             "type": "Property",
-                                             "source": {
-                                                "path": "system",
-                                                "scope": "tele",
-                                                "type": "Property"
-                                             }
-                                          },
-                                          {
-                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                             "value": "phone",
-                                             "type": "Literal"
-                                          }
-                                       ]
-                                    },
-                                    {
-                                       "type": "Equal",
-                                       "operand": [
-                                          {
-                                             "path": "value",
-                                             "type": "Property",
-                                             "source": {
-                                                "path": "use",
-                                                "scope": "tele",
-                                                "type": "Property"
-                                             }
-                                          },
-                                          {
-                                             "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                             "value": "work",
-                                             "type": "Literal"
-                                          }
-                                       ]
-                                    }
-                                 ]
                               }
+                           ],
+                           "relationship": [],
+                           "where": {
+                              "type": "And",
+                              "operand": [
+                                 {
+                                    "type": "Equal",
+                                    "operand": [
+                                       {
+                                          "path": "value",
+                                          "type": "Property",
+                                          "source": {
+                                             "path": "system",
+                                             "scope": "tele",
+                                             "type": "Property"
+                                          }
+                                       },
+                                       {
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "phone",
+                                          "type": "Literal"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "type": "Equal",
+                                    "operand": [
+                                       {
+                                          "path": "value",
+                                          "type": "Property",
+                                          "source": {
+                                             "path": "use",
+                                             "scope": "tele",
+                                             "type": "Property"
+                                          }
+                                       },
+                                       {
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "work",
+                                          "type": "Literal"
+                                       }
+                                    ]
+                                 }
+                              ]
                            }
                         }
                      }
-                  },
-                  "else": {
-                     "valueType": "{urn:hl7-org:elm-types:r1}String",
-                     "value": "(257) 563-7401",
-                     "type": "Literal"
                   }
                }
             },
