@@ -139,123 +139,11 @@
        },
        {
           "linkId":"3",
-          "text":"Vital-Signs",
-          "type":"group",
-          "item":[
-         {
-                 "linkId": "3.1",
-                 "text": "Pulserate(beats/min)",
-                 "type": "string",
-                 "required": true,
-                 "code":{
-                   "coding":[
-                      {
-                         "system":"http://loinc.org",
-                         "code":"8867-4",
-                         "display":"Heartrate"
-                      }
-                    ]
-                  },
-         "extension":[
-                   {
-                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"PatientPulserate"
-                   }
-                ]
-             },
-              {
-                 "linkId": "3.2",
-                 "text": "Respiratoryrate(breaths/min)",
-                 "type": "string",
-                 "required": true,
-                 "code":{
-                   "coding":[
-                      {
-                         "system":"http://loinc.org",
-                         "code":"9279-1",
-                         "display":"Respiratoryrate"
-                      }
-                   ]
-                },
-         "extension":[
-                   {
-                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"PatientRespiratoryrate"
-                   }
-                ]
-             },
-         {
-                 "linkId": "3.3",
-                 "text": "SystolicBloodPressure(mm[Hg])",
-                 "type": "string",
-                 "required": true,
-                 "code":{
-                   "coding":[
-                      {
-                         "system":"http://loinc.org",
-                         "code":"8480-6",
-                         "display":"SystolicBloodPressure"
-                      }
-                   ]
-                },
-         "extension":[
-                   {
-                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"SystolicBloodPressure"
-                   }
-                ]
-             },
-         {
-                 "linkId": "3.4",
-                 "text": "DiastolicBloodPressure(mm[Hg])",
-                 "type": "string",
-                 "required": true,
-                 "code":{
-                   "coding":[
-                      {
-                         "system":"http://loinc.org",
-                         "code":"8462-4",
-                         "display":"DiastolicBloodPressure"
-                      }
-                   ]
-                },
-         "extension":[
-                   {
-                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"DiastolicBloodPressure"
-                   }
-                ]
-             },
-         {
-                 "linkId": "3.5",
-                 "text": "BodyTemperature",
-                 "type": "string",
-                 "required": true,
-                 "code":{
-                   "coding":[
-                      {
-                         "system":"http://loinc.org",
-                         "code":"8310-5",
-                         "display":"BodyTemperature"
-                      }
-                   ]
-                },
-         "extension":[
-                   {
-                      "url":"http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                      "valueString":"BodyTemperature"
-                   }
-                ]
-             }
-          ]
-       },
-       {
-          "linkId":"4",
           "text":"Diagnosis/Procedure",
           "type":"group",
           "item":[
          {
-                 "linkId": "4.1",
+                 "linkId": "3.1",
                  "text": "Primary Diagnosis",
                  "type": "string",
                  "required": true,
@@ -276,7 +164,7 @@
                 ]
              },
              {
-                 "linkId": "4.2",
+                 "linkId": "3.2",
                  "text": "Relevant Diagnosis",
                  "type": "string",
                  "required": true,
@@ -297,7 +185,7 @@
                 ]
              },
          {
-                 "linkId": "4.3",
+                 "linkId": "3.3",
                  "text": "Non Advanced Imaging Modalities within 60 days",
                  "type": "string",
                  "required": true,
@@ -318,7 +206,7 @@
                 ]
              },
              {
-               "linkId": "4.4",
+               "linkId": "3.4",
                "text": "Reason for ordering this exam",
                "type": "open-choice",
                "required": true,
@@ -371,28 +259,16 @@
                  "valueString": "Reason"
                }
              ]
-            },
-        {
-             "linkId": "4.5",
-             "text": "Scheduled date of service",
-             "type": "date",
-             "required": true,
-             "extension": [
-               {
-                 "url": "http://hl7.org/fhir/StructureDefinition/cqif-calculatedValue",
-                 "valueString": "ServiceDate"
-               }
-             ]
             }
           ]
        },
        {
-          "linkId":"5",
+          "linkId":"4",
           "text":"Additional Documentation Required",
           "type":"group",
           "item":[
              {
-                "linkId":"5.1",
+                "linkId":"4.1",
                 "text":"History and Physical Note[34117-2]",
                 "type":"attachment",
                 "required":true,
@@ -407,7 +283,7 @@
                 }
              },
              {
-                "linkId":"5.2",
+                "linkId":"4.2",
                 "text":"Physical Examination[29545-1]",
                 "type":"attachment",
                 "required":true,
@@ -422,7 +298,7 @@
                 }
              },
              {
-                "linkId":"5.3",
+                "linkId":"4.3",
                 "text":"Relevant diagnostic tests/laboratory data[30954-2]",
                 "type":"attachment",
                 "required":true,
@@ -439,12 +315,12 @@
           ]
        },
        {
-          "linkId":"6",
+          "linkId":"5",
           "text":"Submitter Information",
           "type":"group",
           "item":[
              {
-                "linkId":"6.1",
+                "linkId":"5.1",
                 "text":"Contact Name",
                 "type":"string",
                 "required":true,
@@ -456,7 +332,7 @@
                 ]
              },
              {
-                "linkId":"6.2",
+                "linkId":"5.2",
                 "text":"Telephone Number",
                 "type":"string",
                 "required":true,
@@ -470,68 +346,68 @@
           ]
        },
        {
-          "linkId":"7",
+          "linkId":"6",
           "text":"Additional Information",
           "type":"group",
           "item":[
               {
-                "linkId":"7.1",
+                "linkId":"6.1",
                 "text":"Is the chest pain substernal?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":true}]
              },
           {
-                "linkId":"7.2",
+                "linkId":"6.2",
                 "text":"Is there arm pain?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":true}]
              },
               {
-                "linkId":"7.3",
+                "linkId":"6.3",
                 "text":"Is there jaw pain?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":false}]
              },
               {
-                "linkId":"7.4",
+                "linkId":"6.4",
                 "text":"Is the pain relieved with nitroglycerin or rest?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":false}]
              },
              {
-                "linkId":"7.5",
+                "linkId":"6.5",
                 "text":"Is there shortness of breath?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":true}]
              },
              {
-                "linkId":"7.6",
+                "linkId":"6.6",
                 "text":"Does the pain wake the patient from sleep?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":true}]
              },
              {
-                "linkId":"7.7",
+                "linkId":"6.7",
                 "text":"Is the pain worse with inspiration?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":false}]
              },
              {
-                "linkId":"7.8",
+                "linkId":"6.8",
                 "text":"Does the pain occur at rest?",
                 "type":"boolean",
                 "required":true,
 		"initial":[{"valueBoolean":false}]
              },
              {
-                "linkId":"7.9",
+                "linkId":"6.9",
                 "text":"Is the pain brought on by exercise or emotional upset?",
                 "type":"boolean",
                 "required":true,
