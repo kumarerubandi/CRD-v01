@@ -926,7 +926,7 @@
                                  },
                                  {
                                     "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                    "value": "http://hl7.org/fhir/sid/us-medicare",
+                                    "value": "https://github.com/synthetichealth/synthea",
                                     "type": "Literal"
                                  }
                               ]
@@ -1119,73 +1119,110 @@
                "context": "Patient",
                "accessLevel": "Public",
                "expression": {
-                  "type": "If",
-                  "condition": {
-                     "asType": "{urn:hl7-org:elm-types:r1}Boolean",
-                     "type": "As",
-                     "operand": {
-                        "type": "Exists",
-                        "operand": {
-                           "path": "identifier",
-                           "type": "Property",
-                           "source": {
-                              "name": "Practitioner",
-                              "type": "ExpressionRef"
-                           }
-                        }
-                     }
-                  },
-                  "then": {
+                  "path": "value",
+                  "type": "Property",
+                  "source": {
                      "path": "value",
                      "type": "Property",
                      "source": {
-                        "path": "value",
-                        "type": "Property",
-                        "source": {
-                           "type": "SingletonFrom",
-                           "operand": {
-                              "type": "Query",
-                              "source": [
-                                 {
-                                    "alias": "identifier",
-                                    "expression": {
-                                       "path": "identifier",
-                                       "type": "Property",
-                                       "source": {
-                                          "name": "Practitioner",
-                                          "type": "ExpressionRef"
-                                       }
+                        "type": "SingletonFrom",
+                        "operand": {
+                           "type": "Query",
+                           "source": [
+                              {
+                                 "alias": "identifier",
+                                 "expression": {
+                                    "path": "identifier",
+                                    "type": "Property",
+                                    "source": {
+                                       "name": "Practitioner",
+                                       "type": "ExpressionRef"
                                     }
                                  }
-                              ],
-                              "relationship": [],
-                              "where": {
-                                 "type": "Equal",
-                                 "operand": [
-                                    {
-                                       "path": "value",
-                                       "type": "Property",
-                                       "source": {
-                                          "path": "system",
-                                          "scope": "identifier",
-                                          "type": "Property"
-                                       }
-                                    },
-                                    {
-                                       "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                       "value": "http://hl7.org/fhir/sid/us-npi",
-                                       "type": "Literal"
-                                    }
-                                 ]
                               }
+                           ],
+                           "relationship": [],
+                           "where": {
+                              "type": "And",
+                              "operand": [
+                                 {
+                                    "type": "Equal",
+                                    "operand": [
+                                       {
+                                          "path": "value",
+                                          "type": "Property",
+                                          "source": {
+                                             "path": "system",
+                                             "type": "Property",
+                                             "source": {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                   {
+                                                      "path": "coding",
+                                                      "type": "Property",
+                                                      "source": {
+                                                         "path": "type",
+                                                         "scope": "identifier",
+                                                         "type": "Property"
+                                                      }
+                                                   },
+                                                   {
+                                                      "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                      "value": "0",
+                                                      "type": "Literal"
+                                                   }
+                                                ]
+                                             }
+                                          }
+                                       },
+                                       {
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "http://terminology.hl7.org/CodeSystem/v2-0203",
+                                          "type": "Literal"
+                                       }
+                                    ]
+                                 },
+                                 {
+                                    "type": "Equal",
+                                    "operand": [
+                                       {
+                                          "path": "value",
+                                          "type": "Property",
+                                          "source": {
+                                             "path": "code",
+                                             "type": "Property",
+                                             "source": {
+                                                "type": "Indexer",
+                                                "operand": [
+                                                   {
+                                                      "path": "coding",
+                                                      "type": "Property",
+                                                      "source": {
+                                                         "path": "type",
+                                                         "scope": "identifier",
+                                                         "type": "Property"
+                                                      }
+                                                   },
+                                                   {
+                                                      "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                      "value": "0",
+                                                      "type": "Literal"
+                                                   }
+                                                ]
+                                             }
+                                          }
+                                       },
+                                       {
+                                          "valueType": "{urn:hl7-org:elm-types:r1}String",
+                                          "value": "NPI",
+                                          "type": "Literal"
+                                       }
+                                    ]
+                                 }
+                              ]
                            }
                         }
                      }
-                  },
-                  "else": {
-                     "valueType": "{urn:hl7-org:elm-types:r1}String",
-                     "value": "1935467921",
-                     "type": "Literal"
                   }
                }
             },
@@ -1289,7 +1326,7 @@
                                        },
                                        {
                                           "valueType": "{urn:hl7-org:elm-types:r1}String",
-                                          "value": "PRN",
+                                          "value": "TAX",
                                           "type": "Literal"
                                        }
                                     ]
@@ -1735,31 +1772,34 @@
                               "type": "In",
                               "operand": [
                                  {
-                                    "path": "value",
-                                    "type": "Property",
-                                    "source": {
-                                       "path": "code",
-                                       "type": "Property",
-                                       "source": {
-                                          "type": "Indexer",
-                                          "operand": [
-                                             {
-                                                "path": "coding",
-                                                "type": "Property",
-                                                "source": {
-                                                   "path": "code",
-                                                   "scope": "P",
-                                                   "type": "Property"
+                                    "name": "ToString",
+                                    "libraryName": "FHIRHelpers",
+                                    "type": "FunctionRef",
+                                    "operand": [
+                                       {
+                                          "path": "code",
+                                          "type": "Property",
+                                          "source": {
+                                             "type": "Indexer",
+                                             "operand": [
+                                                {
+                                                   "path": "coding",
+                                                   "type": "Property",
+                                                   "source": {
+                                                      "path": "code",
+                                                      "scope": "P",
+                                                      "type": "Property"
+                                                   }
+                                                },
+                                                {
+                                                   "valueType": "{urn:hl7-org:elm-types:r1}Integer",
+                                                   "value": "0",
+                                                   "type": "Literal"
                                                 }
-                                             },
-                                             {
-                                                "valueType": "{urn:hl7-org:elm-types:r1}Integer",
-                                                "value": "0",
-                                                "type": "Literal"
-                                             }
-                                          ]
+                                             ]
+                                          }
                                        }
-                                    }
+                                    ]
                                  },
                                  {
                                     "name": "StressEchocardiographyCodes",

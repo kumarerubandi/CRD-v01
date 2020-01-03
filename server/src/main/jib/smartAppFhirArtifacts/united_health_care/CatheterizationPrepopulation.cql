@@ -108,7 +108,7 @@ define BeneficiaryDateOfBirth: Patient.birthDate.value
 define BeneficiaryIdentificationNumber:
 	(singleton from (
   	Patient.identifier identifier
-   	 where identifier.system.value = 'http://hl7.org/fhir/sid/us-medicare')).value.value
+   	 where identifier.system.value = 'https://github.com/synthetichealth/synthea')).value.value
 // Practitioner info
 define Practitioner: 
 	singleton from (
@@ -125,15 +125,13 @@ define PractitionerLastName: "PractitionerNameObject".family.value
 define PractitionerMiddleInitial: GetMiddleInitials("PractitionerNameObject")
 define PractitionerFirstName: "PractitionerNameObject".given[0].value
 define PractitionerNPI: 
-	if exists("Practitioner".identifier) then ((singleton from (
+	(singleton from (
   		"Practitioner".identifier identifier
-    		where identifier.system.value = 'http://hl7.org/fhir/sid/us-npi')).value.value) 
-    	else 
-	'1935467921'
+    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'NPI')).value.value
 define PractitionerPTAN:
 	(singleton from (
   		"Practitioner".identifier identifier
-    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'PRN')).value.value
+    		where identifier.type.coding[0].system.value = 'http://terminology.hl7.org/CodeSystem/v2-0203' and identifier.type.coding[0].code.value = 'TAX')).value.value
 define PractitionerAddressObject: singleton from ("Practitioner".address address where address.use.value = 'home')  
 define PractitionerAddress: 
 	"PractitionerAddressObject".line[0].value +', ' +"PractitionerAddressObject".city.value +', ' +"PractitionerAddressObject".state.value+', ' +"PractitionerAddressObject".postalCode.value
@@ -156,7 +154,7 @@ define "Electrocardiogram":
 	else ''
 define StressEchocardiogram:
 	if exists([Procedure]P
-    		where P.code.coding[0].code.value in "StressEchocardiographyCodes")
+    		where P.code.coding[0].code in "StressEchocardiographyCodes")
 		then 'StressEchocardiography'
 	else ''
     		
