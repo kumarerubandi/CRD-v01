@@ -109,25 +109,25 @@ code "8510008": '8510008' from "SNOMED-CT"
 parameter device_request DeviceRequest
 
 // Relevant Diagnosis Code Lists
-define "COPD_Codes": { "J44", "J44.0", "J44.1", "J44.9" }
-define "Bronchiectasis_Codes": { "J47", "J47.0", "J47.1", "J47.9" }
-define "Diffuse_interstitial_lung_disease_Codes": { "J84", "J84.0", "J84.01", "J84.02", "J84.03",
-  "J84.09", "J84.1", "J84.10", "J84.11", "J84.111", "J84.112", "J84.113", "J84.114", "J84.115",
-  "J84.116", "J84.117", "J84.17", "J84.2", "J84.8", "J84.81", "J84.82", "J84.83", "J84.84",
-  "J84.841", "J84.842", "J84.843", "J84.848", "J84.89", "J84.9" }
-define "Cystic_fibrosis_Codes": { "E84", "E84.0", "E84.1", "E84.11", "E84.19", "E84.8", "E84.9" }
-define "Pulmonary_hypertension_Codes": { "I27.0", "I27.2" }
-define "Hypoxemia_Codes": { "R09.02" }
+define "COPD_Codes": { 'J44', 'J44.0', 'J44.1', 'J44.9' }
+define "Bronchiectasis_Codes": { 'J47', 'J47.0', 'J47.1', 'J47.9' }
+define "Diffuse_interstitial_lung_disease_Codes": { 'J84', 'J84.0', 'J84.01', 'J84.02', 'J84.03',
+  'J84.09', 'J84.1', 'J84.10', 'J84.11', 'J84.111', 'J84.112', 'J84.113', 'J84.114', 'J84.115',
+  'J84.116', 'J84.117', 'J84.17', 'J84.2', 'J84.8', 'J84.81', 'J84.82', 'J84.83', 'J84.84',
+  'J84.841', 'J84.842', 'J84.843', 'J84.848', 'J84.89', 'J84.9' }
+define "Cystic_fibrosis_Codes": { 'E84', 'E84.0', 'E84.1', 'E84.11', 'E84.19', 'E84.8', 'E84.9' }
+define "Pulmonary_hypertension_Codes": { 'I27.0', 'I27.2' }
+define "Hypoxemia_Codes": { 'R09.02' }
 
-// Observation code lists
-define "Arterial_oxygen_saturation_Codes": { "59408-5" }
-define "Arterial_partial_pressure_of_oxygen_Codes": { "2703-7" }
-define "Arterial_oxygen_saturation_during_exercise_Codes": { "89276-0" }
+define "Arterial_oxygen_saturation_Codes": { '59408-5' }
+define "Arterial_partial_pressure_of_oxygen_Codes": { '2703-7' }
+define "Arterial_oxygen_saturation_during_exercise_Codes": { '89276-0' }
 
-define "Hematocrit_lab_test_Codes": { "20570-8", "31100-1", "32354-3", "41654-5", "41655-2", "4544-3", "4545-0", "71829-6", "71830-4", "71832-0", "71833-8" }
+define "Hematocrit_lab_test_Codes": { '20570-8', '31100-1', '32354-3', '41654-5', '41655-2', '4544-3', '4545-0', '71829-6', '71830-4', '71832-0', '71833-8' }
 
 // Other codes
-define "Immobilization_Codes": { "102491009", "129857008", "129859006", "160685001", "371632003", "8510008" }
+define "Immobilization_Codes": { '102491009', '129857008', '129859006', '160685001', '371632003', '8510008' }
+
 
 
 context Patient
@@ -175,18 +175,29 @@ define PatientMedicareId: "PatientCoverageResource".subscriberId.value
 
 // coverage requirement info
 define RelevantDiagnoses: {
-  if exists(Confirmed(ActiveOrRecurring([Condition: "COPD_Codes"]))) then 'COPD' else 'null',
-  if exists(Confirmed(ActiveOrRecurring([Condition: "Bronchiectasis_Codes"]))) then 'Bronchiectasis' else 'null',
-  if exists(Confirmed(ActiveOrRecurring([Condition: "Diffuse_interstitial_lung_disease_Codes"]))) then 'Diffuse Interstitial Lung Disease' else 'null',
-  if exists(Confirmed(ActiveOrRecurring([Condition: "Cystic_fibrosis_Codes"]))) then 'Cystic Fibrosis' else 'null',
-  if exists(Confirmed(ActiveOrRecurring([Condition: "Pulmonary_hypertension_Codes"]))) then 'Pulmonary Hypertension' else 'null',
-  if exists(Confirmed(ActiveOrRecurring([Condition: "Hypoxemia_Codes"]))) then 'Hypoxemia' else 'null'
+  if exists(Confirmed(ActiveOrRecurring([Condition] P
+		where P.code.coding[0].code in "COPD_Codes"))) then 'COPD' else 'null',
+  if exists(Confirmed(ActiveOrRecurring([Condition]  P
+		where P.code.coding[0].code in "Bronchiectasis_Codes"))) then 'Bronchiectasis' else 'null',
+  if exists(Confirmed(ActiveOrRecurring([Condition] P
+		where P.code.coding[0].code in  "Diffuse_interstitial_lung_disease_Codes"))) then 'Diffuse Interstitial Lung Disease' else 'null',
+  if exists(Confirmed(ActiveOrRecurring([Condition] P
+		where P.code.coding[0].code in "Cystic_fibrosis_Codes"))) then 'Cystic Fibrosis' else 'null',
+  if exists(Confirmed(ActiveOrRecurring([Condition] P
+		where P.code.coding[0].code in  "Pulmonary_hypertension_Codes"))) then 'Pulmonary Hypertension' else 'null',
+  if exists(Confirmed(ActiveOrRecurring([Condition] P
+		where P.code.coding[0].code in  "Hypoxemia_Codes"))) then 'Hypoxemia' else 'null'
 } except { 'null' } // except 'null' is a workaround since I don't see how to remove actual nulls
-define ArterialOxygenSaturation: LowestObservation(WithUnit(Verified(ObservationLookBack([Observation: "Arterial_oxygen_saturation_Codes"], 3 months)), '%'))
-define ArterialPartialPressureOfOxygen: LowestObservation(WithUnit(Verified(ObservationLookBack([Observation: "Arterial_partial_pressure_of_oxygen_Codes"], 3 months)), 'mm[Hg]'))
-define ArterialOxygenSaturationExercise: LowestObservation(WithUnit(Verified(ObservationLookBack([Observation: "Arterial_oxygen_saturation_during_exercise_Codes"], 3 months)), '%'))
-define PatientMobile: not exists(Confirmed(ActiveOrRecurring([Condition: "Immobilization_Codes"])))
-define HematocritThatIsGreaterThanThreshold: HighestObservation(WithUnit(Verified(ObservationLookBack([Observation: "Hematocrit_lab_test_Codes"], 3 months)), '%'))
+define ArterialOxygenSaturation: LowestObservation(WithUnit(Verified(ObservationLookBack([Observation] P
+		where P.code.coding[0].code in  "Arterial_oxygen_saturation_Codes", 3 months)), '%'))
+define ArterialPartialPressureOfOxygen: LowestObservation(WithUnit(Verified(ObservationLookBack([Observation] P
+		where P.code.coding[0].code in "Arterial_partial_pressure_of_oxygen_Codes", 3 months)), 'mm[Hg]'))
+define ArterialOxygenSaturationExercise: LowestObservation(WithUnit(Verified(ObservationLookBack([Observation] P
+		where P.code.coding[0].code in "Arterial_oxygen_saturation_during_exercise_Codes", 3 months)), '%'))
+define PatientMobile: not exists(Confirmed(ActiveOrRecurring([Condition] P
+		where P.code.coding[0].code in "Immobilization_Codes")))
+define HematocritThatIsGreaterThanThreshold: HighestObservation(WithUnit(Verified(ObservationLookBack([Observation] P
+		where P.code.coding[0].code in "Hematocrit_lab_test_Codes", 3 months)), '%'))
 define PatientHasHematocritThatIsGreaterThanThreshold: exists("HematocritThatIsGreaterThanThreshold")
 // device request info
 define DeviceRequestHcpcsCoding: singleton from (
